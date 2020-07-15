@@ -1,16 +1,13 @@
 <!-- Dedicated to God the Father -->
 <!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
-<!-- Topalian Game Engine Template --><!--Camera Follows Player -->
-
+<!-- Topalian Game Engine Data Navigator Template --><!--Camera Follows Player -->
+ 
 <!-- W is up, S is Down, A is Left, D is Right. Click mouse to get the X and Y coordinates of any place on the screen -->
-
 <!-- tested and works in firefox, chrome, brave -->
-
 <!-- https://github.com/ChristopherTopalian/Topalian-Game-Engine -->
-<html>
-<head><title>Truth</title>
+<!-- https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
 
-
+<html><head><title>Topalian Game Engine Data Navigator</title>
 <style>
  #thePlayer{
     position: absolute;
@@ -18,31 +15,23 @@
     height: 70px;
     background: rgb(163, 157, 245);
     z-index:1000;
-    
     word-wrap: break-word;
     font-family: Tahoma;
     font-size: 13px;
     font-weight:bold;
     padding: 4px; 
     text-align: center;
-   
 }
     
-
-div
-{
-word-wrap: normal;
- white-space: nowrap;
-}
 #theBackground{
     position: absolute;
     width: 10000px;
     height: 10000px;
-   /* align-content:center;*/
+    /*align-content:center;*/
     background: tan;
     left: 0px;
     top: 0px;
-    opacity: 0.5;
+    opacity: 0.3;
     z-index:-100;           
 }
       
@@ -50,20 +39,17 @@ body{
     color:white;
 }
 
-
-
-
 #theTitle
 {
     position:absolute;
     word-wrap: break-word;
     width:500px;
     height:500px;
-    left: 1015px;
-    top: 120px;
+    left: 700px;
+    top: 90px;
     font-family: exo black;
-    font-size: 35px;
-    color: black;
+    font-size: 30px;
+    color: aqua;
     z-index:5;
 }
 
@@ -74,40 +60,10 @@ body{
     width:500px;
     height:500px;
     left: 100px;
-    top: 175px;
+    top: 90px;
     font-family: exo black;
     font-size: 22px;
-    color: blue;
-}
-
-#periodicTable
-{
-    position: absolute;
-    width: 1535;
-    height: 912px;
-    background: white;
-    left: 0px;
-    top: 0px;
-    z-index: 3;
-    background-image: url("textures/periodicTable.png");
-    background-size: cover;
-}
-
-#elementInfo
-{
-    position: absolute;
-    width: 163;
-    height: 167;
-    background: black;
-    left: 319px;
-    top: 133px;
-    z-index: 4;
-    color:white;
-    font-family:"exo";
-    font-size:30px;
-    font-weight: bold;
-    text-align:center;
-    padding:10px;
+    color: aqua;
 }
 
 video
@@ -115,7 +71,6 @@ video
     border: solid;
     border-width: 1px;
     border-color:white;
-    width: 500px;
     z-index:4;
 }
 
@@ -126,18 +81,15 @@ video
     z-index: 10;
 }
 
-
 </style>
-</head>
-
     <body onload="whenLoaded();">
     
         <div id="thePlayer" class="box"></div>
         <div id="theBackground"></div>
 
-        <script>
+   <script>
 
-let theNews = [
+    let theNews = [
     {
         headline: "Ghislaine Maxwell was ‘a faithful lapdog’ to Jeffrey Epstein, wanted to marry him, royal cousin claims",
         month: 07,
@@ -165,9 +117,7 @@ let theNews = [
     ];
 
 
-
-
-let videoEvidence = 
+        let videoEvidence = 
         [
             {
                 title: "Event 201 Pandemic Exercise Highlights Reel",
@@ -221,26 +171,26 @@ let videoEvidence =
         ];
 
 
-let evidence = [
+    let evidence = [
     {
         title: "Wuhan China manufactured Adrenochrome",
         month: "07",
-        day: "07",
+        day: "17",
         year: "2018",
         url: "https://www.ncbi.nlm.nih.gov/pcsubstance/?term=%223B+Scientific+(Wuhan)+Corp%22%5BSourceName%5D+AND+%22Adrenochrome%22",
         info:"They have made Adrenochrome in Wuhan China for a very long time.",
-        image: "https://commons.wikimedia.org/wiki/File:Test-Logo.svg",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/wuhan-adrenochrome-002_orig.png",
         id:"wuhanAdrenaChrome",
         tag: "fact"
     },
     {
         title: "Digital Immunity Proof",
-        month:"00",
-        day: "00",
+        month:"03",
+        day: "25",
         year: "2020",
         url: "https://youtu.be/QFlNPE-H3u8",
-        info:"They are planning mass vaccniation followed by Digital Immunity Proof",
-        image: "https://commons.wikimedia.org/wiki/File:Test-Logo.svg",
+        info:"Mass vaccniation followed by Digital Immunity Proof",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/bill-gates-digital-immunity-proof_orig.png",
         id:"rfidChipVaccination",
         tag: "idea"
     }
@@ -253,8 +203,8 @@ let evidence = [
         {
             for(var i = 0; i < whichArray.length; i++)
 	        {
-		        if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
-		        {
+		  if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
+		  {
                     var d = document.getElementById(whichArray[i].id);
                     d.style.position = "absolute";
                     d.style.left = whichArray[i].xPos +'px';
@@ -279,24 +229,22 @@ let evidence = [
                 makeFrame.src = videoEvidence[i].url;
 
                 makeFrame.style.position="absolute";
-                makeFrame.style.left= theX;
-                makeFrame.style.top= theY;
+                makeFrame.style.left= theX +'px';
+                makeFrame.style.top= theY + 'px';
                 makeFrame.style.color="white";
                 makeFrame.style.zIndex="1";
                 //makeFrame.style.padding="5px";
                 makeFrame.style.fontFamily="exo";
                 makeFrame.style.fontWeight="bold";
                 makeFrame.style.fontSize="xx-large";
-                makeFrame.style.width= sizeX;
-                makeFrame.style.height= sizeY;
+                makeFrame.style.width= sizeX +'px';
+                makeFrame.style.height= sizeY +'px';
                 makeFrame.style.background="black";
                 makeFrame.style.textAlign="center";
 
                 document.body.append(makeFrame);
             }
         }
-
-       
 
         /*Makes divs in a row - custom to newsData*/
         function newsRow(theX, theY, sizeX, sizeY)
@@ -310,8 +258,8 @@ let evidence = [
                 var ourDivs = document.createElement("div");
 
                 ourDivs.style.position="absolute";
-                ourDivs.style.left= theX;
-                ourDivs.style.top= theY;
+                ourDivs.style.left= theX +'px';
+                ourDivs.style.top= theY + 'px';
                 ourDivs.style.color="black";
                 ourDivs.style.zIndex="100";
                 ourDivs.style.padding="5px";
@@ -319,8 +267,8 @@ let evidence = [
                 ourDivs.style.fontFamily="exo";
                 ourDivs.style.fontWeight="bold";
                 ourDivs.style.fontSize="normal";
-                ourDivs.style.width= sizeX;
-                ourDivs.style.height= sizeY;
+                ourDivs.style.width= sizeX +'px';
+                ourDivs.style.height= sizeY +'px';
                 ourDivs.style.background="white";
                 ourDivs.style.textAlign="center";
                 
@@ -337,14 +285,14 @@ let evidence = [
             theX -= sizeX;
 
             for(var i = 0; i < evidence.length; i++)
-	        {
+	    {
                 theX = theX + sizeX;  //columns across
 
                 var ourDivs = document.createElement("div");
 
                 ourDivs.style.position="absolute";
-                ourDivs.style.left= theX;
-                ourDivs.style.top= theY;
+                ourDivs.style.left= theX + 'px';
+                ourDivs.style.top= theY +'px';
                 ourDivs.style.color="black";
                 ourDivs.style.zIndex="1";
                 ourDivs.style.padding="5px";
@@ -352,8 +300,8 @@ let evidence = [
                 ourDivs.style.fontFamily="exo";
                 ourDivs.style.fontWeight="normal";
                 ourDivs.style.fontSize="medium";
-                ourDivs.style.width= sizeX;
-                ourDivs.style.height= sizeY;
+                ourDivs.style.width= sizeX +'px';
+                ourDivs.style.height= sizeY +'px';
                 ourDivs.style.background="white";
                 ourDivs.style.textAlign="center";
                 
@@ -395,8 +343,8 @@ let evidence = [
 
                 ourDivs.id = evidence[i].id;
                 ourDivs.style.position="absolute";
-                ourDivs.style.left= theX;
-                ourDivs.style.top= theY;
+                ourDivs.style.left= theX +'px';
+                ourDivs.style.top= theY +'px';
                 ourDivs.style.color="black";
                 ourDivs.style.zIndex="1";
                 ourDivs.style.padding="5px";
@@ -404,8 +352,8 @@ let evidence = [
                 ourDivs.style.fontFamily="exo";
                 ourDivs.style.fontWeight="normal";
                 ourDivs.style.fontSize="medium";
-                ourDivs.style.width= sizeX;
-                ourDivs.style.height= sizeY;
+                ourDivs.style.width= sizeX +'px';
+                ourDivs.style.height= sizeY + 'px';
                 ourDivs.style.background="white";
                 ourDivs.style.textAlign="center";
                 
@@ -416,7 +364,6 @@ let evidence = [
 
                 ourDivs.innerHTML += '<img src= \''+evidence[i].image+'\' class="theImage">';
 
-
                 document.body.append(ourDivs);
             }
         }
@@ -424,23 +371,19 @@ let evidence = [
         /* When the Page Loads */
         function whenLoaded()
         {
-            newsRow(0, 200, 800, 250); 
-                        //theX,theY,sizeX,sizeY
+            newsRow(100, 200, 800, 250); 
+                    //theX,theY,sizeX,sizeY
 
-            makeWebsites(1400,100, 800, 800);
-                         //theX,theY,sizeX,sizeY
-
-            evidenceRow(3000,700,200,200);
-                         //theX, theY, sizeX, sizeY
-
-           // evidenceWithImageRow(50,8000,1250, 600);
-                         //theX, theY, sizeX, sizeY
-
+            evidenceRow(100,550,200,200);
+                      //theX, theY, sizeX, sizeY
            
+            makeWebsites(100,805, 700, 500);
+                       //theX,theY,sizeX,sizeY
 
+            evidenceWithImageRow(100,1400,1250, 600);
+                              //theX, theY, sizeX, sizeY
 
-       
-            window.addEventListener("click", mousePos, false);
+           window.addEventListener("click", mousePos, false);
 
            window.addEventListener("keydown", theControls, false);
            window.addEventListener("keyup", theControls, false);
@@ -504,7 +447,6 @@ let evidence = [
                 ourPlayer.speedMultiplier=10;
                 ourPlayer.playerId.innerHTML="Speed 10";
             }
-
 
             //Find out which key was pressed
             var theKeyCode = e.keyCode || e.which;
@@ -582,15 +524,9 @@ let evidence = [
             return sizeXY;
         }
 
-       
-        
-       
-
-        
-
         //this function below, is one way, of many, to display a simple div that contains a link to a webpage. note also that, this way below utilizes a different way to style the div
         function showOneElement(theName, theNumber, theLink, xPos, yPos)
-	    {
+	{
             var topicDiv = document.createElement("div");
 
             topicDiv.style.position="absolute";
@@ -607,13 +543,13 @@ let evidence = [
             topicDiv.style.background="black";
             topicDiv.style.textAlign="center";
 
-		    topicDiv.innerHTML = theName + "<br>";
-		    topicDiv.innerHTML += theNumber + "<br>";
+            topicDiv.innerHTML = theName + "<br>";
+            topicDiv.innerHTML += theNumber + "<br>";
             topicDiv.innerHTML+='<a href=\''+ theLink+'\' target="_blank">Link</a>';
             topicDiv.id = theName;
 
             document.body.append(topicDiv);
-		}
+        }
 
         function mousePos(theEvent)
         {
@@ -627,7 +563,6 @@ let evidence = [
        function doThisLoop()
        {
            sensePlayerMotion();
-   
            scrollIt();         
            requestAnimationFrame(doThisLoop);  
        }
@@ -636,18 +571,17 @@ let evidence = [
         //Update the Position of the player
         movePlayer();
     
-     
-
 </script>
-<div id="theTitle">
+
+        <div id="theTitle">
             TOPALIAN<br> GAME<br> ENGINE
         </div>
       
         <div id="instructions">
             W is up, S is down, <br>
             A is left, D is Right <br>
-            Letter P moves the boxes to new location
+            1 slow, 2 normal, 3 fast, 4 faster, 5 fastest
         </div>
 
-</body>
-</html>
+        </body>
+        </html>
