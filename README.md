@@ -1,2 +1,2 @@
-# truth.github.io
+# truth
 Get Ready
