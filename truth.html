@@ -1,0 +1,653 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+<!-- Topalian Game Engine Template --><!--Camera Follows Player -->
+
+<!-- W is up, S is Down, A is Left, D is Right. Click mouse to get the X and Y coordinates of any place on the screen -->
+
+<!-- tested and works in firefox, chrome, brave -->
+
+<!-- https://github.com/ChristopherTopalian/Topalian-Game-Engine -->
+<html>
+<head><title>Truth</title>
+
+
+<style>
+ #thePlayer{
+    position: absolute;
+    width: 70px;  
+    height: 70px;
+    background: rgb(163, 157, 245);
+    z-index:1000;
+    
+    word-wrap: break-word;
+    font-family: Tahoma;
+    font-size: 13px;
+    font-weight:bold;
+    padding: 4px; 
+    text-align: center;
+   
+}
+    
+
+div
+{
+word-wrap: normal;
+ white-space: nowrap;
+}
+#theBackground{
+    position: absolute;
+    width: 10000px;
+    height: 10000px;
+   /* align-content:center;*/
+    background: tan;
+    left: 0px;
+    top: 0px;
+    opacity: 0.5;
+    z-index:-100;           
+}
+      
+body{
+    color:white;
+}
+
+
+
+
+#theTitle
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 1015px;
+    top: 120px;
+    font-family: exo black;
+    font-size: 35px;
+    color: black;
+    z-index:5;
+}
+
+#instructions
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 100px;
+    top: 175px;
+    font-family: exo black;
+    font-size: 22px;
+    color: blue;
+}
+
+#periodicTable
+{
+    position: absolute;
+    width: 1535;
+    height: 912px;
+    background: white;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    background-image: url("textures/periodicTable.png");
+    background-size: cover;
+}
+
+#elementInfo
+{
+    position: absolute;
+    width: 163;
+    height: 167;
+    background: black;
+    left: 319px;
+    top: 133px;
+    z-index: 4;
+    color:white;
+    font-family:"exo";
+    font-size:30px;
+    font-weight: bold;
+    text-align:center;
+    padding:10px;
+}
+
+video
+{
+    border: solid;
+    border-width: 1px;
+    border-color:white;
+    width: 500px;
+    z-index:4;
+}
+
+.theImage
+{
+    height:80%;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+
+</style>
+</head>
+
+    <body onload="whenLoaded();">
+    
+        <div id="thePlayer" class="box"></div>
+        <div id="theBackground"></div>
+
+        <script>
+
+let theNews = [
+    {
+        headline: "Ghislaine Maxwell was ‘a faithful lapdog’ to Jeffrey Epstein, wanted to marry him, royal cousin claims",
+        month: 07,
+        day: 06,
+        year: 2020,
+        url: "https://www.foxnews.com/entertainment/ghislaine-maxwell-jeffrey-epstein-christina-oxenberg-prince-andrew",
+        tag: "news"
+    },
+    {
+        headline: "Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past",
+        month: 10,
+        day: 12,
+        year: 2019,
+        url: "https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html",
+        tag: "news"
+    },
+    {
+        headline: " CDC Finds Another 5,000+ NYC Deaths in March and April With Potential COVID-19 Links ",
+        month: 05,
+        day: 11,
+        year: 2020,
+        url: "https://www.nbcnewyork.com/news/local/cdc-finds-another-5000-nyc-deaths-in-march-and-april-with-potential-covid-19-links/2411670/",
+        tag: "news"
+    }
+    ];
+
+
+
+
+let videoEvidence = 
+        [
+            {
+                title: "Event 201 Pandemic Exercise Highlights Reel",
+                date: "Nov 4",
+                year: "2019",
+                url: "https://www.youtube.com/embed/AoLw-Q8X174",
+                tag: "youtubeVideo"
+            },
+            {
+                title: "Pompeo admits Outbreak is live exercise, Trump says should have let us know",
+                date: "Apr 11",
+                year: "2020",
+                url: "https://www.youtube.com/embed/vv650lRNYwI",
+                tag: "youtubeVideo"
+            },
+            {
+                title: "Dr. Fauci Predicted a Pandemic Under Trump in 2017 | NowThis",
+                date: "May 18",
+                year: "2020",
+                url: "https://www.youtube.com/embed/puqaaeLnEww",
+                tag: "youtubeVideo"
+            },
+            {
+                title: "March 2020: Dr. Anthony Fauci talks with Dr Jon LaPook about Covid-19",
+                date: "Mar 8",
+                year: "2020",
+                url: "https://www.youtube.com/embed/PRa6t_e7dgI",
+                tag: "youtubeVideo"
+            },
+            {
+                title: "Let's see if these masks hold in coughing using vaping",
+                date: "Jun 21",
+                year: "2020",
+                url: "https://www.youtube.com/embed/zJ6k1RHE4QA",
+                tag: "youtubeVideo"
+            },
+            {
+                title: "Put far away these Masks, they are bad for your health",
+                date: "Jun 27",
+                year: "2020",
+                url: "https://www.youtube.com/embed/J1ijcuCKuoI",
+                tag: "youtubeVideo"
+            },
+            {
+                title: "2020 is Strange: Nobody's Talking About This!",
+                date: "Mar 22",
+                year: "2020",
+                url: "https://www.youtube.com/embed/rxHMIz1PhaQ",
+                tag: "youtubeVideo"
+            }
+        ];
+
+
+let evidence = [
+    {
+        title: "Wuhan China manufactured Adrenochrome",
+        month: "07",
+        day: "07",
+        year: "2018",
+        url: "https://www.ncbi.nlm.nih.gov/pcsubstance/?term=%223B+Scientific+(Wuhan)+Corp%22%5BSourceName%5D+AND+%22Adrenochrome%22",
+        info:"They have made Adrenochrome in Wuhan China for a very long time.",
+        image: "https://commons.wikimedia.org/wiki/File:Test-Logo.svg",
+        id:"wuhanAdrenaChrome",
+        tag: "fact"
+    },
+    {
+        title: "Digital Immunity Proof",
+        month:"00",
+        day: "00",
+        year: "2020",
+        url: "https://youtu.be/QFlNPE-H3u8",
+        info:"They are planning mass vaccniation followed by Digital Immunity Proof",
+        image: "https://commons.wikimedia.org/wiki/File:Test-Logo.svg",
+        id:"rfidChipVaccination",
+        tag: "idea"
+    }
+       
+    ];
+
+
+        /* Position and Size Objects according to if condition */
+        function posSizeObject(whichArray)  
+        {
+            for(var i = 0; i < whichArray.length; i++)
+	        {
+		        if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
+		        {
+                    var d = document.getElementById(whichArray[i].id);
+                    d.style.position = "absolute";
+                    d.style.left = whichArray[i].xPos +'px';
+                    d.style.top = whichArray[i].yPos +'px';
+                    d.style.width = whichArray[i].width +'px';
+                    d.style.height = whichArray[i].height +'px';
+                }
+            }
+        }   
+        
+        /*Makes iframes in a row to add content to our level */
+        function makeWebsites(theX, theY, sizeX, sizeY)
+        {
+            theX -= sizeX;
+
+            for(var i = 0; i < videoEvidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                var makeFrame = document.createElement("iframe");
+
+                makeFrame.src = videoEvidence[i].url;
+
+                makeFrame.style.position="absolute";
+                makeFrame.style.left= theX;
+                makeFrame.style.top= theY;
+                makeFrame.style.color="white";
+                makeFrame.style.zIndex="1";
+                //makeFrame.style.padding="5px";
+                makeFrame.style.fontFamily="exo";
+                makeFrame.style.fontWeight="bold";
+                makeFrame.style.fontSize="xx-large";
+                makeFrame.style.width= sizeX;
+                makeFrame.style.height= sizeY;
+                makeFrame.style.background="black";
+                makeFrame.style.textAlign="center";
+
+                document.body.append(makeFrame);
+            }
+        }
+
+       
+
+        /*Makes divs in a row - custom to newsData*/
+        function newsRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(var i = 0; i < theNews.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                var ourDivs = document.createElement("div");
+
+                ourDivs.style.position="absolute";
+                ourDivs.style.left= theX;
+                ourDivs.style.top= theY;
+                ourDivs.style.color="black";
+                ourDivs.style.zIndex="100";
+                ourDivs.style.padding="5px";
+                ourDivs.style.border = "thick solid grey";
+                ourDivs.style.fontFamily="exo";
+                ourDivs.style.fontWeight="bold";
+                ourDivs.style.fontSize="normal";
+                ourDivs.style.width= sizeX;
+                ourDivs.style.height= sizeY;
+                ourDivs.style.background="white";
+                ourDivs.style.textAlign="center";
+                
+                ourDivs.innerHTML += theNews[i].headline + "<br>";
+                ourDivs.innerHTML += theNews[i].month + "/" + theNews[i].day + "/" + theNews[i].year +  "<br>";
+                ourDivs.innerHTML+='<a href=\''+theNews[i].url+'\' target="_blank">Link</a>';
+
+                document.body.append(ourDivs);
+            }
+        }
+
+        function evidenceRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(var i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                var ourDivs = document.createElement("div");
+
+                ourDivs.style.position="absolute";
+                ourDivs.style.left= theX;
+                ourDivs.style.top= theY;
+                ourDivs.style.color="black";
+                ourDivs.style.zIndex="1";
+                ourDivs.style.padding="5px";
+                ourDivs.style.border = "thick solid grey";
+                ourDivs.style.fontFamily="exo";
+                ourDivs.style.fontWeight="normal";
+                ourDivs.style.fontSize="medium";
+                ourDivs.style.width= sizeX;
+                ourDivs.style.height= sizeY;
+                ourDivs.style.background="white";
+                ourDivs.style.textAlign="center";
+                
+                ourDivs.innerHTML += evidence[i].title + "<br>";
+                ourDivs.innerHTML += evidence[i].month + "/" + theNews[i].day + "/" + evidence[i].year +  "<br>";
+                theNews[i].day + evidence[i].info +  "<br>";
+                ourDivs.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a>';
+
+                document.body.append(ourDivs);
+            }
+        }
+
+        function printOnlyDiv(whichDiv) 
+        { 
+            var mywindow = window.open('', 'PRINT', 'height=800,width=1000');
+
+            mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+            mywindow.document.write('<style>img{width:95%;</style></head><body>');
+            mywindow.document.write('<h1>' + document.title  + '</h1>');
+            mywindow.document.write(document.getElementById(whichDiv).innerHTML);
+            
+            mywindow.document.write('</body></html>');
+            mywindow.print();
+            //mywindow.close();
+            return true;
+        } 
+
+        function evidenceWithImageRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(var i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let ourDivs = document.createElement("div");
+
+                ourDivs.innerHTML += '<button onclick="printOnlyDiv(\''+evidence[i].id+'\');">print</button>';
+
+                ourDivs.id = evidence[i].id;
+                ourDivs.style.position="absolute";
+                ourDivs.style.left= theX;
+                ourDivs.style.top= theY;
+                ourDivs.style.color="black";
+                ourDivs.style.zIndex="1";
+                ourDivs.style.padding="5px";
+                ourDivs.style.border = "thick solid grey";
+                ourDivs.style.fontFamily="exo";
+                ourDivs.style.fontWeight="normal";
+                ourDivs.style.fontSize="medium";
+                ourDivs.style.width= sizeX;
+                ourDivs.style.height= sizeY;
+                ourDivs.style.background="white";
+                ourDivs.style.textAlign="center";
+                
+                ourDivs.innerHTML += evidence[i].title + "<br>";
+                ourDivs.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                evidence[i].day + evidence[i].info +  "<br>";
+                ourDivs.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a><br>';
+
+                ourDivs.innerHTML += '<img src= \''+evidence[i].image+'\' class="theImage">';
+
+
+                document.body.append(ourDivs);
+            }
+        }
+
+        /* When the Page Loads */
+        function whenLoaded()
+        {
+            newsRow(0, 200, 800, 250); 
+                        //theX,theY,sizeX,sizeY
+
+            makeWebsites(1400,100, 800, 800);
+                         //theX,theY,sizeX,sizeY
+
+            evidenceRow(3000,700,200,200);
+                         //theX, theY, sizeX, sizeY
+
+           // evidenceWithImageRow(50,8000,1250, 600);
+                         //theX, theY, sizeX, sizeY
+
+           
+
+
+       
+            window.addEventListener("click", mousePos, false);
+
+           window.addEventListener("keydown", theControls, false);
+           window.addEventListener("keyup", theControls, false);
+        }
+
+        /* The Keyboard Letter Codes that are Being Pressed */
+        var keyboard = {};
+            keyboard.UP = 87;     //87 is w, 38 is up arrow
+            keyboard.DOWN = 83;   //83 is s, 40 is down arrow
+            keyboard.LEFT = 65;   //65 is a, 37 is left arrow
+            keyboard.RIGHT = 68;  //68 is d, 39 is right arrow       
+
+        /* Player's start position and id */
+        var ourPlayer = {
+            x: 400,
+            y: 100,
+            speedMultiplier: 2,
+            playerId: document.getElementById("thePlayer")
+        }; 
+        
+        //Key Press Detection
+        //document.body.onkeyup =
+        //document.body.onkeydown = function(e){
+
+        function theControls(e)
+        { 
+            if(e.keyCode == 80) //Press Letter P
+            {
+                posSizeObject(ourTiles);
+                posSizeObject(ourObjects);
+                //var userName = prompt("Enter Name");
+                //ourPlayer.playerId.innerHTML= userName;
+            }
+            if(e.keyCode == 79) //Press Letter o
+            {
+             
+                ourPlayer.playerId.innerHTML= "Song Stopped";
+            }
+            if(e.keyCode == 49) //Press number 1
+            {
+                ourPlayer.speedMultiplier=2;
+                ourPlayer.playerId.innerHTML="Speed 2";
+            }
+            if(e.keyCode == 50) //Press number 2
+            {
+                ourPlayer.speedMultiplier=3;
+                ourPlayer.playerId.innerHTML="Speed 3";
+            }
+            if(e.keyCode == 51) //Press number 3
+            {
+                ourPlayer.speedMultiplier=4;
+                ourPlayer.playerId.innerHTML="Speed 4";
+            }
+            if(e.keyCode == 52) //Press number 4
+            {
+                ourPlayer.speedMultiplier=5;
+                ourPlayer.playerId.innerHTML="Speed 5";
+            }
+            if(e.keyCode == 53) //Press number 5
+            {
+                ourPlayer.speedMultiplier=10;
+                ourPlayer.playerId.innerHTML="Speed 10";
+            }
+
+
+            //Find out which key was pressed
+            var theKeyCode = e.keyCode || e.which;
+            keyboard[theKeyCode] = e.type == 'keydown';
+        };
+         
+        /* Character Movement Updating */
+        var movePlayer = function(theX, theY){
+            
+           ourPlayer.x += (theX||0) * ourPlayer.speedMultiplier;
+           ourPlayer.y += (theY||0) * ourPlayer.speedMultiplier;
+
+           ourPlayer.playerId.style.left = ourPlayer.x + 'px';
+           ourPlayer.playerId.style.top = ourPlayer.y + 'px';
+        };
+            
+        /* Player Controls */
+        var sensePlayerMotion = function(){
+            if(keyboard[keyboard.LEFT]){
+                movePlayer(-1,0);
+               // ourPlayer.playerId.style.backgroundPosition=-2;
+                //Note: need to simplify for logical backgroundPosition coordinates.
+            }
+            if(keyboard[keyboard.RIGHT]){
+                movePlayer(1,0);
+               // ourPlayer.playerId.style.backgroundPosition=302;
+            }
+            if(keyboard[keyboard.UP]){
+                movePlayer(0,-1);
+               // ourPlayer.playerId.style.backgroundPosition=97;
+            }
+            if(keyboard[keyboard.DOWN]){
+                movePlayer(0,1);
+                //ourPlayer.playerId.style.backgroundPosition=625;
+            }
+        };
+        
+        function getAllInfo(theId)
+        {
+            theId = document.getElementById(theId);
+            var theRect = theId.getBoundingClientRect();
+            return theRect;
+        }
+        //console.log(JSON.stringify(getAllInfo('boxOne')));
+
+        function getPos(theId)
+        {
+            theId = document.getElementById(theId);
+            var theRect = theId.getBoundingClientRect();
+            var theRectY = theId.getBoundingClientRect().top + window.scrollY; 
+
+            var posXY = { 
+                x:parseInt(theRect.x) + parseInt(theRect.width)/2 + window.scrollX, 
+                y:parseInt(theRectY) + parseInt(theRect.height)/2
+            }; 
+            return posXY;
+        }
+        
+        //Camera Follows the Player
+        function scrollIt()
+        {
+           ourPlayer.playerId.scrollIntoView({block: "center", inline: "center"});
+        }
+
+        //Get Size of the id
+        function getSize(theId)
+        {
+            theId = document.getElementById(theId);
+            var theRect = theId.getBoundingClientRect();
+       
+            var sizeXY = {
+                x: parseInt(theRect.width),
+                y: parseInt(theRect.height)
+            };
+            return sizeXY;
+        }
+
+       
+        
+       
+
+        
+
+        //this function below, is one way, of many, to display a simple div that contains a link to a webpage. note also that, this way below utilizes a different way to style the div
+        function showOneElement(theName, theNumber, theLink, xPos, yPos)
+	    {
+            var topicDiv = document.createElement("div");
+
+            topicDiv.style.position="absolute";
+            topicDiv.style.left=xPos;
+            topicDiv.style.top=yPos;
+            topicDiv.style.color="white";
+            topicDiv.style.zIndex="5";
+            topicDiv.style.padding="10px";
+            topicDiv.style.fontFamily="exo";
+            topicDiv.style.fontWeight="bold";
+            topicDiv.style.fontSize="xx-large";
+            topicDiv.style.width="163px";
+            topicDiv.style.height="167px";
+            topicDiv.style.background="black";
+            topicDiv.style.textAlign="center";
+
+		    topicDiv.innerHTML = theName + "<br>";
+		    topicDiv.innerHTML += theNumber + "<br>";
+            topicDiv.innerHTML+='<a href=\''+ theLink+'\' target="_blank">Link</a>';
+            topicDiv.id = theName;
+
+            document.body.append(topicDiv);
+		}
+
+        function mousePos(theEvent)
+        {
+            var mouseX = theEvent.pageX;
+            var mouseY = theEvent.pageY;
+            var mousePos = "Mouse" + "<br>" + "X " + mouseX + "<br>"+ "Y " + mouseY;
+            console.log(mousePos);
+            ourPlayer.playerId.innerHTML= mousePos;
+        }
+
+       function doThisLoop()
+       {
+           sensePlayerMotion();
+   
+           scrollIt();         
+           requestAnimationFrame(doThisLoop);  
+       }
+       doThisLoop();
+            
+        //Update the Position of the player
+        movePlayer();
+    
+     
+
+</script>
+<div id="theTitle">
+            TOPALIAN<br> GAME<br> ENGINE
+        </div>
+      
+        <div id="instructions">
+            W is up, S is down, <br>
+            A is left, D is Right <br>
+            Letter P moves the boxes to new location
+        </div>
+
+</body>
+</html>
