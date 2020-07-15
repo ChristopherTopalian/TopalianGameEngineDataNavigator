@@ -1,1 +1,1 @@
-# -truth.github.io
+# truth.github.io
