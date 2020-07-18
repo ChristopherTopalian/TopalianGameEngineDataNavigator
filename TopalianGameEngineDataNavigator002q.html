@@ -1,0 +1,697 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+
+<!-- Topalian Game Engine Data Navigator --><!--Camera Follows Player -->
+ 
+<!-- W is up, S is Down, A is Left, D is Right. Click mouse to get the X and Y coordinates of any place on the screen 
+press 1 for slow, 2 for normal speed, 3 fast, 4 faster, 5 fastest -->
+
+<!-- tested and works in firefox, chrome, brave -->
+<!-- https://github.com/ChristopherTopalian/Topalian-Game-Engine -->
+<!-- https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
+
+<html><head>
+<style>
+ #thePlayer{
+    position: absolute;
+    width: 70px;  
+    height: 70px;
+    background: rgb(163, 157, 245);
+    z-index:1000;
+    word-wrap: break-word;
+    font-family: Tahoma;
+    font-size: 13px;
+    font-weight:bold;
+    padding: 4px; 
+    text-align: center;
+}
+    
+#theBackground{
+    position: absolute;
+    width: 10000px;
+    height: 10000px;
+    background: grey;
+    left: 0px;
+    top: 0px;
+    opacity: 0.3;
+    z-index:-100;           
+}
+      
+body{
+    color:white;
+}
+
+#theTitle
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 700px;
+    top: 90px;
+    font-family: exo black;
+    font-size: 30px;
+    color: aqua;
+    z-index:5;
+    line-height: 0.9;
+}
+
+#instructions
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 100px;
+    top: 90px;
+    font-family: exo black;
+    font-size: 22px;
+    color: aqua;
+}
+
+video
+{
+    border: solid;
+    border-width: 1px;
+    border-color:white;
+    z-index:4;
+}
+
+.theImage
+{
+    height:80%;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.box
+{
+    font-family: exo black;
+    font-size: 15px;
+    word-wrap: break-word;
+    color: white;
+}
+
+</style>
+</head>
+
+    <body onload="whenLoaded();">
+        
+        <div id="thePlayer" class="box"></div>
+        <div id="theBackground"></div>
+
+   <script>
+
+    let theNews = [
+    {
+        headline: "Ghislaine Maxwell was ‘a faithful lapdog’ to Jeffrey Epstein, wanted to marry him, royal cousin claims",
+        month: 07,
+        day: 06,
+        year: 2020,
+        url: "https://www.foxnews.com/entertainment/ghislaine-maxwell-jeffrey-epstein-christina-oxenberg-prince-andrew",
+        tag: "news"
+    },
+    {
+        headline: "Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past",
+        month: 10,
+        day: 12,
+        year: 2019,
+        url: "https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html",
+        tag: "news"
+    },
+    {
+        headline: " CDC Finds Another 5,000+ NYC Deaths in March and April With Potential COVID-19 Links ",
+        month: 05,
+        day: 11,
+        year: 2020,
+        url: "https://www.nbcnewyork.com/news/local/cdc-finds-another-5000-nyc-deaths-in-march-and-april-with-potential-covid-19-links/2411670/",
+        tag: "news"
+    }
+    ];
+
+
+        let videoEvidence = 
+        [
+            {
+                title: "Event 201 Pandemic Exercise Highlights Reel",
+                date: "Nov 4",
+                year: "2019",
+                url: "https://www.youtube.com/embed/AoLw-Q8X174",
+                tag: "youtubeVideo",
+                description: "exercise"
+            },
+            {
+                title: "Pompeo admits Outbreak is live exercise, Trump says should have let us know",
+                date: "Apr 11",
+                year: "2020",
+                url: "https://www.youtube.com/embed/vv650lRNYwI",
+                tag: "youtubeVideo",
+                description: "exercise"
+            },
+            {
+                title: "Dr. Fauci Predicted a Pandemic Under Trump in 2017 | NowThis",
+                date: "May 18",
+                year: "2020",
+                url: "https://www.youtube.com/embed/puqaaeLnEww",
+                tag: "youtubeVideo",
+                description: "exercise"
+            },
+            {
+                title: "March 2020: Dr. Anthony Fauci talks with Dr Jon LaPook about Covid-19",
+                date: "Mar 8",
+                year: "2020",
+                url: "https://www.youtube.com/embed/PRa6t_e7dgI",
+                tag: "youtubeVideo",
+                description: "mask"
+            },
+            {
+                title: "Let's see if these masks hold in coughing using vaping",
+                date: "Jun 21",
+                year: "2020",
+                url: "https://www.youtube.com/embed/zJ6k1RHE4QA",
+                tag: "youtubeVideo",
+                description: "mask"
+            },
+            {
+                title: "Put far away these Masks, they are bad for your health",
+                date: "Jun 27",
+                year: "2020",
+                url: "https://www.youtube.com/embed/J1ijcuCKuoI",
+                tag: "youtubeVideo",
+                description: "mask"
+            },
+            {
+                title: "PG&E Pleads Guilty To 84 Counts Of Manslaughter In 2018 Camp Fire That Devastated Paradise",
+                date: "Jun 16",
+                year: "2020",
+                url: "https://www.youtube.com/embed/cXutCOBPuzA",
+                tag: "youtubeVideo",
+                description: "important"
+            }
+        ];
+
+
+    let evidence = [
+    {
+        title: "Wuhan China manufactured Adrenochrome",
+        month: "07",
+        day: "17",
+        year: "2018",
+        url: "https://www.ncbi.nlm.nih.gov/pcsubstance/?term=%223B+Scientific+(Wuhan)+Corp%22%5BSourceName%5D+AND+%22Adrenochrome%22",
+        info:"They have made Adrenochrome in Wuhan China for a very long time.",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/wuhan-adrenochrome-002_orig.png",
+        id:"wuhanAdrenaChrome",
+        tag: "fact"
+    },
+    {
+        title: "Digital Immunity Proof",
+        month:"03",
+        day: "25",
+        year: "2020",
+        url: "https://youtu.be/QFlNPE-H3u8",
+        info:"Mass vaccniation followed by Digital Immunity Proof",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/bill-gates-digital-immunity-proof_orig.png",
+        id:"rfidChipVaccination",
+        tag: "fact"
+    }
+       
+    ];
+        
+        function makeVideos(theX, theY, sizeX, sizeY, criteria)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < videoEvidence.length; i++)
+	        {
+                if(videoEvidence[i].description == criteria)
+                {
+                    theX = theX + sizeX;  //columns across
+
+                    let makeVideo = document.createElement("iframe");
+                    let createTitle = document.createElement("div");
+
+                    createTitle.style.position="absolute";
+                    createTitle.style.left= theX +'px';
+                    createTitle.style.top= theY -15 + 'px'; //offset for weebly
+                    createTitle.style.color="white";
+                    createTitle.style.zIndex="10";
+                    createTitle.style.fontFamily="exo";
+                    createTitle.style.fontWeight="bold";
+                    createTitle.style.fontSize="medium";
+                    createTitle.style.background="black";
+                    createTitle.style.textAlign="center";
+                    createTitle.style.width= sizeX +'px';
+                    createTitle.innerHTML=''+criteria+'';
+
+                    makeVideo.src = videoEvidence[i].url;
+                    makeVideo.style.position="absolute";
+                    makeVideo.style.left= theX +'px';
+                    makeVideo.style.top= theY + 'px';
+                    makeVideo.style.color="white";
+                    makeVideo.style.zIndex="1";
+                    //makeFrame.style.padding="5px";
+                    makeVideo.style.fontFamily="exo";
+                    makeVideo.style.fontWeight="bold";
+                    makeVideo.style.fontSize="xx-large";
+                    makeVideo.style.width= sizeX +'px';
+                    makeVideo.style.height= sizeY +'px';
+                    makeVideo.style.background="aqua";
+                    makeVideo.style.textAlign="center";
+
+                    makeVideo.setAttribute("class", ''+criteria+'');
+
+                    document.body.append(makeVideo);
+                    document.body.append(createTitle);
+                }
+            }
+        }
+
+        /*Makes iframes in a row to add content to our level */
+        /* can be used to display websites or videos too */
+        function makeWebsites(theX, theY, sizeX, sizeY)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < videoEvidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let videoTitle = document.createElement("div");
+                    videoTitle.style.position="absolute";
+                    videoTitle.style.left= theX +'px';
+                    videoTitle.style.top= theY -15 + 'px'; //offset for weebly
+                    videoTitle.style.color="white";
+                    videoTitle.style.zIndex="10";
+                    videoTitle.style.fontFamily="exo";
+                    videoTitle.style.fontWeight="bold";
+                    videoTitle.style.fontSize="medium";
+                    videoTitle.style.background="black";
+                    videoTitle.style.textAlign="center";
+                    videoTitle.style.width= sizeX +'px';
+                    videoTitle.innerHTML="All Videos";
+
+                let makeFrame = document.createElement("iframe");
+                    makeFrame.src = videoEvidence[i].url;
+                    makeFrame.style.position="absolute";
+                    makeFrame.style.left= theX +'px';
+                    makeFrame.style.top= theY + 'px';
+                    makeFrame.style.color="white";
+                    makeFrame.style.zIndex="1";
+                    //makeFrame.style.padding="5px";
+                    makeFrame.style.fontFamily="exo";
+                    makeFrame.style.fontWeight="bold";
+                    makeFrame.style.fontSize="xx-large";
+                    makeFrame.style.width= sizeX +'px';
+                    makeFrame.style.height= sizeY +'px';
+                    makeFrame.style.background="black";
+                    makeFrame.style.textAlign="center";
+
+                    document.body.append(makeFrame);
+                    document.body.append(videoTitle);
+            }
+        }
+
+        /*Makes divs in a row - custom to newsData*/
+        function newsRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < theNews.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let newsTitle = document.createElement("div");
+                    newsTitle.style.position="absolute";
+                    newsTitle.style.left= theX +'px';
+                    newsTitle.style.top= theY -22 + 'px'; //offset for weebly
+                    newsTitle.style.color="white";
+                    newsTitle.style.zIndex="10";
+                    newsTitle.style.fontFamily="exo";
+                    newsTitle.style.fontWeight="bold";
+                    newsTitle.style.fontSize="medium";
+                    newsTitle.style.background="black";
+                    newsTitle.style.textAlign="center";
+                    newsTitle.style.width= sizeX +'px';
+                    newsTitle.innerHTML="NEWS";
+
+                let newsSpace = document.createElement("p");
+                    newsSpace.style.position="absolute";
+                    newsSpace.style.left= theX +'px';
+                    newsSpace.style.top= theY + 'px';
+                    newsSpace.style.color="black";
+                    newsSpace.style.zIndex="100";
+                    newsSpace.style.padding="5px";
+                    newsSpace.style.border = "thick solid grey";
+                    newsSpace.style.fontFamily="exo";
+                    newsSpace.style.fontWeight="bold";
+                    newsSpace.style.fontSize="normal";
+                    newsSpace.style.width= sizeX +'px';
+                    newsSpace.style.height= sizeY +'px';
+                    newsSpace.style.background="white";
+                    newsSpace.style.textAlign="center";
+
+                    newsSpace.innerHTML += theNews[i].headline + "<br>";
+
+                    newsSpace.innerHTML += theNews[i].month + "/" + theNews[i].day + "/" + theNews[i].year +  "<br>";
+
+                    newsSpace.innerHTML+='<a href=\''+theNews[i].url+'\' target="_blank">Link</a>';
+
+                    document.body.append(newsSpace);
+                    document.body.append(newsTitle);
+            }
+        }
+
+        function evidenceRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let evidenceTitle = document.createElement("div");
+                    evidenceTitle.style.position="absolute";
+                    evidenceTitle.style.left= theX +'px';
+                    evidenceTitle.style.top= theY -22 + 'px'; //offset for weebly
+                    evidenceTitle.style.color="white";
+                    evidenceTitle.style.zIndex="10";
+                    evidenceTitle.style.fontFamily="exo";
+                    evidenceTitle.style.fontWeight="bold";
+                    evidenceTitle.style.fontSize="medium";
+                    evidenceTitle.style.background="black";
+                    evidenceTitle.style.textAlign="center";
+                    evidenceTitle.style.width= sizeX +'px';
+                    evidenceTitle.innerHTML="EvidenceRow";
+
+                let evidenceRow = document.createElement("p");
+                    evidenceRow.style.position="absolute";
+                    evidenceRow.style.left= theX + 'px';
+                    evidenceRow.style.top= theY +'px';
+                    evidenceRow.style.color="black";
+                    evidenceRow.style.zIndex="1";
+                    evidenceRow.style.padding="5px";
+                    evidenceRow.style.border = "thick solid grey";
+                    evidenceRow.style.fontFamily="exo";
+                    evidenceRow.style.fontWeight="normal";
+                    evidenceRow.style.fontSize="medium";
+                    evidenceRow.style.width= sizeX +'px';
+                    evidenceRow.style.height= sizeY +'px';
+                    evidenceRow.style.background="white";
+                    evidenceRow.style.textAlign="center";
+                
+                    evidenceRow.innerHTML += evidence[i].title + "<br>";
+
+                    evidenceRow.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                    
+                    evidence[i].day + evidence[i].info +  "<br>";
+
+                    evidenceRow.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a>';
+
+                document.body.append(evidenceRow);
+                document.body.append(evidenceTitle);
+            }
+        }
+
+        function printOnlyDiv(whichDiv) 
+        { 
+            let mywindow = window.open('', 'PRINT', 'height=800,width=1000');
+
+            mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+            mywindow.document.write('<style>img{width:95%;</style></head><body>');
+            mywindow.document.write('<h1>' + document.title  + '</h1>');
+            mywindow.document.write(document.getElementById(whichDiv).innerHTML);
+            
+            mywindow.document.write('</body></html>');
+            mywindow.print();
+            //mywindow.close();
+            return true;
+        } 
+
+        function evidenceWithImageRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let theTitle = document.createElement("div");
+                    theTitle.style.position="absolute";
+                    theTitle.style.left= theX +'px';
+                    theTitle.style.top= theY -22 + 'px'; //offset for weebly
+                               //The -22 is an offset specific to weebly.
+                               //If Not using weebly, you can remove the -22
+                    theTitle.style.color="white";
+                    theTitle.style.zIndex="10";
+                    theTitle.style.fontFamily="exo";
+                    theTitle.style.fontWeight="bold";
+                    theTitle.style.fontSize="medium";
+                    theTitle.style.background="black";
+                    theTitle.style.textAlign="center";
+                    theTitle.style.width= sizeX +'px';
+                    theTitle.innerHTML="EvidenceRowWithImageAndPrint";
+
+
+                let theDiv = document.createElement("p");
+                    theDiv.innerHTML += '<button onclick="printOnlyDiv(\''+evidence[i].id+'\');">print</button>';
+
+                    theDiv.id = evidence[i].id;
+                    theDiv.style.position="absolute";
+                    theDiv.style.left= theX +'px';
+                    theDiv.style.top= theY +'px';
+                    theDiv.style.color="black";
+                    theDiv.style.zIndex="1";
+                    theDiv.style.padding="5px";
+                    theDiv.style.border = "thick solid grey";
+                    theDiv.style.fontFamily="exo";
+                    theDiv.style.fontWeight="normal";
+                    theDiv.style.fontSize="medium";
+                    theDiv.style.width= sizeX +'px';
+                    theDiv.style.height= sizeY + 'px';
+                    theDiv.style.background="white";
+                    theDiv.style.textAlign="center";
+                
+                    theDiv.innerHTML += evidence[i].title + "<br>";
+                    
+                    theDiv.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                    evidence[i].day + evidence[i].info +  "<br>";
+                    
+                    theDiv.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a><br>';
+
+                    theDiv.innerHTML += '<img src= \''+evidence[i].image+'\' class="theImage">';
+
+                document.body.append(theDiv);
+                document.body.append(theTitle);
+            }
+        }
+
+        /* When the Page Loads */
+        function whenLoaded()
+        {
+            newsRow(100, 215, 800, 250); 
+                  //theX,theY,sizeX,sizeY
+
+            evidenceRow(100,550,200,200);
+                      //theX, theY, sizeX, sizeY
+           
+            makeWebsites(100,805, 700, 500);
+                       //theX,theY,sizeX,sizeY
+
+            evidenceWithImageRow(100,1400,1250, 600);
+                              //theX, theY, sizeX, sizeY
+
+            makeVideos(100, 2100, 800, 600,"exercise");
+                     //theX, theY, sizeX, sizeY, criteria
+
+            makeVideos(100, 2800, 800, 600,"mask");
+                     //theX, theY, sizeX, sizeY, criteria
+
+           window.addEventListener("click", mousePos, false);
+           window.addEventListener("keydown", theControls, false);
+           window.addEventListener("keyup", theControls, false);
+        }
+
+        /* The Keyboard Letter Codes that are Being Pressed */
+        let keyboard = {};
+            keyboard.UP = 87;    //87 is w, 38 is up arrow
+            keyboard.DOWN = 83;  //83 is s, 40 is down arrow
+            keyboard.LEFT = 65;  //65 is a, 37 is left arrow
+            keyboard.RIGHT = 68; //68 is d, 39 is right arrow       
+
+        /* Player's start position and id */
+        let ourPlayer = {
+            x: 400,
+            y: 100,
+            speedMultiplier: 2,
+            playerId: document.getElementById("thePlayer")
+        }; 
+        
+        //Key Press Detection
+        //document.body.onkeyup =
+        //document.body.onkeydown = function(e){
+
+        function theControls(e)
+        { 
+            if(e.keyCode == 80) //Press Letter P
+            {
+                //let userName = prompt("Enter Name");
+                //ourPlayer.playerId.innerHTML= userName;
+            }
+            if(e.keyCode == 79) //Press Letter o
+            {
+                //ourPlayer.playerId.innerHTML= "Song Stopped";
+            }
+            if(e.keyCode == 49) //Press number 1
+            {
+                ourPlayer.speedMultiplier=2;
+                ourPlayer.playerId.innerHTML="Speed 2";
+            }
+            if(e.keyCode == 50) //Press number 2
+            {
+                ourPlayer.speedMultiplier=3;
+                ourPlayer.playerId.innerHTML="Speed 3";
+            }
+            if(e.keyCode == 51) //Press number 3
+            {
+                ourPlayer.speedMultiplier=4;
+                ourPlayer.playerId.innerHTML="Speed 4";
+            }
+            if(e.keyCode == 52) //Press number 4
+            {
+                ourPlayer.speedMultiplier=5;
+                ourPlayer.playerId.innerHTML="Speed 5";
+            }
+            if(e.keyCode == 53) //Press number 5
+            {
+                ourPlayer.speedMultiplier=10;
+                ourPlayer.playerId.innerHTML="Speed 10";
+            }
+
+            //Find out which key was pressed
+            let theKeyCode = e.keyCode || e.which;
+            keyboard[theKeyCode] = e.type == 'keydown';
+        };
+         
+        /* Character Movement Updating */
+        let movePlayer = function(theX, theY){
+            
+           ourPlayer.x += (theX||0) * ourPlayer.speedMultiplier;
+           ourPlayer.y += (theY||0) * ourPlayer.speedMultiplier;
+
+           ourPlayer.playerId.style.left = ourPlayer.x + 'px';
+           ourPlayer.playerId.style.top = ourPlayer.y + 'px';
+        };
+            
+        /* Player Controls */
+        let sensePlayerMotion = function(){
+            if(keyboard[keyboard.LEFT]){
+                movePlayer(-1,0);
+               // ourPlayer.playerId.style.backgroundPosition=-2;
+                //Note: need to simplify for logical backgroundPosition coordinates.
+            }
+            if(keyboard[keyboard.RIGHT]){
+                movePlayer(1,0);
+               // ourPlayer.playerId.style.backgroundPosition=302;
+            }
+            if(keyboard[keyboard.UP]){
+                movePlayer(0,-1);
+               // ourPlayer.playerId.style.backgroundPosition=97;
+            }
+            if(keyboard[keyboard.DOWN]){
+                movePlayer(0,1);
+                //ourPlayer.playerId.style.backgroundPosition=625;
+            }
+        };
+        
+        function getAllInfo(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            return theRect;
+        }
+        //console.log(JSON.stringify(getAllInfo('boxOne')));
+
+        function getPos(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            let theRectY = theId.getBoundingClientRect().top + window.scrollY; 
+
+            let posXY = { 
+                x:parseInt(theRect.x) + parseInt(theRect.width)/2 + window.scrollX, 
+                y:parseInt(theRectY) + parseInt(theRect.height)/2
+            }; 
+            return posXY;
+        }
+        
+        //Camera Follows the Player
+        function scrollIt()
+        {
+           ourPlayer.playerId.scrollIntoView({block: "center", inline: "center"});
+        }
+
+        //Get Size of the id
+        function getSize(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+       
+            let sizeXY = {
+                x: parseInt(theRect.width),
+                y: parseInt(theRect.height)
+            };
+            return sizeXY;
+        }
+
+        // Position and Size Objects according to if condition
+        // not used in this tutorial
+        function posSizeObject(whichArray)  
+        {
+            for(var i = 0; i < whichArray.length; i++)
+            {
+                  if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
+                  {
+                        var d = document.getElementById(whichArray[i].id);
+                        d.style.position = "absolute";
+                        d.style.left = whichArray[i].xPos +'px';
+                        d.style.top = whichArray[i].yPos +'px';
+                        d.style.width = whichArray[i].width +'px';
+                        d.style.height = whichArray[i].height +'px';
+                  }
+            }
+        }
+        
+        function mousePos(theEvent)
+        {
+            let mouseX = theEvent.pageX;
+            let mouseY = theEvent.pageY;
+            let mousePos = "Mouse" + "<br>" + "X " + mouseX + "<br>"+ "Y " + mouseY;
+            console.log(mousePos);
+            ourPlayer.playerId.innerHTML= mousePos;
+        }
+
+       function doThisLoop()
+       {
+           sensePlayerMotion();
+           scrollIt();         
+           requestAnimationFrame(doThisLoop);  
+       }
+       doThisLoop();
+            
+        //Update the Position of the player
+        movePlayer();
+    
+</script>
+
+        <div id="theTitle">
+            TOPALIAN<br> GAME<br> ENGINE
+        </div>
+      
+        <div id="instructions">
+            W is up, S is down, <br>
+            A is left, D is Right <br>
+            1 slow, 2 normal, 3 fast, 4 faster, 5 fastest
+        </div>
+
+        </body>
+        </html>
