@@ -1,0 +1,1055 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+
+<!-- Topalian Game Engine Data Navigator --><!--Camera Follows Player -->
+ 
+<!-- W is up, S is Down, A is Left, D is Right. Click mouse to get the X and Y coordinates of any place on the screen 
+press 1 through 9 numbers on top of keyboard to adjust Speed -->
+
+<!-- tested and works in firefox, chrome, brave -->
+<!-- https://github.com/ChristopherTopalian/Topalian-Game-Engine -->
+<!-- https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
+
+<html><head>
+<style>
+ #thePlayer{
+    position: absolute;
+    width: 70px;  
+    height: 70px;
+    background: rgb(163, 157, 245);
+    z-index:1000;
+    word-wrap: break-word;
+    font-family: Tahoma;
+    font-size: 13px;
+    font-weight:bold;
+    padding: 4px; 
+    text-align: center;
+}
+    
+#theBackground{
+    position: absolute;
+    width: 10000px;
+    height: 10000px;
+    background: grey;
+    left: 0px;
+    top: 0px;
+    opacity: 0.3;
+    z-index:-100;           
+}
+      
+body
+{
+    color:white;
+}
+
+#theTitle
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 700px;
+    top: 90px;
+    font-family: exo black;
+    font-size: 30px;
+    color: aqua;
+    z-index:5;
+    line-height: 0.9;
+}
+
+#instructions
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 100px;
+    top: 90px;
+    font-family: exo black;
+    font-size: 22px;
+    color: aqua;
+}
+
+video
+{
+    border: solid;
+    border-width: 1px;
+    border-color:white;
+    z-index:4;
+}
+
+.theImage
+{
+    height:80%;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.box
+{
+    font-family: exo black;
+    font-size: 15px;
+    word-wrap: break-word;
+    color: white;
+}
+
+</style>
+</head>
+
+    <body onload="whenLoaded();">
+        
+        <div id="thePlayer" class="box"></div>
+        <div id="theBackground"></div>
+
+   <script>
+
+    function sortIt()
+    {
+        theNews.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+        evidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+        videoEvidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+    }
+    
+    let theNews = [
+    {
+        headline: "Ghislaine Maxwell was ‘a faithful lapdog’ to Jeffrey Epstein, wanted to marry him, royal cousin claims",
+        date: "Jul 06 2020 00:00:00 AM",
+        month: 7,
+        day: 6,
+        year: 2020,
+        url: "https://www.foxnews.com/entertainment/ghislaine-maxwell-jeffrey-epstein-christina-oxenberg-prince-andrew",
+        tag: "news",
+        id: "GMRoyalCousinFoxNews"
+    },
+    {
+        headline: "Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past",
+        date: "Oct 12 2019 00:00:00 AM",
+        month: 10,
+        day: 12,
+        year: 2019,
+        url: "https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html",
+        tag: "news",
+        id: "BGMetJENytimes"
+    },
+    {
+        headline: "CDC Finds Another 5,000+ NYC Deaths in March and April With Potential COVID-19 Links ",
+        date: "May 11 2020 00:00:00 AM",
+        month: 5,
+        day: 11,
+        year: 2020,
+        url: "https://www.nbcnewyork.com/news/local/cdc-finds-another-5000-nyc-deaths-in-march-and-april-with-potential-covid-19-links/2411670/",
+        tag: "news",
+        id: "CDCNumbersNbc"
+    },
+    {
+        headline: "Twitter cracks down on QAnon, will ban thousands of accounts",
+        date: "Jul 21 2020 00:00:00 AM",
+        month: 7,
+        day: 21,
+        year: 2020,
+        url: "https://fortune.com/2020/07/21/twitter-qanon-accounts-banned-crackdown/",
+        tag: "news",
+        id: "TwitterCensorshipNewsFortune"
+    }
+    ];  
+
+    let videoEvidence = 
+    [
+        {
+            title: "Event 201 Pandemic Exercise Highlights Reel",
+            date: "11/04/2019",
+            //date: "Nov 04 2019 00:00:00 AM",
+            month: "November",
+            year: "2019",
+            url: "https://www.youtube.com/embed/AoLw-Q8X174",
+            tag: "youtubeVideo",
+            description: "exercise",
+            id: "Event201"
+        },
+        {
+            title: "Pompeo admits Outbreak is live exercise, Trump says should have let us know",
+            date: "04/11/2020",
+            //date: "Apr 11 2020 00:00:00 AM",
+            month: "April",
+            year: "2020",
+            url: "https://www.youtube.com/embed/vv650lRNYwI",
+            tag: "youtubeVideo",
+            description: "exercise",
+            id: "PompeoAdmitsExercise"
+        },
+        {
+            title: "Dr. Fauci Predicted a Pandemic Under Trump in 2017 | NowThis",
+            date: "05/18/2020",
+            //date: "May 18 2020 00:00:00 AM",
+            month: "May",
+            year: "2020",
+            url: "https://www.youtube.com/embed/puqaaeLnEww",
+            tag: "youtubeVideo",
+            description: "exercise",
+            id: "SurpriseOutbreak"
+        },
+        {
+            title: "March 2020: Dr. Anthony Fauci talks with Dr Jon LaPook about Covid-19",
+            date: "03/08/2020",
+            //date: "Mar 08 2020 00:00:00 AM",
+            month: "March",
+            year: "2020",
+            url: "https://www.youtube.com/embed/PRa6t_e7dgI",
+            tag: "youtubeVideo",
+            description: "mask",
+            id: "MasksNotForPandemics"
+        },
+        {
+            title: "Let's see if these masks hold in coughing using vaping",
+            date: "06/21/2020",
+            //date: "Jun 21 2020 00:00:00 AM",
+            month: "June",
+            year: "2020",
+            url: "https://www.youtube.com/embed/zJ6k1RHE4QA",
+            tag: "youtubeVideo",
+            description: "mask",
+            id: "masksVaping"
+        },
+        {
+            title: "Put far away these Masks, they are bad for your health",
+            date: "06/27/2020",
+            //date: "Jun 27 2020 00:00:00 AM",
+            month: "June",
+            year: "2020",
+            url: "https://www.youtube.com/embed/J1ijcuCKuoI",
+            tag: "youtubeVideo",
+            description: "mask",
+            id: "maskSensor"
+        },
+        {
+            title: "PG&E Pleads Guilty To 84 Counts Of Manslaughter In 2018 Camp Fire That Devastated Paradise",
+            date: "06/16/2020",
+            //date: "Jun 16 2020 00:00:00 AM",
+            month: "June",
+            year: "2020",
+            url: "https://www.youtube.com/embed/cXutCOBPuzA",
+            tag: "youtubeVideo",
+            description: "important",
+            id: "PG&EGuilty"
+        }
+    ];
+
+
+    let evidence = [
+    {
+        title: "Wuhan China manufactured Adrenochrome",
+        date: "Jul 17 2018 00:00:00 AM",
+        month: "7",
+        day: "17",
+        year: "2018",
+        url: "https://www.ncbi.nlm.nih.gov/pcsubstance/?term=%223B+Scientific+(Wuhan)+Corp%22%5BSourceName%5D+AND+%22Adrenochrome%22",
+        info:"They have made Adrenochrome in Wuhan China for a very long time.",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/wuhan-adrenochrome-002_orig.png",
+        id:"wuhanAdrenaChrome",
+        tag: "fact"
+    },
+    {
+        title: "Digital Immunity Proof",
+        date: "Mar 25 2020 00:00:00 AM",
+        month:"03",
+        day: "25",
+        year: "2020",
+        url: "https://youtu.be/QFlNPE-H3u8",
+        info:"Mass vaccination followed by Digital Immunity Proof",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/bill-gates-digital-immunity-proof_orig.png",
+        id:"rfidChipVaccination",
+        tag: "fact"
+    }
+    ];
+
+    let theNotes =
+    [
+        {
+            note: "Here is a simple Note.",
+            number:1,
+            tag: "note",
+            id:"first"
+        },
+        {
+            note:"Here is the second note.",
+            number: 2,
+            tag: "note",
+            id:"second"
+        },
+        {
+            note:"Here is the third note.",
+            number: 3,
+            tag: "note",
+            id:"third"
+        },
+        {
+            note:"Here is the fourth note.",
+            number: 4,
+            tag: "note",
+            id:"fourth"
+        }
+    ];
+
+
+    function notesRow(theX, theY, sizeX, sizeY)
+    { 
+        theX -= sizeX;
+
+        for(let i = 0; i < theNotes.length; i++)
+	    {
+            theX = theX + sizeX;  //columns across
+
+            let notesTitle = document.createElement("div");
+                notesTitle.style.position="absolute";
+                notesTitle.style.left= theX +'px';
+                notesTitle.style.top= theY -22 + 'px'; //offset for weebly
+                notesTitle.style.color="white";
+                notesTitle.style.zIndex="10";
+                notesTitle.style.fontFamily="exo";
+                notesTitle.style.fontWeight="bold";
+                notesTitle.style.fontSize="medium";
+                notesTitle.style.background="black";
+                notesTitle.style.textAlign="center";
+                notesTitle.style.width= sizeX +'px';
+                notesTitle.innerHTML="Notes Row";
+
+            let notesRow = document.createElement("p");
+                notesRow.style.position="absolute";
+                notesRow.style.left= theX + 'px';
+                notesRow.style.top= theY +'px';
+                notesRow.style.color="black";
+                notesRow.style.zIndex="1";
+                notesRow.style.padding="5px";
+                notesRow.style.border = "thick solid grey";
+                notesRow.style.fontFamily="exo";
+                notesRow.style.fontWeight="normal";
+                notesRow.style.fontSize="medium";
+                notesRow.style.width= sizeX +'px';
+                notesRow.style.height= sizeY +'px';
+                notesRow.style.background="white";
+                notesRow.style.textAlign="center";
+
+                notesRow.id = theNotes[i].id;
+
+                notesRow.innerHTML += '<button onclick="printOnlyDiv(\''+theNotes[i].id+'\');">print</button><br>';
+                
+                notesRow.innerHTML += theNotes[i].note + "<br>" + theNotes[i].number + "<br>";
+                theNotes[i].tag;
+
+                document.body.append(notesRow);
+                document.body.append(notesTitle);
+            }
+        }
+
+        function makeVideos(theX, theY, sizeX, sizeY, criteria)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < videoEvidence.length; i++)
+	        {
+                if(videoEvidence[i].description == criteria)
+                {
+                    theX = theX + sizeX;  //columns across
+
+                    let makeVideo = document.createElement("iframe");
+                    let createTitle = document.createElement("div");
+
+                    createTitle.style.position="absolute";
+                    createTitle.style.left= theX +'px';
+                    createTitle.style.top= theY -15 + 'px'; //offset for weebly
+                    createTitle.style.color="white";
+                    createTitle.style.zIndex="10";
+                    createTitle.style.fontFamily="exo";
+                    createTitle.style.fontWeight="bold";
+                    createTitle.style.fontSize="medium";
+                    createTitle.style.background="black";
+                    createTitle.style.textAlign="center";
+                    createTitle.style.width= sizeX +'px';
+                    createTitle.innerHTML=''+criteria+'' + " " + ''+videoEvidence[i].date+'';
+
+                    makeVideo.src = videoEvidence[i].url;
+
+                    makeVideo.style.position="absolute";
+                    makeVideo.style.left= theX +'px';
+                    makeVideo.style.top= theY + 'px';
+                    makeVideo.style.color="white";
+                    makeVideo.style.zIndex="1";
+                    //makeFrame.style.padding="5px";
+                    makeVideo.style.fontFamily="exo";
+                    makeVideo.style.fontWeight="bold";
+                    makeVideo.style.fontSize="xx-large";
+                    makeVideo.style.width= sizeX +'px';
+                    makeVideo.style.height= sizeY +'px';
+                    makeVideo.style.background="aqua";
+                    makeVideo.style.textAlign="center";
+
+                    makeVideo.setAttribute("class", ''+criteria+'');
+
+                    makeVideo.id = videoEvidence[i].id;
+                    
+                    document.body.append(makeVideo);
+                    document.body.append(createTitle);
+                }
+            }
+        }
+
+        /*Makes iframes in a row to add content to our level */
+        /* can be used to display websites or videos too */
+        function makeWebsites(theX, theY, sizeX, sizeY)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < videoEvidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let videoTitle = document.createElement("div");
+                    videoTitle.style.position="absolute";
+                    videoTitle.style.left= theX +'px';
+                    videoTitle.style.top= theY -15 + 'px'; //offset for weebly
+                    videoTitle.style.color="white";
+                    videoTitle.style.zIndex="10";
+                    videoTitle.style.fontFamily="exo";
+                    videoTitle.style.fontWeight="bold";
+                    videoTitle.style.fontSize="medium";
+                    videoTitle.style.background="black";
+                    videoTitle.style.textAlign="center";
+                    videoTitle.style.width= sizeX +'px';
+                    videoTitle.innerHTML="All Videos" + "  " + " " + ''+videoEvidence[i].date+'';;
+
+                let makeFrame = document.createElement("iframe");
+                    makeFrame.src = videoEvidence[i].url;
+                    makeFrame.style.position="absolute";
+                    makeFrame.style.left= theX +'px';
+                    makeFrame.style.top= theY + 'px';
+                    makeFrame.style.color="white";
+                    makeFrame.style.zIndex="1";
+                    //makeFrame.style.padding="5px";
+                    makeFrame.style.fontFamily="exo";
+                    makeFrame.style.fontWeight="bold";
+                    makeFrame.style.fontSize="xx-large";
+                    makeFrame.style.width= sizeX +'px';
+                    makeFrame.style.height= sizeY +'px';
+                    makeFrame.style.background="black";
+                    makeFrame.style.textAlign="center";
+
+                    makeFrame.id = videoEvidence[i].id;
+
+                    document.body.append(makeFrame);
+                    document.body.append(videoTitle);
+            }
+        }
+
+        /*Makes divs in a row - custom for news Data*/
+        function newsRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < theNews.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let newsTitle = document.createElement("div");
+                    newsTitle.style.position="absolute";
+                    newsTitle.style.left= theX +'px';
+                    newsTitle.style.top= theY -22 + 'px'; //offset for weebly
+                    newsTitle.style.color="white";
+                    newsTitle.style.zIndex="10";
+                    newsTitle.style.fontFamily="exo";
+                    newsTitle.style.fontWeight="bold";
+                    newsTitle.style.fontSize="medium";
+                    newsTitle.style.background="black";
+                    newsTitle.style.textAlign="center";
+                    newsTitle.style.width= sizeX +'px';
+                    newsTitle.innerHTML="NEWS";
+
+                let newsSpace = document.createElement("p");
+                    newsSpace.style.position="absolute";
+                    newsSpace.style.left= theX +'px';
+                    newsSpace.style.top= theY + 'px';
+                    newsSpace.style.color="black";
+                    newsSpace.style.zIndex="100";
+                    newsSpace.style.padding="5px";
+                    newsSpace.style.border = "thick solid grey";
+                    newsSpace.style.fontFamily="exo";
+                    newsSpace.style.fontWeight="bold";
+                    newsSpace.style.fontSize="normal";
+                    newsSpace.style.width= sizeX +'px';
+                    newsSpace.style.height= sizeY +'px';
+                    newsSpace.style.background="white";
+                    newsSpace.style.textAlign="center";
+
+                    newsSpace.id = theNews[i].id;
+
+                    newsSpace.innerHTML += '<button onclick="printOnlyDiv(\''+theNews[i].id+'\');">print</button>';
+
+                    newsSpace.innerHTML += theNews[i].headline + "<br>";
+
+                    newsSpace.innerHTML += theNews[i].month + "/" + theNews[i].day + "/" + theNews[i].year +  "<br>";
+                    newsSpace.innerHTML+= theNews[i].date + "<br>";
+
+                    newsSpace.innerHTML+='<a href=\''+theNews[i].url+'\' target="_blank">Link</a>';
+
+                    document.body.append(newsSpace);
+                    document.body.append(newsTitle);
+            }
+        }
+
+        function evidenceRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let evidenceTitle = document.createElement("div");
+                    evidenceTitle.style.position="absolute";
+                    evidenceTitle.style.left= theX +'px';
+                    evidenceTitle.style.top= theY -22 + 'px'; //offset for weebly
+                    evidenceTitle.style.color="white";
+                    evidenceTitle.style.zIndex="10";
+                    evidenceTitle.style.fontFamily="exo";
+                    evidenceTitle.style.fontWeight="bold";
+                    evidenceTitle.style.fontSize="medium";
+                    evidenceTitle.style.background="black";
+                    evidenceTitle.style.textAlign="center";
+                    evidenceTitle.style.width= sizeX +'px';
+                    evidenceTitle.innerHTML="EvidenceRow";
+
+                let evidenceRow = document.createElement("p");
+                    evidenceRow.style.position="absolute";
+                    evidenceRow.style.left= theX + 'px';
+                    evidenceRow.style.top= theY +'px';
+                    evidenceRow.style.color="black";
+                    evidenceRow.style.zIndex="1";
+                    evidenceRow.style.padding="5px";
+                    evidenceRow.style.border = "thick solid grey";
+                    evidenceRow.style.fontFamily="exo";
+                    evidenceRow.style.fontWeight="normal";
+                    evidenceRow.style.fontSize="medium";
+                    evidenceRow.style.width= sizeX +'px';
+                    evidenceRow.style.height= sizeY +'px';
+                    evidenceRow.style.background="white";
+                    evidenceRow.style.textAlign="center";
+                
+                    evidenceRow.id = evidence[i].id;
+                    evidenceRow.innerHTML += '<button onclick="printOnlyDiv(\''+evidence[i].id+'\');">print</button><br>';
+
+                    evidenceRow.innerHTML += evidence[i].title + "<br>";
+
+                    evidenceRow.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                    
+                    evidence[i].day + evidence[i].info +  "<br>";
+
+                    evidenceRow.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a>';
+
+                document.body.append(evidenceRow);
+                document.body.append(evidenceTitle);
+            }
+        }
+
+        function evidenceWithImageRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let theTitle = document.createElement("div");
+                    theTitle.style.position="absolute";
+                    theTitle.style.left= theX +'px';
+                    theTitle.style.top= theY -22 + 'px';
+                               //offset for weebly
+                               //The -22 is an offset specific to weebly.
+                    theTitle.style.color="white";
+                    theTitle.style.zIndex="10";
+                    theTitle.style.fontFamily="exo";
+                    theTitle.style.fontWeight="bold";
+                    theTitle.style.fontSize="medium";
+                    theTitle.style.background="black";
+                    theTitle.style.textAlign="center";
+                    theTitle.style.width= sizeX +'px';
+                    theTitle.innerHTML="EvidenceRowWithImageAndPrint";
+
+                let theDiv = document.createElement("p");
+                    theDiv.innerHTML += '<button onclick="printOnlyDiv(\''+evidence[i].id+'\');">print</button>';
+
+                    theDiv.id = evidence[i].id;
+
+                    theDiv.style.position="absolute";
+                    theDiv.style.left= theX +'px';
+                    theDiv.style.top= theY +'px';
+                    theDiv.style.color="black";
+                    theDiv.style.zIndex="1";
+                    theDiv.style.padding="5px";
+                    theDiv.style.border = "thick solid grey";
+                    theDiv.style.fontFamily="exo";
+                    theDiv.style.fontWeight="normal";
+                    theDiv.style.fontSize="medium";
+                    theDiv.style.width= sizeX +'px';
+                    theDiv.style.height= sizeY + 'px';
+                    theDiv.style.background="white";
+                    theDiv.style.textAlign="center";
+                
+                    theDiv.innerHTML += evidence[i].title + "<br>";
+                    
+                    theDiv.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                    evidence[i].day + evidence[i].info +  "<br>";
+                    
+                    theDiv.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a><br>';
+
+                    theDiv.innerHTML += '<img src= \''+evidence[i].image+'\' class="theImage">';
+
+                document.body.append(theDiv);
+                document.body.append(theTitle);
+            }
+        }
+
+
+        let lindenLanguage = 
+        [
+            {
+                  name: "llAbs",
+           description: "Tells you the absolute value of any integer number",
+                syntax: "llAbs(integer number);",
+                useage: "llAbs(-3);",
+                   url: "http://wiki.secondlife.com/wiki/LlAbs",
+                  type: "returns an integer",
+                   tag: "function",
+              category: "math",
+                    id: "abs",
+              language: "Linden"
+            },
+            {
+                  name: "llAcos",
+           description: "Tells you the ArcCosine of a number",
+                syntax: "llAcos(float number);",
+                useage: "llAcos(0.7);",
+                   url: "http://wiki.secondlife.com/wiki/LlAcos",
+                  type: "returns a float, in radians",
+                   tag: "function",
+              category: "math",
+                    id: "acos",
+              language: "Linden"
+            }
+        ];
+
+        //var combinedArray = theNotes.concat(theNews, evidence);
+        //console.log(combinedArray);
+
+        //theNotes.copyWithin(2, 0, 2);
+        // console.log(theNotes);
+
+        let javascriptLanguage = 
+        [
+            {
+                  name: "concat()",
+           description: "Join two or more Arrays",
+                syntax: "array1.concat(array2, array3);",
+                useage: "var combinedArray = theNotes.concat(theNews, evidence);",
+                   url: "https://www.w3schools.com/jsref/jsref_concat_array.asp",
+                  type: "returns an array object",
+                   tag: "function",
+              category: "array",
+                    id: "concat",
+              language: "JavaScript"
+            },
+            {
+                name: "copyWithin()",
+           description: "Copies array entries to another position in array and replaces the existing",
+                syntax: "array.copyWithin(target, start, end);",
+                useage: "theNotes.copyWithin(2, 0, 2);",
+                   url: "https://www.w3schools.com/jsref/jsref_copywithin.asp",
+                  type: "returns an array",
+                   tag: "function",
+              category: "array",
+                    id: "copyWithin",
+              language: "JavaScript"
+            }
+        ];
+
+
+        function languageRow(theArray, theX, theY, sizeX, sizeY, criteria)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < theArray.length; i++)
+	        {
+                 if(theArray[i].tag == criteria)
+                 {
+                    theX = theX + sizeX;  //columns across
+
+                    let languageTitle = document.createElement("div");
+                    languageTitle.style.position="absolute";
+                    languageTitle.style.left= theX +'px';
+                    languageTitle.style.top= theY -30 + 'px'; //offset for weebly
+                    languageTitle.style.color="white";
+                    languageTitle.style.zIndex="10";
+                    languageTitle.style.fontFamily="exo";
+                    languageTitle.style.fontWeight="bold";
+                    languageTitle.style.fontSize="medium";
+                    languageTitle.style.background="black";
+                    languageTitle.style.textAlign="center";
+                    languageTitle.style.width= sizeX +'px';
+                    languageTitle.innerHTML=theArray[i].language;
+
+                    let languageSpace = document.createElement("p");
+                    languageSpace.style.position="absolute";
+                    languageSpace.style.left= theX +'px';
+                    languageSpace.style.top= theY +25 + 'px';
+                    languageSpace.style.color="black";
+                    languageSpace.style.zIndex="100";
+                    languageSpace.style.padding="5px";
+                    languageSpace.style.border = "thick solid grey";
+                    languageSpace.style.fontFamily="exo";
+                    languageSpace.style.fontWeight="bold";
+                    languageSpace.style.fontSize="normal";
+                    languageSpace.style.width= sizeX +'px';
+                    languageSpace.style.height= sizeY +'px';
+                    languageSpace.style.background="white";
+                    languageSpace.style.textAlign="center";
+
+                    let nameTitle = document.createElement("div");
+                    nameTitle.style.position="absolute";
+                    nameTitle.style.left= theX +'px';
+                    nameTitle.style.top= theY + 'px';
+                    nameTitle.style.color="yellow";
+                    nameTitle.style.zIndex="10";
+                    nameTitle.style.fontFamily="exo";
+                    nameTitle.style.fontWeight="bold";
+                    nameTitle.style.fontSize="large";
+                    nameTitle.style.background="black";
+                    nameTitle.style.textAlign="center";
+                    nameTitle.style.width= sizeX +'px';
+                    nameTitle.innerHTML=theArray[i].name;
+
+                    languageSpace.id = theArray[i].id;
+
+                    languageSpace.innerHTML += '<button onclick="printOnlyDiv(\''+theArray[i].id+'\');">print</button><br>';
+
+                    languageSpace.innerHTML += theArray[i].name + "<br>";
+ 
+                    languageSpace.innerHTML+= theArray[i].description + "<br>";
+
+                    languageSpace.innerHTML += theArray[i].syntax + "<br>";
+
+                    languageSpace.innerHTML+= theArray[i].useage + "<br>";
+
+                    languageSpace.innerHTML+='<a href=\''+theArray[i].url+'\' target="_blank">Link</a><br>';
+
+                    languageSpace.innerHTML+= theArray[i].type + "<br>";
+
+                    document.body.append(languageSpace);
+                    document.body.append(languageTitle);
+                    document.body.append(nameTitle);
+                }
+            }
+        }
+
+        function printOnlyDiv(whichDiv) 
+        { 
+            let mywindow = window.open('', 'PRINT', 'height=800,width=1000');
+
+            mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+            mywindow.document.write('<style>img{width:95%;</style></head><body>');
+            mywindow.document.write('<h1>' + document.title  + '</h1>');
+            mywindow.document.write(document.getElementById(whichDiv).innerHTML);
+            
+            mywindow.document.write('</body></html>');
+            mywindow.print();
+            //mywindow.close();
+            return true;
+        } 
+
+
+    //Sort theNotes array of objects using this function below
+    function compareNumber(a, b)
+    {
+        const numberA = a.number;
+        const numberB = b.number;
+
+        let numberComparison = 0;
+
+        if (numberA > numberB ) 
+        {
+            numberComparison = 1;
+        } 
+        else if (numberA < numberB) 
+        {
+            numberComparison = -1;
+        }
+        return numberComparison; 
+    }
+
+    //sort theNotes array
+    theNotes = theNotes.sort(compareNumber);
+
+    //Sort the language arrays, by name
+    function compareName(a, b)
+    {
+        const nameA = a.name;
+        const nameB = b.name;
+
+        let nameComparison = 0;
+
+        if (nameA > nameB ) 
+        {
+            nameComparison = 1;
+        } 
+        else if (nameA < nameB) 
+        {
+            nameComparison = -1;
+        }
+        return nameComparison; 
+    }
+
+    //sort the language arrays
+    lindenLanguage = lindenLanguage.sort(compareName);
+    javascriptLanguage = javascriptLanguage.sort(compareName);
+    
+
+        /* When the Page Loads */
+        function whenLoaded()
+        {
+            sortIt();
+
+            newsRow(100, 215, 800, 250); 
+                  //theX,theY,sizeX,sizeY
+
+            evidenceRow(100,550,200,200);
+                      //theX, theY, sizeX, sizeY
+           
+            makeWebsites(100,815,700,500);  //shows all videos
+                       //theX,theY,sizeX,sizeY
+
+            evidenceWithImageRow(100,1400,1250, 600);
+                              //theX, theY, sizeX, sizeY
+
+            makeVideos(100, 2100, 800, 600,"exercise");
+                     //theX, theY, sizeX, sizeY, criteria
+
+            makeVideos(100, 2800, 800, 600,"mask");
+                     //theX, theY, sizeX, sizeY, criteria
+
+            notesRow(1250, 3450, 400, 400);
+                  //(theX, theY, sizeX, sizeY)
+
+            languageRow(lindenLanguage, 1250, 4000, 400, 400, "function");
+
+            languageRow(javascriptLanguage, 1250, 4500, 400, 400, "function");
+
+            //whichArray, theX, theY, sizeX, sizeY, criteria)
+
+           window.addEventListener("click", mousePos, false);
+           window.addEventListener("keydown", theControls, false);
+           window.addEventListener("keyup", theControls, false);
+        }
+
+        /* The Keyboard Letter Codes that are Being Pressed */
+        let keyboard = {};
+            keyboard.UP = 87;    //87 is w, 38 is up arrow
+            keyboard.DOWN = 83;  //83 is s, 40 is down arrow
+            keyboard.LEFT = 65;  //65 is a, 37 is left arrow
+            keyboard.RIGHT = 68; //68 is d, 39 is right arrow       
+
+        /* Player's start position and id */
+        let ourPlayer = {
+            x: 1086,
+            y: 4170,
+            speedMultiplier: 2,
+            playerId: document.getElementById("thePlayer")
+        }; 
+        
+        //Key Press Detection
+        //document.body.onkeyup =
+        //document.body.onkeydown = function(e){
+
+        function theControls(e)
+        { 
+            if(e.keyCode == 80) //Press Letter P
+            {
+                //let userName = prompt("Enter Name");
+                //ourPlayer.playerId.innerHTML= userName;
+            }
+            if(e.keyCode == 79) //Press Letter o
+            {
+                //ourPlayer.playerId.innerHTML= "Song Stopped";
+            }
+            if(e.keyCode == 49) //Press number 1
+            {
+                ourPlayer.speedMultiplier=2;
+                ourPlayer.playerId.innerHTML="Speed 2";
+            }
+            if(e.keyCode == 50) //Press number 2
+            {
+                ourPlayer.speedMultiplier=3;
+                ourPlayer.playerId.innerHTML="Speed 3";
+            }
+            if(e.keyCode == 51) //Press number 3
+            {
+                ourPlayer.speedMultiplier=4;
+                ourPlayer.playerId.innerHTML="Speed 4";
+            }
+            if(e.keyCode == 52) //Press number 4
+            {
+                ourPlayer.speedMultiplier=5;
+                ourPlayer.playerId.innerHTML="Speed 5";
+            }
+            if(e.keyCode == 53) //Press number 5
+            {
+                ourPlayer.speedMultiplier=10;
+                ourPlayer.playerId.innerHTML="Speed 10";
+            }
+            if(e.keyCode == 54) //Press number 6
+            {
+                ourPlayer.speedMultiplier=15;
+                ourPlayer.playerId.innerHTML="Speed 15";
+            }
+            if(e.keyCode == 55) //Press number 7
+            {
+                ourPlayer.speedMultiplier=20;
+                ourPlayer.playerId.innerHTML="Speed 20";
+            }
+            if(e.keyCode == 56) //Press number 8
+            {
+                ourPlayer.speedMultiplier=25;
+                ourPlayer.playerId.innerHTML="Speed 25";
+            }
+            if(e.keyCode == 57) //Press number 9
+            {
+                ourPlayer.speedMultiplier=30;
+                ourPlayer.playerId.innerHTML="Speed 30";
+            }
+
+            //Find out which key was pressed
+            let theKeyCode = e.keyCode || e.which;
+            keyboard[theKeyCode] = e.type == 'keydown';
+        };
+         
+        /* Character Movement Updating */
+        let movePlayer = function(theX, theY){
+            
+           ourPlayer.x += (theX||0) * ourPlayer.speedMultiplier;
+           ourPlayer.y += (theY||0) * ourPlayer.speedMultiplier;
+
+           ourPlayer.playerId.style.left = ourPlayer.x + 'px';
+           ourPlayer.playerId.style.top = ourPlayer.y + 'px';
+        };
+            
+        /* Player Controls */
+        let sensePlayerMotion = function(){
+            if(keyboard[keyboard.LEFT]){
+                movePlayer(-1,0);
+               // ourPlayer.playerId.style.backgroundPosition=-2;
+                //Note: need to simplify for logical backgroundPosition coordinates.
+            }
+            if(keyboard[keyboard.RIGHT]){
+                movePlayer(1,0);
+               // ourPlayer.playerId.style.backgroundPosition=302;
+            }
+            if(keyboard[keyboard.UP]){
+                movePlayer(0,-1);
+               // ourPlayer.playerId.style.backgroundPosition=97;
+            }
+            if(keyboard[keyboard.DOWN]){
+                movePlayer(0,1);
+                //ourPlayer.playerId.style.backgroundPosition=625;
+            }
+        };
+        
+        function getAllInfo(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            return theRect;
+        }
+        //console.log(JSON.stringify(getAllInfo('boxOne')));
+
+        function getPos(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            let theRectY = theId.getBoundingClientRect().top + window.scrollY; 
+
+            let posXY = { 
+                x:parseInt(theRect.x) + parseInt(theRect.width)/2 + window.scrollX, 
+                y:parseInt(theRectY) + parseInt(theRect.height)/2
+            }; 
+            return posXY;
+        }
+        
+        //Camera Follows the Player
+        function scrollIt()
+        {
+           ourPlayer.playerId.scrollIntoView({block: "center", inline: "center"});
+        }
+
+        //Get Size of the id
+        function getSize(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+       
+            let sizeXY = {
+                x: parseInt(theRect.width),
+                y: parseInt(theRect.height)
+            };
+            return sizeXY;
+        }
+
+        // Position and Size Objects according to if condition
+        // not used in this tutorial
+        function posSizeObject(whichArray)  
+        {
+            for(var i = 0; i < whichArray.length; i++)
+            {
+                  if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
+                  {
+                        var d = document.getElementById(whichArray[i].id);
+                        d.style.position = "absolute";
+                        d.style.left = whichArray[i].xPos +'px';
+                        d.style.top = whichArray[i].yPos +'px';
+                        d.style.width = whichArray[i].width +'px';
+                        d.style.height = whichArray[i].height +'px';
+                  }
+            }
+        }
+        
+        function mousePos(theEvent)
+        {
+            let mouseX = theEvent.pageX;
+            let mouseY = theEvent.pageY;
+            let mousePos = "Mouse" + "<br>" + "X " + mouseX + "<br>"+ "Y " + mouseY;
+            console.log(mousePos);
+            ourPlayer.playerId.innerHTML= mousePos;
+        }
+
+       function doThisLoop()
+       {
+           sensePlayerMotion();
+           scrollIt();         
+           requestAnimationFrame(doThisLoop);  
+       }
+       doThisLoop();
+            
+        //Update the Position of the player
+        movePlayer();
+    
+</script>
+
+        <div id="theTitle">
+            TOPALIAN<br> GAME<br> ENGINE
+        </div>
+      
+        <div id="instructions">
+            W is up, S is down, <br>
+            A is left, D is Right <br>
+            Speed 1 through 9 on top of keyboard
+        </div>
+
+</body>
+</html>
