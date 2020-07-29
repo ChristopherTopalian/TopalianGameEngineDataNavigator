@@ -1,0 +1,1346 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+
+<!-- Topalian Game Engine Data Navigator --><!--Camera Follows Player -->
+ 
+<!-- W is up, S is Down, A is Left, D is Right. Click mouse to get the X and Y coordinates of any place on the screen 
+press 1 through 9 numbers on top of keyboard to adjust Speed -->
+
+<!-- tested and works in firefox, chrome, brave -->
+<!-- https://github.com/ChristopherTopalian/Topalian-Game-Engine -->
+<!-- https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
+
+<html><head>
+<style>
+ #thePlayer{
+    position: absolute;
+    width: 70px;  
+    height: 70px;
+    background: rgb(73, 100, 150);
+    z-index:1000;
+    word-wrap: break-word;
+    font-family: Tahoma;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight:bold;
+    padding: 4px;
+    text-align: center;
+}
+    
+#theBackground{
+    position: absolute;
+    width: 10000px;
+    height: 10000px;
+    background: black;
+    left: 0px;
+    top: 0px;
+    opacity: 0.3;
+    z-index:-100;           
+}
+      
+body
+{
+    color:white;
+}
+
+#theCollegeTitle
+{
+    position:absolute;
+    width:500px;
+    height:500px;
+    left: 808px;
+    top: 7155px;
+    font-family: exo black;
+    font-size: 30px;
+    color: white;
+    z-index:5;
+}
+
+#instructions
+{
+    position:absolute;
+    word-wrap: break-word;
+    width:500px;
+    height:500px;
+    left: 100px;
+    top: 7393px;
+    font-family: exo black;
+    font-size: 22px;
+    color: white;
+}
+
+#dedication
+{
+    position:absolute;
+    width:700px;
+    height:500px;
+    left: 109px;
+    top: 7151px;
+    font-family: exo black;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    line-height: 1.1;
+}
+
+video
+{
+    z-index:4;
+}
+
+.theImage
+{
+    height:80%;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+</style>
+</head>
+
+    <body onload="whenLoaded();">
+        
+        <div id="thePlayer" class="box">WASD<br> to Move</div>
+        <div id="theBackground"></div>
+
+   <script>
+
+    function sortIt()
+    {
+        theNews.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+        evidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+        videoEvidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+    }
+    
+    let theNews = [
+    {
+        headline: "Ghislaine Maxwell was ‘a faithful lapdog’ to Jeffrey Epstein, wanted to marry him, royal cousin claims",
+        date: "Jul 06 2020 00:00:00 AM",
+        month: 7,
+        day: 6,
+        year: 2020,
+        url: "https://www.foxnews.com/entertainment/ghislaine-maxwell-jeffrey-epstein-christina-oxenberg-prince-andrew",
+        tag: "news",
+    },
+    {
+        headline: "Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past",
+        date: "Oct 12 2019 00:00:00 AM",
+        month: 10,
+        day: 12,
+        year: 2019,
+        url: "https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html",
+        tag: "news",
+    },
+    {
+        headline: "CDC Finds Another 5,000+ NYC Deaths in March and April With Potential COVID-19 Links ",
+        date: "May 11 2020 00:00:00 AM",
+        month: 5,
+        day: 11,
+        year: 2020,
+        url: "https://www.nbcnewyork.com/news/local/cdc-finds-another-5000-nyc-deaths-in-march-and-april-with-potential-covid-19-links/2411670/",
+        tag: "news",
+    },
+    {
+        headline: "Twitter cracks down on QAnon, will ban thousands of accounts",
+        date: "Jul 21 2020 00:00:00 AM",
+        month: 7,
+        day: 21,
+        year: 2020,
+        url: "https://fortune.com/2020/07/21/twitter-qanon-accounts-banned-crackdown/",
+        tag: "news",
+    }
+    ];  
+
+    let videoEvidence = 
+    [
+        {
+            title: "Event 201 Pandemic Exercise: Highlights Reel",
+            date: "11/04/2019",
+            //date: "Nov 04 2019 00:00:00 AM",
+            month: "November",
+            year: "2019",
+            url: "https://www.youtube.com/embed/AoLw-Q8X174",
+            tag: "youtubeVideo",
+            description: "exercise",
+        },
+        {
+            title: "Pompeo admits Outbreak is live exercise, Trump says should have let us know.",
+            date: "04/11/2020",
+            //date: "Apr 11 2020 00:00:00 AM",
+            month: "April",
+            year: "2020",
+            url: "https://www.youtube.com/embed/vv650lRNYwI",
+            tag: "youtubeVideo",
+            description: "exercise",
+        },
+        {
+            title: "Dr. Fauci Predicted a Pandemic Under Trump in 2017 | NowThis",
+            date: "05/18/2020",
+            //date: "May 18 2020 00:00:00 AM",
+            month: "May",
+            year: "2020",
+            url: "https://www.youtube.com/embed/puqaaeLnEww",
+            tag: "youtubeVideo",
+            description: "exercise",
+        },
+        {
+            title: "March 2020: Dr. Anthony Fauci talks with Dr Jon LaPook about Covid-19",
+            date: "03/08/2020",
+            //date: "Mar 08 2020 00:00:00 AM",
+            month: "March",
+            year: "2020",
+            url: "https://www.youtube.com/embed/PRa6t_e7dgI",
+            tag: "youtubeVideo",
+            description: "mask",
+        },
+        {
+            title: "Lets see if these masks hold in coughing using vaping",
+            date: "06/21/2020",
+            //date: "Jun 21 2020 00:00:00 AM",
+            month: "June",
+            year: "2020",
+            url: "https://www.youtube.com/embed/zJ6k1RHE4QA",
+            tag: "youtubeVideo",
+            description: "mask",
+        },
+        {
+            title: "Put far away these Masks, they are bad for your health",
+            date: "06/27/2020",
+            //date: "Jun 27 2020 00:00:00 AM",
+            month: "June",
+            year: "2020",
+            url: "https://www.youtube.com/embed/J1ijcuCKuoI",
+            tag: "youtubeVideo",
+            description: "mask",
+        },
+        {
+            title: "PG&E Pleads Guilty To 84 Counts Of Manslaughter In 2018 Camp Fire That Devastated Paradise",
+            date: "06/16/2020",
+            //date: "Jun 16 2020 00:00:00 AM",
+            month: "June",
+            year: "2020",
+            url: "https://www.youtube.com/embed/cXutCOBPuzA",
+            tag: "youtubeVideo",
+            description: "important",
+        },
+        {
+            title: "Worst Abortion law in the World is NZ",
+            date: "07/18/2020",
+            //date: "Jun 16 2020 00:00:00 AM",
+            month: "July",
+            year: "2020",
+            url: "https://www.youtube.com/embed/gXbn0y0oDf4",
+            tag: "youtubeVideo",
+            description: "important",
+        }
+    ];
+
+
+    let evidence = [
+    {
+        title: "Wuhan China manufactured Adrenochrome",
+        date: "Jul 17 2018 00:00:00 AM",
+        month: "7",
+        day: "17",
+        year: "2018",
+        url: "https://www.ncbi.nlm.nih.gov/pcsubstance/?term=%223B+Scientific+(Wuhan)+Corp%22%5BSourceName%5D+AND+%22Adrenochrome%22",
+        info:"They have made Adrenochrome in Wuhan China for a very long time.",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/wuhan-adrenochrome-002_orig.png",
+        tag: "fact"
+    },
+    {
+        title: "Digital Immunity Proof",
+        date: "Mar 25 2020 00:00:00 AM",
+        month:"03",
+        day: "25",
+        year: "2020",
+        url: "https://youtu.be/QFlNPE-H3u8",
+        info:"Mass vaccination followed by Digital Immunity Proof",
+        image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/bill-gates-digital-immunity-proof_orig.png",
+        tag: "fact"
+    }
+    ];
+
+    let theNotes =
+    [
+        {
+            note: "Here is a simple Note.",
+            number:1,
+            tag: "note"
+        },
+        {
+            note:"Here is the second note.",
+            number: 2,
+            tag: "note"
+        },
+        {
+            note:"Here is the third note.",
+            number: 3,
+            tag: "note"
+        },
+        {
+            note:"Here is the fourth note.",
+            number: 4,
+            tag: "note"
+        }
+    ];
+
+
+    function notesRow(theX, theY, sizeX, sizeY)
+    { 
+        theX -= sizeX;
+
+        for(let i = 0; i < theNotes.length; i++)
+	    {
+            theX = theX + sizeX;  //columns across
+
+            let notesTitle = document.createElement("div");
+                notesTitle.style.position="absolute";
+                notesTitle.style.left= theX +'px';
+                notesTitle.style.top= theY -25 + 'px';
+                                  //offset for weebly
+                notesTitle.style.color="white";
+                notesTitle.style.zIndex="10";
+                notesTitle.style.fontFamily="exo";
+                notesTitle.style.fontWeight="bold";
+                notesTitle.style.fontSize="medium";
+                notesTitle.style.background="black";
+                notesTitle.style.textAlign="center";
+                notesTitle.style.width= sizeX +'px';
+                notesTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                notesTitle.innerHTML="Notes Row";
+
+            let notesRow = document.createElement("div");
+                notesRow.style.position="absolute";
+                notesRow.style.left= theX + 'px';
+                notesRow.style.top= theY +'px';
+                notesRow.style.color="black";
+                notesRow.style.zIndex="1";
+               //notesRow.style.padding="5px";
+                notesRow.style.border = "solid 2px rgba(0,0,100,1.0)";
+                notesRow.style.fontFamily="exo";
+                notesRow.style.fontWeight="normal";
+                notesRow.style.fontSize="medium";
+                notesRow.style.width= sizeX +'px';
+                notesRow.style.height= sizeY +'px';
+                notesRow.style.background="white";
+                notesRow.style.textAlign="center";
+
+                //notesRow.id = theNotes[i].id;
+                notesRow.id = Math.floor(350000 + Math.random() * 9750000);
+
+                notesRow.innerHTML += '<button onclick="printOnlyDiv(\''+notesRow.id+'\');">print</button><br>';
+                
+                notesRow.innerHTML += theNotes[i].note + "<br>" + theNotes[i].number + "<br>";
+                theNotes[i].tag;
+
+                document.body.append(notesRow);
+                document.body.append(notesTitle);
+            }
+        }
+
+        function makeVideos(theX, theY, sizeX, sizeY, criteria)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < videoEvidence.length; i++)
+	        {
+                if(videoEvidence[i].description == criteria)
+                {
+                    theX = theX + sizeX;  //columns across
+
+                    let createCategoryTitle = document.createElement("div");
+
+                    createCategoryTitle.style.position="absolute";
+                    createCategoryTitle.style.left= theX +'px';
+                    createCategoryTitle.style.top= theY -150 + 'px'; //offset for weebly
+                    createCategoryTitle.style.color="white";
+                    createCategoryTitle.style.zIndex="10";
+                    createCategoryTitle.style.fontFamily="exo";
+                    createCategoryTitle.style.fontWeight="bold";
+                    createCategoryTitle.style.fontSize="medium";
+                    createCategoryTitle.style.background="black";
+                    createCategoryTitle.style.textAlign="center";
+                    createCategoryTitle.style.width= sizeX +'px';
+                    createCategoryTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                    createCategoryTitle.innerHTML=''+criteria+'';
+
+                    let videoTitle = document.createElement("div");
+
+                    videoTitle.style.position="absolute";
+                    videoTitle.style.left= theX +'px';
+                    videoTitle.style.top= theY -100 + 'px';
+                                       //offset for weebly
+                    videoTitle.style.color="yellow";
+                    videoTitle.style.zIndex="10";
+                    videoTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    videoTitle.style.fontFamily="exo";
+                    videoTitle.style.fontWeight="bold";
+                    videoTitle.style.fontSize="medium";
+                    videoTitle.style.background="black";
+                    videoTitle.style.textAlign="center";
+                    videoTitle.style.width= sizeX +'px';
+                    
+                    videoTitle.innerHTML= videoEvidence[i].title + "<br>" + "upload date " + ''+videoEvidence[i].date+'' + "<br>" + ''+videoEvidence[i].url+'' + "<br>";
+
+                    videoTitle.innerHTML+='<a href=\''+videoEvidence[i].url+'\' target="_blank">Link</a><br>';
+
+                    videoTitle.id = Math.floor(300000 + Math.random() * 9700000);
+
+                    let printButton = document.createElement("button");
+                    printButton.style.position="absolute";
+                    printButton.style.left= theX +'px';
+                    printButton.style.top= theY -125 + 'px'; //offset for weebly
+                    printButton.style.color="white";
+                    printButton.style.zIndex="10";
+                    
+                    printButton.innerHTML += '<button onclick="printOnlyDiv(\''+videoTitle.id+'\');">print</button><br>';
+
+                    let makeVideo = document.createElement("iframe");
+
+                    makeVideo.src = videoEvidence[i].url;
+
+                    makeVideo.style.position="absolute";
+                    makeVideo.style.left= theX +'px';
+                    makeVideo.style.top= theY + 'px';
+                    makeVideo.style.color="aqua";
+                    makeVideo.style.zIndex="1";
+                    //makeFrame.style.padding="5px";
+                    makeVideo.style.fontFamily="exo";
+                    makeVideo.style.fontWeight="bold";
+                    makeVideo.style.fontSize="xx-large";
+                    makeVideo.style.width= sizeX +'px';
+                    makeVideo.style.height= sizeY +'px';
+                    makeVideo.style.background="aqua";
+                    makeVideo.style.textAlign="center";
+
+                    //makeVideo.setAttribute("class", ''+criteria+'');
+
+                    document.body.append(videoTitle);
+                    document.body.append(createCategoryTitle);
+                    document.body.append(makeVideo);
+                    document.body.append(printButton);
+                }
+            }
+        }
+
+        /*Makes iframes in a row to add content to our level */
+        /* can be used to display websites or videos */
+        function makeWebsitesOrVideos(theX, theY, sizeX, sizeY)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < videoEvidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let videoCategoryTitle = document.createElement("div");
+                videoCategoryTitle.style.position="absolute";
+                videoCategoryTitle.style.left= theX +'px';
+                videoCategoryTitle.style.top= theY -150 + 'px';
+                                         //offset for weebly
+                videoCategoryTitle.style.color="white";
+                videoCategoryTitle.style.zIndex="10";
+                videoCategoryTitle.style.fontFamily="exo";
+                videoCategoryTitle.style.fontWeight="bold";
+                videoCategoryTitle.style.fontSize="medium";
+                videoCategoryTitle.style.background="black";
+                videoCategoryTitle.style.textAlign="center";
+                videoCategoryTitle.style.width= sizeX +'px';
+                videoCategoryTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                videoCategoryTitle.innerHTML="All Videos";
+
+                let makeFrame = document.createElement("iframe");
+                    makeFrame.src = videoEvidence[i].url;
+                    makeFrame.style.position="absolute";
+                    makeFrame.style.left= theX +'px';
+                    makeFrame.style.top= theY + 'px';
+                    makeFrame.style.color="white";
+                    makeFrame.style.zIndex="1";
+                    //makeFrame.style.padding="5px";
+                    makeFrame.style.fontFamily="exo";
+                    makeFrame.style.fontWeight="bold";
+                    makeFrame.style.fontSize="xx-large";
+                    makeFrame.style.width= sizeX +'px';
+                    makeFrame.style.height= sizeY +'px';
+                    makeFrame.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    makeFrame.style.background="black";
+                    makeFrame.style.textAlign="center";
+
+                    //makeFrame.id = videoEvidence[i].id;
+
+                    let allVideoTitle = document.createElement("div");
+                    allVideoTitle.style.position="absolute";
+                    allVideoTitle.style.left= theX +'px';
+                    allVideoTitle.style.top= theY -100 + 'px';
+                                          //offset for weebly
+                    allVideoTitle.style.color="yellow";
+                    allVideoTitle.style.zIndex="10";
+                    allVideoTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    allVideoTitle.style.fontFamily="exo";
+                    allVideoTitle.style.fontWeight="bold";
+                    allVideoTitle.style.fontSize="medium";
+                    allVideoTitle.style.background="black";
+                    allVideoTitle.style.textAlign="center";
+                    allVideoTitle.style.width= sizeX +'px';
+                    //allVideoTitle.style.padding="10px";
+
+                    allVideoTitle.innerHTML=videoEvidence[i].title+ "  " + "<br> " + "upload date " + ''+videoEvidence[i].date+'' + "<br>" + ''+videoEvidence[i].url+'' + "<br>";
+
+                    allVideoTitle.innerHTML+='<a href=\''+videoEvidence[i].url+'\' target="_blank">Link</a><br>';
+
+                    allVideoTitle.id = Math.floor(200000 + Math.random() * 998000);
+
+                    let thePrintButton = document.createElement("button");
+                    thePrintButton.style.position="absolute";
+                    thePrintButton.style.left= theX +'px';
+                    thePrintButton.style.top= theY -125 + 'px'; //offset for weebly
+                    thePrintButton.style.color="white";
+                    thePrintButton.style.zIndex="10";
+                    
+                    thePrintButton.innerHTML += '<button onclick="printOnlyDiv(\''+allVideoTitle.id+'\');">print</button><br>';
+
+                    document.body.append(allVideoTitle);
+                    document.body.append(makeFrame);
+                    document.body.append(videoCategoryTitle);
+                    document.body.append(thePrintButton);
+            }
+        }
+
+        /*Makes divs in a row - custom for news Data*/
+        function newsRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < theNews.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let newsTitle = document.createElement("div");
+                    newsTitle.style.position="absolute";
+                    newsTitle.style.left= theX +'px';
+                    newsTitle.style.top= theY -22 + 'px'; 
+                                     //offset for weebly
+                    newsTitle.style.color="white";
+                    newsTitle.style.zIndex="10";
+                    newsTitle.style.fontFamily="exo";
+                    newsTitle.style.fontWeight="bold";
+                    newsTitle.style.fontSize="medium";
+                    newsTitle.style.background="black";
+                    newsTitle.style.textAlign="center";
+                    newsTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    newsTitle.style.width= sizeX +'px';
+                    newsTitle.innerHTML="NEWS";
+
+                let newsSpace = document.createElement("div");
+                    newsSpace.style.position="absolute";
+                    newsSpace.style.left= theX +'px';
+                    newsSpace.style.top= theY + 'px';
+                    newsSpace.style.color="black";
+                    newsSpace.style.zIndex="100";
+                    //newsSpace.style.padding="5px";
+                    newsSpace.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    newsSpace.style.fontFamily="exo";
+                    newsSpace.style.fontWeight="bold";
+                    newsSpace.style.fontSize="normal";
+                    newsSpace.style.width= sizeX +'px';
+                    newsSpace.style.height= sizeY +'px';
+                    newsSpace.style.background="white";
+                    newsSpace.style.textAlign="center";
+
+                    //newsSpace.id = theNews[i].id;
+                    newsSpace.id = Math.floor(352000 + Math.random() * 9740000);
+
+                    newsSpace.innerHTML += '<button onclick="printOnlyDiv(\''+newsSpace.id+'\');">print</button><br>';
+
+                    newsSpace.innerHTML += theNews[i].headline + "<br>";
+
+                    newsSpace.innerHTML += theNews[i].month + "/" + theNews[i].day + "/" + theNews[i].year +  "<br>";
+                    newsSpace.innerHTML+= theNews[i].date + "<br>";
+
+                    newsSpace.innerHTML+='<a href=\''+theNews[i].url+'\' target="_blank">Link</a>';
+
+                    document.body.append(newsSpace);
+                    document.body.append(newsTitle);
+            }
+        }
+
+        function evidenceRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let evidenceTitle = document.createElement("div");
+                    evidenceTitle.style.position="absolute";
+                    evidenceTitle.style.left= theX +'px';
+                    evidenceTitle.style.top= theY -22 + 'px'; 
+                                        //offset for weebly
+                    evidenceTitle.style.color="white";
+                    evidenceTitle.style.zIndex="10";
+                    evidenceTitle.style.fontFamily="exo";
+                    evidenceTitle.style.fontWeight="bold";
+                    evidenceTitle.style.fontSize="medium";
+                    evidenceTitle.style.background="black";
+                    evidenceTitle.style.textAlign="center";
+                    evidenceTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    evidenceTitle.style.width= sizeX +'px';
+                    evidenceTitle.innerHTML="EvidenceRow";
+
+                let evidenceRow = document.createElement("p");
+                    evidenceRow.style.position="absolute";
+                    evidenceRow.style.left= theX + 'px';
+                    evidenceRow.style.top= theY +'px';
+                    evidenceRow.style.color="black";
+                    evidenceRow.style.zIndex="1";
+                    //evidenceRow.style.padding="5px";
+                    evidenceRow.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    evidenceRow.style.fontFamily="exo";
+                    evidenceRow.style.fontWeight="normal";
+                    evidenceRow.style.fontSize="medium";
+                    evidenceRow.style.width= sizeX +'px';
+                    evidenceRow.style.height= sizeY +'px';
+                    evidenceRow.style.background="white";
+                    evidenceRow.style.textAlign="center";
+                
+                    //evidenceRow.id = evidence[i].id;
+                    evidenceRow.id = Math.floor(356000 + Math.random() * 9760000);
+
+                    evidenceRow.innerHTML += '<button onclick="printOnlyDiv(\''+evidenceRow.id+'\');">print</button><br>';
+
+                    evidenceRow.innerHTML += evidence[i].title + "<br>";
+
+                    evidenceRow.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                    
+                    evidence[i].day + evidence[i].info +  "<br>";
+
+                    evidenceRow.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a>';
+
+                document.body.append(evidenceRow);
+                document.body.append(evidenceTitle);
+            }
+        }
+
+        function evidenceWithImageRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < evidence.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let theTitle = document.createElement("div");
+                    theTitle.style.position="absolute";
+                    theTitle.style.left= theX +'px';
+                    theTitle.style.top= theY -22 + 'px';
+                         //-22 is an offset specific to weebly.
+                    theTitle.style.color="white";
+                    theTitle.style.zIndex="10";
+                    theTitle.style.fontFamily="exo";
+                    theTitle.style.fontWeight="bold";
+                    theTitle.style.fontSize="medium";
+                    theTitle.style.background="black";
+                    theTitle.style.textAlign="center";
+                    theTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    theTitle.style.width= sizeX +'px';
+                    theTitle.innerHTML="EvidenceRowWithImage";
+
+                let theDiv = document.createElement("p");
+                   
+                //theDiv.id = evidence[i].id;
+                theDiv.id = Math.floor(357000 + Math.random() * 9770000);
+
+                theDiv.innerHTML += '<button onclick="printOnlyDiv(\''+theDiv.id+'\');">print</button><br>';
+
+                    theDiv.style.position="absolute";
+                    theDiv.style.left= theX +'px';
+                    theDiv.style.top= theY +'px';
+                    theDiv.style.color="black";
+                    theDiv.style.zIndex="1";
+                    //theDiv.style.padding="5px";
+                    theDiv.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    theDiv.style.fontFamily="exo";
+                    theDiv.style.fontWeight="normal";
+                    theDiv.style.fontSize="medium";
+                    theDiv.style.width= sizeX +'px';
+                    theDiv.style.height= sizeY + 'px';
+                    theDiv.style.background="white";
+                    theDiv.style.textAlign="center";
+                
+                    theDiv.innerHTML += evidence[i].title + "<br>";
+                    
+                    theDiv.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
+                    evidence[i].day + evidence[i].info +  "<br>";
+                    
+                    theDiv.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a><br>';
+
+                    theDiv.innerHTML += '<img src= \''+evidence[i].image+'\' class="theImage">';
+
+                document.body.append(theDiv);
+                document.body.append(theTitle);
+            }
+        }
+
+
+        function collegeImagesRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < collegeImages.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let ourTitle = document.createElement("div");
+                ourTitle.style.position="absolute";
+                ourTitle.style.left= theX +'px';
+                ourTitle.style.top= theY -28 + 'px';
+                        //-22 is an offset specific to weebly.
+                ourTitle.style.color="white";
+                ourTitle.style.zIndex="10";
+                ourTitle.style.fontFamily="exo";
+                ourTitle.style.fontWeight="bold";
+                ourTitle.style.fontSize="medium";
+                ourTitle.style.background="black";
+                ourTitle.style.textAlign="center";
+                ourTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                ourTitle.style.width= sizeX +'px';
+                ourTitle.innerHTML="College Images";
+
+                let ourDiv = document.createElement("p");
+                   
+                //theDiv.id = evidence[i].id;
+                ourDiv.id = Math.floor(457000 + Math.random() * 9870000);
+
+                ourDiv.innerHTML += '<button onclick="printOnlyDiv(\''+ourDiv.id+'\');">print</button><br>';
+
+                ourDiv.style.position="absolute";
+                ourDiv.style.left= theX +'px';
+                ourDiv.style.top= theY +'px';
+                ourDiv.style.color="black";
+                ourDiv.style.zIndex="1";
+                //ourDiv.style.padding="5px";
+                ourDiv.style.border = "solid 2px rgba(100,100,255,1.0)";
+                ourDiv.style.fontFamily="exo";
+                ourDiv.style.fontWeight="normal";
+                ourDiv.style.fontSize="medium";
+                ourDiv.style.width= sizeX +'px';
+                ourDiv.style.height= sizeY + 'px';
+                ourDiv.style.background="white";
+                ourDiv.style.textAlign="center";
+                
+                ourDiv.innerHTML += collegeImages[i].name + "<br>";
+                    
+                ourDiv.innerHTML+='<a href=\''+collegeImages[i].url+'\' target="_blank">Link</a><br>';
+
+                ourDiv.innerHTML += '<img src= \''+collegeImages[i].image+'\' class="theImage">';
+
+                document.body.append(ourDiv);
+                document.body.append(ourTitle);
+            }
+        } 
+
+        function collegeLinksRow(theX, theY, sizeX, sizeY)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < collegeLinks.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let thisTitle = document.createElement("div");
+                thisTitle.style.position="absolute";
+                thisTitle.style.left= theX +'px';
+                thisTitle.style.top= theY -28 + 'px';
+                        //-22 is an offset specific to weebly.
+                thisTitle.style.color="white";
+                thisTitle.style.zIndex="10";
+                thisTitle.style.fontFamily="exo";
+                thisTitle.style.fontWeight="bold";
+                thisTitle.style.fontSize="medium";
+                thisTitle.style.background="black";
+                thisTitle.style.textAlign="center";
+                thisTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                thisTitle.style.width= sizeX +'px';
+                thisTitle.innerHTML="College Links";
+
+                let thisDiv = document.createElement("p");
+                   
+                //theDiv.id = evidence[i].id;
+                thisDiv.id = Math.floor(456000 + Math.random() * 9770000);
+
+                //Print Feature
+                //thisDiv.innerHTML += '<button onclick="printOnlyDiv(\''+thisDiv.id+'\');">print</button><br>';
+
+                thisDiv.style.position="absolute";
+                thisDiv.style.left= theX +'px';
+                thisDiv.style.top= theY +'px';
+                thisDiv.style.color="black";
+                thisDiv.style.zIndex="1";
+                //thisDiv.style.padding="5px";
+                thisDiv.style.border = "solid 2px rgba(100,100,255,1.0)";
+                thisDiv.style.fontFamily="exo";
+                thisDiv.style.fontWeight="normal";
+                thisDiv.style.fontSize="medium";
+                thisDiv.style.width= sizeX +'px';
+                thisDiv.style.height= sizeY + 'px';
+                thisDiv.style.background="white";
+                thisDiv.style.textAlign="center";
+                
+                thisDiv.innerHTML += collegeLinks[i].name + "<br>";
+                    
+                thisDiv.innerHTML+='<a href=\''+collegeLinks[i].url+'\' target="_blank">Link</a><br>';
+
+                document.body.append(thisDiv);
+                document.body.append(thisTitle);
+            }
+        } 
+
+        let lindenLanguage = 
+        [
+            {
+                  name: "llAbs",
+           description: "Tells you the absolute value of any integer number",
+                syntax: "llAbs(integer number);",
+                useage: "llAbs(-3);",
+                   url: "http://wiki.secondlife.com/wiki/LlAbs",
+                  type: "returns an integer",
+                   tag: "function",
+              category: "math",
+                    id: "abs",
+              language: "Linden"
+            },
+            {
+                  name: "llAcos",
+           description: "Tells you the ArcCosine of a number",
+                syntax: "llAcos(float number);",
+                useage: "llAcos(0.7);",
+                   url: "http://wiki.secondlife.com/wiki/LlAcos",
+                  type: "returns a float, in radians",
+                   tag: "function",
+              category: "math",
+                    id: "acos",
+              language: "Linden"
+            }
+        ];
+
+        //var combinedArray = theNotes.concat(theNews, evidence);
+        //console.log(combinedArray);
+
+        //theNotes.copyWithin(2, 0, 2);
+        // console.log(theNotes);
+
+        let javascriptLanguage = 
+        [
+            {
+                  name: "concat()",
+           description: "Join two or more Arrays",
+                syntax: "array1.concat(array2, array3);",
+                useage: "var combinedArray = theNotes.concat(theNews, evidence);",
+                   url: "https://www.w3schools.com/jsref/jsref_concat_array.asp",
+                  type: "returns an array object",
+                   tag: "function",
+              category: "array",
+                    id: "concat",
+              language: "JavaScript"
+            },
+            {
+                name: "copyWithin()",
+           description: "Copies array entries to another position in array and replaces the existing",
+                syntax: "array.copyWithin(target, start, end);",
+                useage: "theNotes.copyWithin(2, 0, 2);",
+                   url: "https://www.w3schools.com/jsref/jsref_copywithin.asp",
+                  type: "returns an array",
+                   tag: "function",
+              category: "array",
+                    id: "copyWithin",
+              language: "JavaScript"
+            }
+        ];
+
+        let collegeLinks = 
+        [
+            {
+                name: "Javascript",
+                url: "https://collegeofscripting.weebly.com/javascript.html"
+            },
+            {
+                name: "JavaScript Game Design",
+                url: "https://collegeofscripting.weebly.com/javascript-game-design.html"
+            },
+            {
+                name: "JavaScript Bookmarklets",
+                url: "https://collegeofscripting.weebly.com/bookmarklets.html"
+            },
+            {
+                name: "LSL Scripting Book",
+                url: "https://collegeofscripting.weebly.com/lsl-scripting-book.html"
+            },
+            {
+                name: "Logical Boolean System of A.I.",
+                url: "https://collegeofscripting.weebly.com/logic-boolean-system.html"
+            },
+            {
+                name: "Health Science",
+                url: "https://collegeofscripting.weebly.com/health-science.html"
+            },
+            {
+                name: "Solar Science",
+                url: "https://collegeofscripting.weebly.com/solar-science.html"
+            },
+            {
+                name: "Flat Earth Science",
+                url: "https://collegeofscripting.weebly.com/flat-earth-science.html"
+            },
+            {
+                name: "Why NO Video of Mars on Mars?",
+                url: "https://collegeofscripting.weebly.com/mars---why-is-there-no-photographic-video-of-mars-on-mars.html"
+            },
+            {
+                name: "Computing",
+                url: "https://collegeofscripting.weebly.com/computing.html"
+            },
+            {
+                name: "Papercliptronics",
+                url: "https://papercliptronics.weebly.com/"
+            },
+            {
+                name: "Video Investigator",
+                url: "https://videoinvestigator.weebly.com/"
+            }
+        ];
+
+        let collegeImages =
+        [
+            {
+                name: "JavaScript Bookmarklet Advanced Programming",
+                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/js4a_orig.png",
+                url: "https://www.amazon.com/JavaScript-Bookmarklet-Advanced-Programming-Interfaces/dp/B088JFN2BL"
+            },
+            {
+                name: "JavaScript Video Investigator",
+                image: " https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/js2a_orig.png",
+                url: "https://www.amazon.com/CREATING-JAVASCRIPT-APPLICATIONS-Video-Investigator/dp/B088N5G5GV"
+            },
+            {
+                name: "JavaScript Missing Persons Database",
+                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/editor/js1.png?1590573260",
+                url: "https://www.amazon.com/CREATING-JAVASCRIPT-APPLICATIONS-Missing-Database/dp/B088N4XYDY"
+            },
+            {
+                name: "True Artificial Intelligence",
+                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/published/ai.png?1590573515",
+                url: "https://www.amazon.com/dp/B08975HFJK"
+            },
+            {
+                name: "LSL Book",
+                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/editor/title-lsl.png?1582049492",
+                url: "https://www.amazon.com/LSL-Scripting-Book-Computer-Programming/dp/B084DG7ZFD/ref=sr_1_fkmr0_1?keywords=lsl+scripting&qid=1582049598&sr=8-1-fkmr0"
+            },
+            {
+                name: "Papercliptronics",
+                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/published/title-now.png?1590573344",
+                url: "https://www.amazon.com/Papercliptronics-Homemade-Electronic-Circuits-Paperclips/dp/1658209303/ref=sr_1_2?keywords=papercliptronics&qid=1582048776&sr=8-2"
+            }
+        ];
+
+
+        function languageRow(theArray, theX, theY, sizeX, sizeY, criteria)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < theArray.length; i++)
+	        {
+                 if(theArray[i].tag == criteria)
+                 {
+                    theX = theX + sizeX;  //columns across
+
+                    let languageTitle = document.createElement("div");
+                    languageTitle.style.position="absolute";
+                    languageTitle.style.left= theX +'px';
+                    languageTitle.style.top= theY -30 + 'px'; //offset for weebly
+                    languageTitle.style.color="white";
+                    languageTitle.style.zIndex="10";
+                    languageTitle.style.fontFamily="exo";
+                    languageTitle.style.fontWeight="bold";
+                    languageTitle.style.fontSize="medium";
+                    languageTitle.style.background="black";
+                    languageTitle.style.textAlign="center";
+                    languageTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    languageTitle.style.width= sizeX +'px';
+                    languageTitle.innerHTML=theArray[i].language;
+
+                    let languageSpace = document.createElement("p");
+                    languageSpace.style.position="absolute";
+                    languageSpace.style.left= theX +'px';
+                    languageSpace.style.top= theY +25 + 'px';
+                    languageSpace.style.color="black";
+                    languageSpace.style.zIndex="100";
+                    //languageSpace.style.padding="5px";
+                    languageSpace.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    languageSpace.style.fontFamily="exo";
+                    languageSpace.style.fontWeight="bold";
+                    languageSpace.style.fontSize="normal";
+                    languageSpace.style.width= sizeX +'px';
+                    languageSpace.style.height= sizeY +'px';
+                    languageSpace.style.background="white";
+                    languageSpace.style.textAlign="center";
+
+                    let nameTitle = document.createElement("div");
+                    nameTitle.style.position="absolute";
+                    nameTitle.style.left= theX +'px';
+                    nameTitle.style.top= theY + 'px';
+                    nameTitle.style.color="yellow";
+                    nameTitle.style.zIndex="10";
+                    nameTitle.style.fontFamily="exo";
+                    nameTitle.style.fontWeight="bold";
+                    nameTitle.style.fontSize="large";
+                    nameTitle.style.background="black";
+                    nameTitle.style.textAlign="center";
+                    nameTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    nameTitle.style.width= sizeX +'px';
+                    nameTitle.innerHTML=theArray[i].name;
+
+                    //languageSpace.id = theArray[i].id;
+                    languageSpace.id = Math.floor(351000 + Math.random() * 9710000);
+
+                    languageSpace.innerHTML += '<button onclick="printOnlyDiv(\''+languageSpace.id+'\');">print</button><br>';
+
+                    languageSpace.innerHTML += theArray[i].name + "<br>";
+ 
+                    languageSpace.innerHTML+= theArray[i].description + "<br>";
+
+                    languageSpace.innerHTML += theArray[i].syntax + "<br>";
+
+                    languageSpace.innerHTML+= theArray[i].useage + "<br>";
+
+                    languageSpace.innerHTML+='<a href=\''+theArray[i].url+'\' target="_blank">Link</a><br>';
+
+                    languageSpace.innerHTML+= theArray[i].type + "<br>";
+
+                    document.body.append(languageSpace);
+                    document.body.append(languageTitle);
+                    document.body.append(nameTitle);
+                }
+            }
+        }
+
+        function printOnlyDiv(whichDiv) 
+        { 
+            let mywindow = window.open('', 'PRINT', 'height=800,width=1000 top=50, left=100');
+
+            mywindow.document.write('<style>img{width:95%;</style></head><body>');
+
+            mywindow.document.write('<h4>' + document.title  + '</h4>');
+
+            mywindow.document.write(document.getElementById(whichDiv).innerHTML);
+            
+            mywindow.print();
+            //mywindow.close();
+        } 
+
+
+    //Sort theNotes array of objects using this function below
+    function compareNumber(a, b)
+    {
+        const numberA = a.number;
+        const numberB = b.number;
+
+        let numberComparison = 0;
+
+        if (numberA > numberB ) 
+        {
+            numberComparison = 1;
+        } 
+        else if (numberA < numberB) 
+        {
+            numberComparison = -1;
+        }
+        return numberComparison; 
+    }
+
+    //sort theNotes array
+    theNotes = theNotes.sort(compareNumber);
+
+    //Sort the language arrays, by name
+    function compareName(a, b)
+    {
+        const nameA = a.name;
+        const nameB = b.name;
+
+        let nameComparison = 0;
+
+        if (nameA > nameB ) 
+        {
+            nameComparison = 1;
+        } 
+        else if (nameA < nameB) 
+        {
+            nameComparison = -1;
+        }
+        return nameComparison; 
+    }
+
+    //sort the language arrays
+    lindenLanguage = lindenLanguage.sort(compareName);
+    javascriptLanguage = javascriptLanguage.sort(compareName);
+    
+
+        /* When the Page Loads */
+        function whenLoaded()
+        {
+            sortIt();
+
+            newsRow(100, 6200, 800, 250); 
+                  //theX,theY,sizeX,sizeY
+
+            evidenceRow(100,5200,200,200);
+                      //theX, theY, sizeX, sizeY
+           
+            makeWebsitesOrVideos(100,400,700,500); 
+                             //theX,theY,sizeX,sizeY
+                                  //shows all videos
+
+            evidenceWithImageRow(100,5500,1250, 600);
+                              //theX, theY, sizeX, sizeY
+
+            makeVideos(100, 1100, 800, 600,"exercise");
+                    //theX, theY, sizeX, sizeY, criteria
+
+            makeVideos(100, 1900, 800, 600,"mask");
+                    //theX, theY, sizeX, sizeY, criteria
+
+            notesRow(100, 3450, 400, 400);
+                  //(theX, theY, sizeX, sizeY)
+
+            languageRow(lindenLanguage, 100, 4000, 400, 400, "function");
+            //whichArray, theX, theY, sizeX, sizeY, criteria
+
+            languageRow(javascriptLanguage, 100, 4500, 400, 400, "function");
+            //whichArray, theX, theY, sizeX, sizeY, criteria
+
+            collegeImagesRow(100, 6700, 400, 400);
+                        //theX, theY, sizeX, sizeY
+
+            collegeLinksRow(100, 7300, 300, 50);
+                        //theX, theY, sizeX, sizeY
+
+
+           window.addEventListener("click", mousePos, false);
+           window.addEventListener("keydown", theControls, false);
+           window.addEventListener("keyup", theControls, false);
+        }
+
+        /* The Keyboard Letter Codes that are Being Pressed */
+        let keyboard = {};
+            keyboard.UP = 87;    //87 is w, 38 is up arrow
+            keyboard.DOWN = 83;  //83 is s, 40 is down arrow
+            keyboard.LEFT = 65;  //65 is a, 37 is left arrow
+            keyboard.RIGHT = 68; //68 is d, 39 is right arrow       
+
+        /* Player's start position and id */
+        let ourPlayer = {
+            x: 150,
+            y: 7196,
+            speedMultiplier: 3,
+            playerId: document.getElementById("thePlayer")
+        }; 
+        
+        //Key Press Detection
+        //document.body.onkeyup =
+        //document.body.onkeydown = function(e){
+
+        function theControls(e)
+        { 
+            if(e.keyCode == 80) //Press Letter P
+            {
+                //let userName = prompt("Enter Name");
+                //ourPlayer.playerId.innerHTML= userName;
+            }
+            if(e.keyCode == 79) //Press Letter o
+            {
+                //ourPlayer.playerId.innerHTML= "Song Stopped";
+            }
+            if(e.keyCode == 49) //Press number 1
+            {
+                ourPlayer.speedMultiplier=2;
+                ourPlayer.playerId.innerHTML="Speed 2";
+            }
+            if(e.keyCode == 50) //Press number 2
+            {
+                ourPlayer.speedMultiplier=3;
+                ourPlayer.playerId.innerHTML="Speed 3";
+            }
+            if(e.keyCode == 51) //Press number 3
+            {
+                ourPlayer.speedMultiplier=4;
+                ourPlayer.playerId.innerHTML="Speed 4";
+            }
+            if(e.keyCode == 52) //Press number 4
+            {
+                ourPlayer.speedMultiplier=5;
+                ourPlayer.playerId.innerHTML="Speed 5";
+            }
+            if(e.keyCode == 53) //Press number 5
+            {
+                ourPlayer.speedMultiplier=10;
+                ourPlayer.playerId.innerHTML="Speed 10";
+            }
+            if(e.keyCode == 54) //Press number 6
+            {
+                ourPlayer.speedMultiplier=15;
+                ourPlayer.playerId.innerHTML="Speed 15";
+            }
+            if(e.keyCode == 55) //Press number 7
+            {
+                ourPlayer.speedMultiplier=20;
+                ourPlayer.playerId.innerHTML="Speed 20";
+            }
+            if(e.keyCode == 56) //Press number 8
+            {
+                ourPlayer.speedMultiplier=25;
+                ourPlayer.playerId.innerHTML="Speed 25";
+            }
+            if(e.keyCode == 57) //Press number 9
+            {
+                ourPlayer.speedMultiplier=30;
+                ourPlayer.playerId.innerHTML="Speed 30";
+            }
+
+            //Find out which key was pressed
+            let theKeyCode = e.keyCode || e.which;
+            keyboard[theKeyCode] = e.type == 'keydown';
+        };
+         
+        /* Character Movement Updating */
+        let movePlayer = function(theX, theY){
+            
+           ourPlayer.x += (theX||0) * ourPlayer.speedMultiplier;
+           ourPlayer.y += (theY||0) * ourPlayer.speedMultiplier;
+
+           ourPlayer.playerId.style.left = ourPlayer.x + 'px';
+           ourPlayer.playerId.style.top = ourPlayer.y + 'px';
+        };
+            
+        /* Player Controls */
+        let sensePlayerMotion = function(){
+            if(keyboard[keyboard.LEFT]){
+                movePlayer(-1,0);
+               // ourPlayer.playerId.style.backgroundPosition=-2;
+                //Note: need to simplify for logical backgroundPosition coordinates.
+            }
+            if(keyboard[keyboard.RIGHT]){
+                movePlayer(1,0);
+               // ourPlayer.playerId.style.backgroundPosition=302;
+            }
+            if(keyboard[keyboard.UP]){
+                movePlayer(0,-1);
+               // ourPlayer.playerId.style.backgroundPosition=97;
+            }
+            if(keyboard[keyboard.DOWN]){
+                movePlayer(0,1);
+                //ourPlayer.playerId.style.backgroundPosition=625;
+            }
+        };
+        
+        function getAllInfo(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            return theRect;
+        }
+        //console.log(JSON.stringify(getAllInfo('boxOne')));
+
+        function getPos(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            let theRectY = theId.getBoundingClientRect().top + window.scrollY; 
+
+            let posXY = { 
+                x:parseInt(theRect.x) + parseInt(theRect.width)/2 + window.scrollX, 
+                y:parseInt(theRectY) + parseInt(theRect.height)/2
+            }; 
+            return posXY;
+        }
+        
+        //Camera Follows the Player
+        function scrollIt()
+        {
+           ourPlayer.playerId.scrollIntoView({block: "center", inline: "center"});
+        }
+
+        //Get Size of the id
+        function getSize(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+       
+            let sizeXY = {
+                x: parseInt(theRect.width),
+                y: parseInt(theRect.height)
+            };
+            return sizeXY;
+        }
+
+        // Position and Size Objects according to if condition
+        // not used in this tutorial
+        function posSizeObject(whichArray)  
+        {
+            for(var i = 0; i < whichArray.length; i++)
+            {
+                  if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
+                  {
+                        var d = document.getElementById(whichArray[i].id);
+                        d.style.position = "absolute";
+                        d.style.left = whichArray[i].xPos +'px';
+                        d.style.top = whichArray[i].yPos +'px';
+                        d.style.width = whichArray[i].width +'px';
+                        d.style.height = whichArray[i].height +'px';
+                  }
+            }
+        }
+        
+        function mousePos(theEvent)
+        {
+            let mouseX = theEvent.pageX;
+            let mouseY = theEvent.pageY;
+            let mousePos = "Mouse" + "<br>" + "X " + mouseX + "<br>"+ "Y " + mouseY;
+            console.log(mousePos);
+            ourPlayer.playerId.innerHTML= mousePos;
+        }
+
+       function doThisLoop()
+       {
+           sensePlayerMotion();
+           scrollIt();         
+           requestAnimationFrame(doThisLoop);  
+       }
+       doThisLoop();
+            
+        //Update the Position of the player
+        movePlayer();
+    
+</script>
+
+        <div id="theCollegeTitle">
+            TOPALIAN<br> GAME<br> ENGINE
+        </div>
+      
+        <div id="instructions">
+            W is up, S is down, <br>
+            A is left, D is Right <br>
+            Speed 1 through 9 on top of keyboard
+        </div>
+
+        <div id="dedication">
+            College of Scripting Music & Science<br>
+            Dedicated to God the Father
+        </div>
+
+</body>
+</html>
