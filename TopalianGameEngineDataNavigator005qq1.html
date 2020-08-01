@@ -38,7 +38,20 @@ press 1 through 9 numbers on top of keyboard to adjust Speed -->
     left: 0px;
     top: 0px;
     opacity: 0.3;
-    z-index:-100;           
+    z-index:-100;       
+}
+
+#stars{
+    position: absolute;
+    width: 10000px;
+    height: 10000px;
+    background: black;
+    left: 0px;
+    top: 0px;
+    opacity: 1.0;
+    z-index:-99; 
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice_orig.png");   
+    background-repeat: repeat;        
 }
       
 body
@@ -99,6 +112,11 @@ video
 }
 
 </style>
+
+<!-- You might choose to place all DATA in one or more external js files-->
+<!-- Large amounts of DATA is easier with a file for each topic -->
+<!-- <script src="ourDATA.js"></script> -->
+
 </head>
 
     <body onload="whenLoaded();">
@@ -107,15 +125,6 @@ video
         <div id="theBackground"></div>
 
    <script>
-
-    function sortIt()
-    {
-        theNews.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
-
-        evidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
-
-        videoEvidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
-    }
     
     let theNews = [
     {
@@ -263,7 +272,40 @@ video
         info:"Mass vaccination followed by Digital Immunity Proof",
         image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/bill-gates-digital-immunity-proof_orig.png",
         tag: "fact"
-    }
+    },
+    {
+        title: "Bill Clinton visited Jeffrey Epstein’s private island, unsealed court documents suggest",
+        date: "jul 31 2020 00:00:00 AM",
+        month:"07",
+        day: "31",
+        year: "2020",
+        url: "https://www.foxnews.com/us/bill-clinton-visited-jeffrey-epsteins-private-island-unsealed-court-documents-suggest",
+        info:"Bill Clinton Visited Jeffrey Epstein's island",
+        image: "",
+        tag: "fact"
+    },
+    {
+        title: "MIT Technology Review @techreview",
+        date: "jul 31 2020 00:00:00 AM",
+        month:"07",
+        day: "31",
+        year: "2020",
+        url: "https://twitter.com/techreview/status/1289273594761994241",
+        info:"The pandemic has rapidly grown the presence of QAnon and the spread of its conspiracy theories. If we stand any hope of stopping it, online platforms must do much more than fact checks and account bans.",
+        image: "https://pbs.twimg.com/card_img/1285009974087884810/7n1vKIYX?format=jpg&name=900x900",
+        tag: "censorship"
+    },
+    {
+        title: "Bill Clinton was present with Epstein and two sex slaves on the Epstein island. ",
+        date: "jul 31 2020 00:00:00 AM",
+        month:"07",
+        day: "31",
+        year: "2020",
+        url: "https://twitter.com/techreview/status/1289273594761994241",
+        info:"Read it for yourself",
+        image: "https://pbs.twimg.com/media/EeO7QzFXoAA8Jlo?format=jpg&name=900x900",
+        tag: "censorship"
+        }
     ];
 
     let theNotes =
@@ -290,6 +332,149 @@ video
         }
     ];
 
+    let lindenLanguage = 
+        [
+            {
+                  name: "llAbs",
+           description: "Tells you the absolute value of any integer number",
+                syntax: "llAbs(integer number);",
+                useage: "llAbs(-3);",
+                   url: "http://wiki.secondlife.com/wiki/LlAbs",
+                  type: "returns an integer",
+                   tag: "function",
+              category: "math",
+              language: "Linden"
+            },
+            {
+                  name: "llAcos",
+           description: "Tells you the ArcCosine of a number",
+                syntax: "llAcos(float number);",
+                useage: "llAcos(0.7);",
+                   url: "http://wiki.secondlife.com/wiki/LlAcos",
+                  type: "returns a float, in radians",
+                   tag: "function",
+              category: "math",
+              language: "Linden"
+            }
+        ];
+
+        //var combinedArray = theNotes.concat(theNews, evidence);
+        //console.log(combinedArray);
+
+        //theNotes.copyWithin(2, 0, 2);
+        // console.log(theNotes);
+
+        let javascriptLanguage = 
+        [
+            {
+                  name: "concat()",
+           description: "Join two or more Arrays",
+                syntax: "array1.concat(array2, array3);",
+                useage: "var combinedArray = theNotes.concat(theNews, evidence);",
+                   url: "https://www.w3schools.com/jsref/jsref_concat_array.asp",
+                  type: "returns an array object",
+                   tag: "function",
+              category: "array",
+              language: "JavaScript"
+            },
+            {
+                name: "copyWithin()",
+           description: "Copies array entries to another position in array and replaces the existing",
+                syntax: "array.copyWithin(target, start, end);",
+                useage: "theNotes.copyWithin(2, 0, 2);",
+                   url: "https://www.w3schools.com/jsref/jsref_copywithin.asp",
+                  type: "returns an array",
+                   tag: "function",
+              category: "array",
+              language: "JavaScript"
+            }
+        ];
+
+        let collegeLinks = 
+        [
+            {
+                name: "Javascript",
+                url: "https://collegeofscripting.weebly.com/javascript.html"
+            },
+            {
+                name: "JavaScript Game Design",
+                url: "https://collegeofscripting.weebly.com/javascript-game-design.html"
+            },
+            {
+                name: "JavaScript Bookmarklets",
+                url: "https://collegeofscripting.weebly.com/bookmarklets.html"
+            },
+            {
+                name: "LSL Scripting Book",
+                url: "https://collegeofscripting.weebly.com/lsl-scripting-book.html"
+            },
+            {
+                name: "Logical Boolean System of A.I.",
+                url: "https://collegeofscripting.weebly.com/logic-boolean-system.html"
+            },
+            {
+                name: "Health Science",
+                url: "https://collegeofscripting.weebly.com/health-science.html"
+            },
+            {
+                name: "Solar Science",
+                url: "https://collegeofscripting.weebly.com/solar-science.html"
+            },
+            {
+                name: "Flat Earth Science",
+                url: "https://collegeofscripting.weebly.com/flat-earth-science.html"
+            },
+            {
+                name: "Why NO Video of Mars on Mars?",
+                url: "https://collegeofscripting.weebly.com/mars---why-is-there-no-photographic-video-of-mars-on-mars.html"
+            },
+            {
+                name: "Computing",
+                url: "https://collegeofscripting.weebly.com/computing.html"
+            },
+            {
+                name: "Papercliptronics",
+                url: "https://papercliptronics.weebly.com/"
+            },
+            {
+                name: "Video Investigator",
+                url: "https://videoinvestigator.weebly.com/"
+            }
+        ];
+
+        let collegeImages =
+        [
+            {
+                name: "JavaScript Bookmarklet Advanced Programming",
+                image: "https://images-na.ssl-images-amazon.com/images/I/51lot64KYcL._SX384_BO1,204,203,200_.jpg",
+                url: "https://www.amazon.com/JavaScript-Bookmarklet-Advanced-Programming-Interfaces/dp/B088JFN2BL"
+            },
+            {
+                name: "JavaScript Video Investigator",
+                image: " https://m.media-amazon.com/images/I/51EeQ4sNVnL._SY346_.jpg",
+                url: "https://www.amazon.com/CREATING-JAVASCRIPT-APPLICATIONS-Video-Investigator/dp/B088N5G5GV"
+            },
+            {
+                name: "JavaScript Missing Persons Database",
+                image: "https://m.media-amazon.com/images/I/519eyD-37lL.jpg",
+                url: "https://www.amazon.com/CREATING-JAVASCRIPT-APPLICATIONS-Missing-Database/dp/B088N4XYDY"
+            },
+            {
+                name: "True Artificial Intelligence",
+                image: "https://m.media-amazon.com/images/I/414nBuW6oaL._SY346_.jpg",
+                url: "https://www.amazon.com/dp/B08975HFJK"
+            },
+            {
+                name: "LSL Book",
+                image: "https://images-na.ssl-images-amazon.com/images/I/41YE35agtNL._SY498_BO1,204,203,200_.jpg",
+                url: "https://www.amazon.com/LSL-Scripting-Book-Computer-Programming/dp/B084DG7ZFD/ref=sr_1_fkmr0_1?keywords=lsl+scripting&qid=1582049598&sr=8-1-fkmr0"
+            },
+            {
+                name: "Papercliptronics",
+                image: "https://m.media-amazon.com/images/I/51cdZyRYXVL._SX260_.jpg",
+                url: "https://www.amazon.com/Papercliptronics-Homemade-Electronic-Circuits-Paperclips/dp/1658209303/ref=sr_1_2?keywords=papercliptronics&qid=1582048776&sr=8-2"
+            }
+        ];
 
     function notesRow(theX, theY, sizeX, sizeY)
     { 
@@ -562,6 +747,7 @@ video
                     newsSpace.innerHTML += theNews[i].headline + "<br>";
 
                     newsSpace.innerHTML += theNews[i].month + "/" + theNews[i].day + "/" + theNews[i].year +  "<br>";
+                    
                     newsSpace.innerHTML+= theNews[i].date + "<br>";
 
                     newsSpace.innerHTML+='<a href=\''+theNews[i].url+'\' target="_blank">Link</a>';
@@ -620,7 +806,7 @@ video
 
                     evidenceRow.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
                     
-                    evidence[i].day + evidence[i].info +  "<br>";
+                    evidenceRow.innerHTML += evidence[i].info +  "<br>";
 
                     evidenceRow.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a>';
 
@@ -653,7 +839,7 @@ video
                     theTitle.style.width= sizeX +'px';
                     theTitle.innerHTML="EvidenceRowWithImage";
 
-                let theDiv = document.createElement("p");
+                let theDiv = document.createElement("div");
                    
                 //theDiv.id = evidence[i].id;
                 theDiv.id = Math.floor(357000 + Math.random() * 9770000);
@@ -674,12 +860,15 @@ video
                     theDiv.style.height= sizeY + 'px';
                     theDiv.style.background="white";
                     theDiv.style.textAlign="center";
+                    //theDiv.style.wordWrap="initial";
                 
                     theDiv.innerHTML += evidence[i].title + "<br>";
                     
-                    theDiv.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year +  "<br>";
-                    evidence[i].day + evidence[i].info +  "<br>";
+                    theDiv.innerHTML += evidence[i].month + "/" + evidence[i].day + "/" + evidence[i].year + "<br>";
                     
+
+                    theDiv.innerHTML += evidence[i].info + "<br>";
+
                     theDiv.innerHTML+='<a href=\''+evidence[i].url+'\' target="_blank">Link</a><br>';
 
                     theDiv.innerHTML += '<img src= \''+evidence[i].image+'\' class="theImage">';
@@ -803,151 +992,6 @@ video
             }
         } 
 
-        let lindenLanguage = 
-        [
-            {
-                  name: "llAbs",
-           description: "Tells you the absolute value of any integer number",
-                syntax: "llAbs(integer number);",
-                useage: "llAbs(-3);",
-                   url: "http://wiki.secondlife.com/wiki/LlAbs",
-                  type: "returns an integer",
-                   tag: "function",
-              category: "math",
-              language: "Linden"
-            },
-            {
-                  name: "llAcos",
-           description: "Tells you the ArcCosine of a number",
-                syntax: "llAcos(float number);",
-                useage: "llAcos(0.7);",
-                   url: "http://wiki.secondlife.com/wiki/LlAcos",
-                  type: "returns a float, in radians",
-                   tag: "function",
-              category: "math",
-              language: "Linden"
-            }
-        ];
-
-        //var combinedArray = theNotes.concat(theNews, evidence);
-        //console.log(combinedArray);
-
-        //theNotes.copyWithin(2, 0, 2);
-        // console.log(theNotes);
-
-        let javascriptLanguage = 
-        [
-            {
-                  name: "concat()",
-           description: "Join two or more Arrays",
-                syntax: "array1.concat(array2, array3);",
-                useage: "var combinedArray = theNotes.concat(theNews, evidence);",
-                   url: "https://www.w3schools.com/jsref/jsref_concat_array.asp",
-                  type: "returns an array object",
-                   tag: "function",
-              category: "array",
-              language: "JavaScript"
-            },
-            {
-                name: "copyWithin()",
-           description: "Copies array entries to another position in array and replaces the existing",
-                syntax: "array.copyWithin(target, start, end);",
-                useage: "theNotes.copyWithin(2, 0, 2);",
-                   url: "https://www.w3schools.com/jsref/jsref_copywithin.asp",
-                  type: "returns an array",
-                   tag: "function",
-              category: "array",
-              language: "JavaScript"
-            }
-        ];
-
-        let collegeLinks = 
-        [
-            {
-                name: "Javascript",
-                url: "https://collegeofscripting.weebly.com/javascript.html"
-            },
-            {
-                name: "JavaScript Game Design",
-                url: "https://collegeofscripting.weebly.com/javascript-game-design.html"
-            },
-            {
-                name: "JavaScript Bookmarklets",
-                url: "https://collegeofscripting.weebly.com/bookmarklets.html"
-            },
-            {
-                name: "LSL Scripting Book",
-                url: "https://collegeofscripting.weebly.com/lsl-scripting-book.html"
-            },
-            {
-                name: "Logical Boolean System of A.I.",
-                url: "https://collegeofscripting.weebly.com/logic-boolean-system.html"
-            },
-            {
-                name: "Health Science",
-                url: "https://collegeofscripting.weebly.com/health-science.html"
-            },
-            {
-                name: "Solar Science",
-                url: "https://collegeofscripting.weebly.com/solar-science.html"
-            },
-            {
-                name: "Flat Earth Science",
-                url: "https://collegeofscripting.weebly.com/flat-earth-science.html"
-            },
-            {
-                name: "Why NO Video of Mars on Mars?",
-                url: "https://collegeofscripting.weebly.com/mars---why-is-there-no-photographic-video-of-mars-on-mars.html"
-            },
-            {
-                name: "Computing",
-                url: "https://collegeofscripting.weebly.com/computing.html"
-            },
-            {
-                name: "Papercliptronics",
-                url: "https://papercliptronics.weebly.com/"
-            },
-            {
-                name: "Video Investigator",
-                url: "https://videoinvestigator.weebly.com/"
-            }
-        ];
-
-        let collegeImages =
-        [
-            {
-                name: "JavaScript Bookmarklet Advanced Programming",
-                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/js4a_orig.png",
-                url: "https://www.amazon.com/JavaScript-Bookmarklet-Advanced-Programming-Interfaces/dp/B088JFN2BL"
-            },
-            {
-                name: "JavaScript Video Investigator",
-                image: " https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/js2a_orig.png",
-                url: "https://www.amazon.com/CREATING-JAVASCRIPT-APPLICATIONS-Video-Investigator/dp/B088N5G5GV"
-            },
-            {
-                name: "JavaScript Missing Persons Database",
-                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/editor/js1.png?1590573260",
-                url: "https://www.amazon.com/CREATING-JAVASCRIPT-APPLICATIONS-Missing-Database/dp/B088N4XYDY"
-            },
-            {
-                name: "True Artificial Intelligence",
-                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/published/ai.png?1590573515",
-                url: "https://www.amazon.com/dp/B08975HFJK"
-            },
-            {
-                name: "LSL Book",
-                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/editor/title-lsl.png?1582049492",
-                url: "https://www.amazon.com/LSL-Scripting-Book-Computer-Programming/dp/B084DG7ZFD/ref=sr_1_fkmr0_1?keywords=lsl+scripting&qid=1582049598&sr=8-1-fkmr0"
-            },
-            {
-                name: "Papercliptronics",
-                image: "https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/published/title-now.png?1590573344",
-                url: "https://www.amazon.com/Papercliptronics-Homemade-Electronic-Circuits-Paperclips/dp/1658209303/ref=sr_1_2?keywords=papercliptronics&qid=1582048776&sr=8-2"
-            }
-        ];
-
-
         function languageRow(theArray, theX, theY, sizeX, sizeY, criteria)
         { 
             theX -= sizeX;
@@ -1042,6 +1086,14 @@ video
             //mywindow.close();
         } 
 
+    function sortIt()
+    {
+        theNews.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+        evidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+        videoEvidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+    }
 
     //Sort theNotes array of objects using this function below
     function compareNumber(a, b)
@@ -1340,6 +1392,8 @@ video
             College of Scripting Music & Science<br>
             Dedicated to God the Father
         </div>
+
+        <div id="stars"></div>
 
 </body>
 </html>
