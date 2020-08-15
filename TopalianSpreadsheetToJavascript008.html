@@ -1,0 +1,110 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+
+<!-- Topalian Spreadsheet To Javascript -->
+
+<!-- Open this page in your web browser -->
+<!-- Paste your spreadsheet data into the text area -->
+<!-- Copy the converted text that appears on the screen -->
+<!-- Paste the converted text into TopalianData.js -->
+<!-- The spreadsheet data we paste is ONE Array of Objects at a time
+     which means one spreadsheet at time -->
+
+<!-- For example, you can paste the spreadsheet named theNews into theNews array of TopalianData.js. Then you would paste the videoEvidence spreadsheet into the videoEvidence array of TopalianData.js. You update data one spreadsheet at a time. We do this because each array is different and has different requirements  -->
+
+<!-- When you fill in your spreadsheet data,
+     make sure to use the symbols ** instead of "  -->
+<!-- For example   **https://collegeofscripting.weebly.com**   -->
+
+<!-- When we type data into the spreadsheet, we do NOT use quotes at all! -->
+<!-- The spreadsheet app makes curly quotes, which is NOT useful for code. -->
+<!-- That is why we instead use ** to represent a double quote in the spreadsheet data. This script here replaces that ** with a double quote " -->
+
+<!-- This script makes it very easy to add data to our game/website.
+     We add the data to our spreadsheet, which we can sort anyway we want using the spreadsheet tools. Then we just convert that spreadsheet data to javascript format using this script here, and we paste the converted data into our TopalianData.js file, one spreadsheet at a time into one array at a time -->
+
+<!-- If your title or name has a double quote "  change the double quote to a single quote instead, because we are already using double quotes to contain each string -->
+
+<!--     CORRECT:  "Earth 'seems' nice"   
+     NOT CORRECT:  "Earth "seems" nice"
+     
+     as you can see, the double quote useage in the title, would have ended the string before the end of the actual title. -->
+
+<html>
+<head>
+<style>
+
+.textAreaDataPaste
+{
+    position:absolute;
+    left: 50px;
+    top: 75px;
+	height:100px;
+	width:80%;
+	box-sizing: border-box;
+	background-color: rgb(240,240,240);
+	border-radius:6px;
+	border:3px solid rgb(0,0,0);
+	border-color: black;
+	cursor:pointer;
+	color:black;
+	font-size:14px;
+	padding:9px 9px;
+	text-decoration:none;
+}
+
+#displayData
+{
+    position:absolute;
+    left: 100px;
+    top: 210px;
+    font-family: exo black;
+    font-size: 22px;
+    color: black;
+}
+
+body
+{
+    background: rgb(216, 213, 213);
+}
+</style>
+</head>
+
+<body onload="whenLoaded();">
+
+<script>
+    function whenLoaded()
+    {
+        document.getElementById("pasteDataHere").addEventListener("keyup", processSpreadsheetData, false);
+    }
+
+    function processSpreadsheetData()
+    {
+        let ourData = document.getElementById("pasteDataHere").value;
+        
+        for (let j = 0; j < ourData.length; j++)
+        {   
+            ourData = ourData.replace("**", "\""); 
+                    //this function replaces ** with a double quote "
+                    //In our spreadsheet data
+                    //we use ** instead of double quotes
+                    //because spreadsheets make curly quotes
+                    //but we need to use straight quotes in code
+                    //so instead of using double quotes, we use **
+                    //for example
+                    //**https://www.google.com**
+                    //The function above replaces the ** with "
+                    //meaning, "https://www.google.com"
+        }
+        
+        var test = document.getElementById("displayData").innerHTML=ourData.split(/},/g).join('},'+ '<br><br>');
+    }
+
+</script>
+    
+    <textarea id="pasteDataHere" placeholder="Paste Here" rows="4" cols="50" class="textAreaDataPaste" type="text">
+    </textarea>
+
+    <div id="displayData"></div>
+</body>
+</html>
