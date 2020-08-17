@@ -1,3 +1,7 @@
+//Dedicated to God the Father
+//All Rights Reserved Christopher Topalian Copyright 2020
+//THIS IS THE DATA (CONTENT) that we are using for the Topalian Game Engine Data Navigator
+
 let theNews = 
 [
     { headline:"Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past", date:"10/12/19 12:00 AM", month:"10", day:"12", year:"2019", url:"https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html", tag:"news", },
