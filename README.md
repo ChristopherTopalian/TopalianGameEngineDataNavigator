@@ -4,4 +4,3 @@ Turn spreadsheets into video games! Make video game websites easily! Automatic T
 Here is another video showing the spreadsheet to javascript in action https://youtu.be/NY5cLxEx1gY and  some other videos showing the script:
 https://youtu.be/CW6PQg5c4RY  ,  https://youtu.be/Q4tPG-cwiWE  and https://youtu.be/TBG9nsk5CMY
 
-THE NEW SORT METHOD IS VERY SOON TO BE PUBLISHED. GET READY for Multiple Criteria sorting very easily!
