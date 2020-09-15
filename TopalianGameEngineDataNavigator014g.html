@@ -1,0 +1,2126 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+
+<!-- Topalian Game Engine Data Navigator --><!--Camera Follows Player -->
+ 
+<!-- W is Up, S is Down, A is Left, D is Right.
+     Click mouse to get X and Y coordinates of any place on the screen 
+     press numbers 1 to 9 to adjust Speed
+     press 0 - + BackSpace Home End for Super Speeds
+     press N for the player to be see-through, press M for solid -->
+
+<!-- tested and works in chrome, firefox, brave -->
+<!-- loads the FASTEST in the Chrome Browser(MUCH FASTER)! -->
+
+<!-- See the code in Action
+     https://collegeofscripting.weebly.com/  -->
+
+<!-- See the DataNavigator Code here
+     https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
+
+<html><head>
+<style>
+ #thePlayer{
+    position: absolute;
+    width: 70px;  
+    height: 70px;
+    background: rgb(73, 100, 150);
+    z-index:1000;
+    word-wrap: break-word;
+    font-family: Tahoma;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight:bold;
+    padding: 4px;
+    text-align: center;
+    border-radius: 7px;
+}
+    
+#theBackground{
+    position: absolute;
+    width: 200000px;
+    height: 200000px;
+    background: black;
+    left: 0px;
+    top: 0px;
+    opacity: 0.3;
+    z-index:-100;       
+}
+
+#stars{
+    position: absolute;
+    width: 200000px;
+    height: 200000px;
+    background: black;
+    left: 0px;
+    top: 0px;
+    opacity: 1.0;
+    z-index:-99; 
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice_orig.png");   
+    background-repeat: repeat;        
+}
+      
+body
+{
+    color:white;
+}
+
+#gameEngineName
+{
+    position:absolute;
+    left: 673px;
+    top: 7140px;
+    font-family: exo black;
+    font-size: 30px;
+    color: white;
+    z-index:5;
+}
+
+#instructions
+{
+    position:absolute;
+    left: 100px;
+    top: 7393px;
+    font-family: exo black;
+    font-size: 24px;
+    color: white;
+}
+
+#dedication
+{
+    position:absolute;
+    left: 109px;
+    top: 7165px;
+    font-family: exo black;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    line-height: 1.1;
+}
+
+.theImage
+{
+    height:75%;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.ourButton
+{
+    width: 55px;
+    background-color: rgb(0, 77, 129);
+    border: solid 1px rgb(100, 100, 255);
+    color: white;
+    font-weight: normal;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration-style: double;
+    font-size: 15px;
+    border-radius: 7px;
+    opacity:1.0;
+}
+.ourButton:hover
+{
+    background-color: rgb(6, 31, 47);
+}
+
+.videoButtons
+{
+    width: 45px;
+    background-color: rgb(0, 77, 129);
+    border: solid 1px rgb(100, 100, 255);
+    color: white;
+    font-weight: normal;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration-style: double;
+    font-size: 15px;
+    border-radius: 7px;
+    opacity:1.0;
+}
+.videoButtons:hover
+{
+    background-color: rgb(6, 31, 47);
+}
+
+.evidenceWithImage
+{
+    background-color: black;
+    word-wrap: break-word;
+}
+
+.socialMediaEvidence
+{
+    background-color: black;
+    word-wrap: break-word;
+}
+
+.defaultDiv
+{
+    color:black;
+    z-index:15;
+    font-family:exo;
+    font-weight:bold;
+    font-size:19px;
+    background:rgb(210, 210, 210);
+    text-align:center;
+}
+
+.triggerPointsClass
+{
+    background-color: rgb(0, 77, 129);
+    border: solid 1px rgb(100, 100, 255);
+    color: white;
+    font-weight: bold;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration-style: double;
+    font-size: 20px;
+    border-radius: 7px;
+    opacity:1.0;
+}
+
+</style>
+
+<!-- VERY IMPORTANT -->
+<!-- Make sure you have this js file in your folder. It is the data. -->
+<script src="TopalianData.js"></script>
+
+</head>
+
+    <body onload="whenLoaded();">
+        
+        <div id="thePlayer" class="box">WASD<br> to Move</div>
+
+        <div id="theBackground"></div>
+
+        <div id="stars"></div>
+
+        <div id="gameEngineName">
+            TOPALIAN<br> GAME<br> ENGINE
+        </div>
+      
+        <div id="instructions">
+            W is Up, S is Down, <br>
+            A is Left, D is Right <br>
+            Numbers 1 to 9 Changes Speed<br>
+            0 - + BackSpace Home End for FASTER SPEEDS <br>
+            N for transparent, M for solid  <br> 
+            Chrome Browser Loads the FASTEST <br>
+            <a href="https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator" target="_blank">https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator</a>
+
+        </div>
+
+        <div id="dedication">
+            College of Scripting Music & Science<br>
+            Dedicated to God the Father
+        </div>
+
+   <script>
+
+        /*triggerPointsArray is an array of trigger lines and push buttons,
+        that are used to load content into the world.
+        */
+        let triggerPointsArray =
+        [
+            {
+                //trigger line
+                //This is entry 0
+                xPos: "100",
+                yPos: "7730",
+                width: "420",
+                text: "Travel Past this LINE to Load more content."
+            },
+            {
+                //trigger push button
+                //This is entry 1
+                xPos: "100",
+                yPos: "14540",
+                width: "800",
+                text: "Press Button to Load YOUR mp3 or mp4 Files,<br> which MUST BE Located in your _video or _audio Folder, OR<br>alternatively, if you define url2 with an internet address, then the source of the audio and/or video will be that address, instead of your computer folder!"
+            }
+        ];
+
+        /*shown below is the loadTriggers function
+        that accepts one parameter, whichArray.
+        We use this function later in the script, in the whenLoaded function.
+        */
+        function loadTriggers(whichArray)
+        {
+            ////Line 7730 Trigger////
+            let triggerPoint = document.createElement("div");
+            triggerPoint.style.position="absolute";
+            triggerPoint.style.left= whichArray[0].xPos +'px';
+            triggerPoint.style.top= whichArray[0].yPos + 'px';
+            triggerPoint.style.width= whichArray[0].width + 'px';
+            //triggerPoint.setAttribute("class", ''+criteria+'');
+            triggerPoint.setAttribute("class", "triggerPointsClass");
+            triggerPoint.innerHTML= whichArray[0].text;
+            document.body.append(triggerPoint);
+
+            ////Button 14540 Trigger////
+            let triggerPoint2 = document.createElement("div");
+            triggerPoint2.style.position="absolute";
+            triggerPoint2.style.left= whichArray[1].xPos +'px';
+            triggerPoint2.style.top= whichArray[1].yPos + 'px';
+            triggerPoint2.style.width= whichArray[1].width + 'px';
+            //triggerPoint2.setAttribute("class", ''+criteria+'');
+            triggerPoint2.innerHTML += '<button onclick="loadOurVideoFiles();" class="triggerPointsClass">\''+triggerPointsArray[1].text+'\'</button><br>';
+            document.body.append(triggerPoint2);
+        }
+
+        function notesRow(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        let notesCategoryTitle = document.createElement("div");
+                        notesCategoryTitle.style.position="absolute";
+                        notesCategoryTitle.style.left= theX +'px';
+                        notesCategoryTitle.style.top= theY -25 + 'px';
+                                           
+                        notesCategoryTitle.style.color="white";
+                        notesCategoryTitle.style.zIndex="10";
+                        notesCategoryTitle.style.fontFamily="exo";
+                        notesCategoryTitle.style.fontWeight="bold";
+                        notesCategoryTitle.style.fontSize="medium";
+                        notesCategoryTitle.style.background="black";
+                
+                        notesCategoryTitle.style.textAlign="center";
+                        notesCategoryTitle.style.width= sizeX +'px';
+                        notesCategoryTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        notesCategoryTitle.innerHTML="Notes Row";
+
+                        let notesDiv = document.createElement("div");
+                        notesDiv.style.position="absolute";
+                        notesDiv.style.left= theX + 'px';
+                        notesDiv.style.top= theY +'px';
+                        notesDiv.style.color="black";
+                        notesDiv.style.zIndex="1";
+                        notesDiv.style.border = "solid 2px rgba(0,0,100,1.0)";
+                        notesDiv.style.fontFamily="exo";
+                        notesDiv.style.fontWeight="normal";
+                        notesDiv.style.fontSize="medium";
+                        notesDiv.style.width= sizeX +'px';
+                        notesDiv.style.height= sizeY +'px';
+                        notesDiv.style.background="white";
+                        notesDiv.style.textAlign="center";
+
+                        //notesRow.id = whichArray[i].id;
+                        notesDiv.id = Math.floor(350000 + Math.random() * 9750000);
+
+                        notesDiv.innerHTML += '<button onclick="printOnlyDiv(\''+notesDiv.id+'\');" class="ourButton">print</button><br>';
+                
+                        notesDiv.innerHTML+= whichArray[i].date + "<br>";
+                        notesDiv.innerHTML+= whichArray[i].number + "<br>";
+                        notesDiv.innerHTML += whichArray[i].note + "<br>";
+
+                        document.body.append(notesDiv);
+                        document.body.append(notesCategoryTitle);
+                    }
+                }
+            }
+        }
+
+        /*  Adds videos to the page
+            the videos must allow embed
+            on youtube, you copy the url in the Address Bar   
+            for example https://www.youtube.com/watch?v=Q4tPG-cwiWE    
+            now you just replace watch?v= with embed/      
+            for example  https://www.youtube.com/embed/Q4tPG-cwiWE
+        */
+        function makeVideos(theX, theY, sizeX, sizeY, whichArray, criteria)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                if(whichArray[i].description == criteria)
+                {
+                    theX = theX + sizeX;  //columns across
+
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        let createCategoryTitle = document.createElement("div");
+
+                        createCategoryTitle.style.position="absolute";
+                        createCategoryTitle.style.left= theX +'px';
+                        createCategoryTitle.style.top= theY -150 + 'px';
+
+                        createCategoryTitle.style.color="white";
+                        createCategoryTitle.style.zIndex="10";
+                        createCategoryTitle.style.fontFamily="exo";
+                        createCategoryTitle.style.fontWeight="bold";
+                        createCategoryTitle.style.fontSize="medium";
+                        createCategoryTitle.style.background="black";
+                        createCategoryTitle.style.textAlign="center";
+                        createCategoryTitle.style.width= sizeX +'px';
+                        createCategoryTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                        createCategoryTitle.innerHTML=''+criteria+'';
+
+                        let videoTitle = document.createElement("div");
+
+                        videoTitle.style.position="absolute";
+                        videoTitle.style.left= theX +'px';
+                        videoTitle.style.top= theY -100 + 'px';
+                                    
+                        videoTitle.style.color="yellow";
+                        videoTitle.style.zIndex="10";
+                        videoTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        videoTitle.style.fontFamily="exo";
+                        videoTitle.style.fontWeight="bold";
+                        videoTitle.style.fontSize="medium";
+                        videoTitle.style.background="black";
+                        videoTitle.style.textAlign="center";
+                        videoTitle.style.width= sizeX +'px';
+                    
+                        videoTitle.innerHTML= whichArray[i].title + "<br>" + "upload date " + ''+whichArray[i].date+'' + "<br>" + ''+whichArray[i].url+'' + "<br>";
+
+                        videoTitle.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                        videoTitle.id = Math.floor(300000 + Math.random() * 9700000);
+
+                        let printButton = document.createElement("div");
+                        printButton.style.position="absolute";
+                        printButton.style.left= theX +'px';
+                        printButton.style.top= theY -125 + 'px';
+
+                        printButton.style.color="white";
+                        printButton.style.zIndex="10";
+                    
+                        printButton.innerHTML += '<button onclick="printOnlyDiv(\''+videoTitle.id+'\');" class="ourButton">print</button><br>';
+
+                        let makeVideo = document.createElement("iframe");
+
+                        makeVideo.src = whichArray[i].url;
+
+                        makeVideo.style.position="absolute";
+                        makeVideo.style.left= theX +'px';
+                        makeVideo.style.top= theY + 'px';
+                        makeVideo.style.color="aqua";
+                        makeVideo.style.zIndex="1";
+                        makeVideo.style.fontFamily="exo";
+                        makeVideo.style.fontWeight="bold";
+                        makeVideo.style.fontSize="xx-large";
+                        makeVideo.style.width= sizeX +'px';
+                        makeVideo.style.height= sizeY +'px';
+                        makeVideo.style.background="black";
+                        makeVideo.style.textAlign="center";
+                        makeVideo.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                        //makeVideo.setAttribute("class", ''+criteria+'');
+
+                        document.body.append(videoTitle);
+                        document.body.append(createCategoryTitle);
+                        document.body.append(makeVideo);
+                        document.body.append(printButton);
+                    }
+                }
+            }
+        }
+
+        function makeVideosMultiFilters(theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2)
+        {
+            theX -= sizeX;
+                                
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                if(whichArray[i].tag == criteria1 && whichArray[i].description == criteria2)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        theX = theX + sizeX;  //columns across
+
+                        let createCategoriesTitle = document.createElement("div");
+
+                        createCategoriesTitle.style.position="absolute";
+                        createCategoriesTitle.style.left= theX +'px';
+                        createCategoriesTitle.style.top= theY -150 + 'px';
+
+                        createCategoriesTitle.style.color="white";
+                        createCategoriesTitle.style.zIndex="10";
+                        createCategoriesTitle.style.fontFamily="exo";
+                        createCategoriesTitle.style.fontWeight="bold";
+                        createCategoriesTitle.style.fontSize="medium";
+                        createCategoriesTitle.style.background="black";
+                        createCategoriesTitle.style.textAlign="center";
+                        createCategoriesTitle.style.width= sizeX +'px';
+                        createCategoriesTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                        createCategoriesTitle.innerHTML=''+criteria1+'' + "  -   " + ''+criteria2+'';
+
+                        let videoTitleHere = document.createElement("div");
+
+                        videoTitleHere.style.position="absolute";
+                        videoTitleHere.style.left= theX +'px';
+                        videoTitleHere.style.top= theY -100 + 'px';
+                                       
+                        videoTitleHere.style.color="yellow";
+                        videoTitleHere.style.zIndex="10";
+                        videoTitleHere.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        videoTitleHere.style.fontFamily="exo";
+                        videoTitleHere.style.fontWeight="bold";
+                        videoTitleHere.style.fontSize="medium";
+                        videoTitleHere.style.background="black";
+                        videoTitleHere.style.textAlign="center";
+                        videoTitleHere.style.width= sizeX +'px';
+                    
+                        videoTitleHere.innerHTML= whichArray[i].title + "<br>" + "upload date " + ''+whichArray[i].date+'' + "<br>" + ''+whichArray[i].url+'' + "<br>";
+
+                        videoTitleHere.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                        videoTitleHere.id = Math.floor(300000 + Math.random() * 9700000);
+
+                        let printButtonHere = document.createElement("div");
+                        printButtonHere.style.position="absolute";
+                        printButtonHere.style.left= theX +'px';
+                        printButtonHere.style.top= theY -125 + 'px';
+
+                        printButtonHere.style.color="white";
+                        printButtonHere.style.zIndex="10";
+                    
+                        printButtonHere.innerHTML += '<button onclick="printOnlyDiv(\''+videoTitleHere.id+'\');" class="ourButton">print</button><br>';
+
+                        let makeVideoHere = document.createElement("iframe");
+
+                        makeVideoHere.src = whichArray[i].url;
+
+                        makeVideoHere.style.position="absolute";
+                        makeVideoHere.style.left= theX +'px';
+                        makeVideoHere.style.top= theY + 'px';
+                        makeVideoHere.style.color="aqua";
+                        makeVideoHere.style.zIndex="1";
+                        makeVideoHere.style.fontFamily="exo";
+                        makeVideoHere.style.fontWeight="bold";
+                        makeVideoHere.style.fontSize="xx-large";
+                        makeVideoHere.style.width= sizeX +'px';
+                        makeVideoHere.style.height= sizeY +'px';
+                        makeVideoHere.style.background="black";
+                        makeVideoHere.style.textAlign="center";
+                        makeVideoHere.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                        //makeVideo.setAttribute("class", ''+criteria+'');
+
+                        document.body.append(videoTitleHere);
+                        document.body.append(createCategoriesTitle);
+                        document.body.append(makeVideoHere);
+                        document.body.append(printButtonHere);
+                    }
+                }
+            }
+        }
+
+        /*Makes iframes in a row to add content to our level
+          can be used to display Websites or Videos 
+          the websites must allow iframe 
+          the videos must allow embed
+        */
+        function makeWebsitesOrVideos(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        {
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        let videoCategoryTitle = document.createElement("div");
+                        videoCategoryTitle.style.position="absolute";
+                        videoCategoryTitle.style.left= theX +'px';
+                        videoCategoryTitle.style.top= theY -150 + 'px';
+                                        
+                        videoCategoryTitle.style.color="white";
+                        videoCategoryTitle.style.zIndex="10";
+                        videoCategoryTitle.style.fontFamily="exo";
+                        videoCategoryTitle.style.fontWeight="bold";
+                        videoCategoryTitle.style.fontSize="medium";
+                        videoCategoryTitle.style.background="black";
+                        videoCategoryTitle.style.textAlign="center";
+                        videoCategoryTitle.style.width= sizeX +'px';
+                        videoCategoryTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        videoCategoryTitle.innerHTML="Video Evidence";
+
+                        let makeFrame = document.createElement("iframe");
+                        makeFrame.src = whichArray[i].url;
+                    
+                        makeFrame.style.position="absolute";
+                        makeFrame.style.left= theX +'px';
+                        makeFrame.style.top= theY + 'px';
+                        makeFrame.style.color="white";
+                        makeFrame.style.zIndex="1";
+                        makeFrame.style.fontFamily="exo";
+                        makeFrame.style.fontWeight="bold";
+                        makeFrame.style.fontSize="xx-large";
+                        makeFrame.style.width= sizeX +'px';
+                        makeFrame.style.height= sizeY +'px';
+                        makeFrame.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        makeFrame.style.background="black";
+                        makeFrame.style.textAlign="center";
+
+                        //makeFrame.id = whichArray[i].id;
+
+                        let ourVideoTitle = document.createElement("div");
+                        ourVideoTitle.style.position="absolute";
+                        ourVideoTitle.style.left= theX +'px';
+                        ourVideoTitle.style.top= theY -100 + 'px';
+                                        
+                        ourVideoTitle.style.color="yellow";
+                        ourVideoTitle.style.zIndex="10";
+                        ourVideoTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        ourVideoTitle.style.fontFamily="exo";
+                        ourVideoTitle.style.fontWeight="bold";
+                        ourVideoTitle.style.fontSize="medium";
+                        ourVideoTitle.style.background="black";
+                        ourVideoTitle.style.textAlign="center";
+                        ourVideoTitle.style.width= sizeX +'px';
+
+                        ourVideoTitle.innerHTML=whichArray[i].title+ "  " + "<br> " + "upload date " + ''+whichArray[i].date+'' + "<br>" + ''+whichArray[i].url+'' + "<br>";
+
+                        ourVideoTitle.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                        ourVideoTitle.id = Math.floor(200000 + Math.random() * 998000);
+
+                        let thePrintButton = document.createElement("div");
+                        thePrintButton.style.position="absolute";
+                        thePrintButton.style.left= theX +'px';
+                        thePrintButton.style.top= theY -125 + 'px';
+
+                        thePrintButton.style.color="white";
+                        thePrintButton.style.zIndex="10";
+                    
+                        thePrintButton.innerHTML += '<button onclick="printOnlyDiv(\''+ourVideoTitle.id+'\');" class="ourButton">print</button><br>';
+
+                        document.body.append(ourVideoTitle);
+                        document.body.append(makeFrame);
+                        document.body.append(videoCategoryTitle);
+                        document.body.append(thePrintButton);
+                    }
+                }
+            }
+        }
+
+        //Makes a Row of Video or Audio files, of mp3 or mp4 format
+        //The video and audio files MUST BE placed in the _audio, _video folders
+        function makeVideosUsingVideoFile(theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2)
+        {
+            theX -= sizeX;
+                                
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                if(whichArray[i].tag == criteria1 && whichArray[i].description == criteria2)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        theX = theX + sizeX;  //columns across
+
+                        let theCategoriesTitle = document.createElement("div");
+
+                        theCategoriesTitle.style.position="absolute";
+                        theCategoriesTitle.style.left= theX +'px';
+                        theCategoriesTitle.style.top= theY -150 + 'px';
+
+                        theCategoriesTitle.style.color="white";
+                        theCategoriesTitle.style.zIndex="10";
+                        theCategoriesTitle.style.fontFamily="exo";
+                        theCategoriesTitle.style.fontWeight="bold";
+                        theCategoriesTitle.style.fontSize="medium";
+                        theCategoriesTitle.style.background="black";
+                        theCategoriesTitle.style.textAlign="center";
+                        theCategoriesTitle.style.width= sizeX +'px';
+                        theCategoriesTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                        theCategoriesTitle.innerHTML=''+criteria1+'' + "  -   " + ''+criteria2+'';
+
+                        let theVideoTitle = document.createElement("div");
+
+                        theVideoTitle.style.position="absolute";
+                        theVideoTitle.style.left= theX +'px';
+                        theVideoTitle.style.top= theY -100 + 'px';
+                                       
+                        theVideoTitle.style.color="yellow";
+                        theVideoTitle.style.zIndex="10";
+                        theVideoTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        theVideoTitle.style.fontFamily="exo";
+                        theVideoTitle.style.fontWeight="bold";
+                        theVideoTitle.style.fontSize="medium";
+                        theVideoTitle.style.background="black";
+                        theVideoTitle.style.textAlign="center";
+                        theVideoTitle.style.width= sizeX +'px';
+                    
+                        theVideoTitle.innerHTML= whichArray[i].title + "<br>" + "upload date " + ''+whichArray[i].date+'' + "<br>" + ''+whichArray[i].url+'' + "<br>";
+
+                        theVideoTitle.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                        theVideoTitle.innerHTML+= "Start Time " + whichArray[i].starttime + "&nbsp &nbsp" + " End Time " + whichArray[i].endtime + "<br>";
+
+                        theVideoTitle.id = Math.floor(300000 + Math.random() * 9700000);
+
+                        let thePrintButtonHere = document.createElement("div");
+                        thePrintButtonHere.style.position="absolute";
+                        thePrintButtonHere.style.left= theX +'px';
+                        thePrintButtonHere.style.top= theY -125 + 'px';
+
+                        thePrintButtonHere.style.color="white";
+                        thePrintButtonHere.style.zIndex="10";
+                    
+                        thePrintButtonHere.innerHTML += '<button onclick="printOnlyDiv(\''+theVideoTitle.id+'\');" class="ourButton">print</button><br>';
+
+                        let theVideoHere = document.createElement("video");
+                        
+                        //theVideoHere.setAttribute("class", ''+criteria+'');
+                        theVideoHere.setAttribute("controls", '');
+
+                        /*If url2 is the word "null",
+                        //then it will use the movies folder as the source
+                        //else, if the url2 is defined, then it will use url2
+                        */
+                        if(whichArray[i].url2 == "null")
+                        {
+                            if(whichArray[i].kind=="video")
+                            {
+                                //referencing the video folder
+                                theVideoHere.src = "_video/" + whichArray[i].title + "." + whichArray[i].type;
+                            }
+                            if(whichArray[i].kind=="audio")
+                            {
+                                //referencing the audio folder
+                                theVideoHere.src = "_audio/" + whichArray[i].title + "." + whichArray[i].type;
+                            }
+                        }
+                        else  //else if url2 is defined, then use url2 as source
+                        {
+                            if(whichArray[i].kind=="video")
+                            {
+                                //referencing the url of the video online
+                                theVideoHere.src = whichArray[i].url2;
+                            }
+                            if(whichArray[i].kind=="audio")
+                            {
+                                //referencing the url of the audio online
+                                theVideoHere.src = whichArray[i].url2;
+                            }
+                        }
+                        
+                        theVideoHere.currentTime=secondsFromTimeCode(whichArray[i].starttime);
+
+                        theVideoHere.style.position="absolute";
+                        theVideoHere.style.left= theX +'px';
+                        theVideoHere.style.top= theY + 'px';
+                        theVideoHere.style.color="aqua";
+                        theVideoHere.style.zIndex="1";
+                        theVideoHere.style.fontFamily="exo";
+                        theVideoHere.style.fontWeight="bold";
+                        theVideoHere.style.fontSize="xx-large";
+                        theVideoHere.style.width= sizeX +'px';
+                        theVideoHere.style.height= sizeY +'px';
+                        theVideoHere.style.background="black";
+                        theVideoHere.style.textAlign="center";
+                        theVideoHere.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                        theVideoHere.id = Math.floor(300000 + Math.random() * 9700000);
+
+                        let continuePlay100 = document.createElement("div");
+                        continuePlay100.style.position="absolute";
+                        continuePlay100.style.left= theX +'px';
+                        continuePlay100.style.top= theY +75 + 'px';
+                        continuePlay100.style.zIndex="15";
+
+                        continuePlay100.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',1.0,1)" class="videoButtons">&#11208;100</button><br>';
+
+                        let continuePlay50 = document.createElement("div");
+                        continuePlay50.style.position="absolute";
+                        continuePlay50.style.left= theX +'px';
+                        continuePlay50.style.top= theY +100 + 'px';
+                        continuePlay50.style.zIndex="15";
+
+                        continuePlay50.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',0.5,1)" class="videoButtons">&#11208;50</button><br>';
+
+                        let continuePlay25 = document.createElement("div");
+                        continuePlay25.style.position="absolute";
+                        continuePlay25.style.left= theX +'px';
+                        continuePlay25.style.top= theY +125 + 'px';
+                        continuePlay25.style.zIndex="15";
+
+                        continuePlay25.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',0.25,1)" class="videoButtons">&#11208;25</button><br>';
+
+                        let continuePlay10 = document.createElement("div");
+                        continuePlay10.style.position="absolute";
+                        continuePlay10.style.left= theX +'px';
+                        continuePlay10.style.top= theY +150 + 'px';
+                        continuePlay10.style.zIndex="15";
+
+                        continuePlay10.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',0.10,1)" class="videoButtons">&#11208;10</button><br>';
+
+                        let playButton100 = document.createElement("div");
+                        playButton100.style.position="absolute";
+                        playButton100.style.left= theX +'px';
+                        playButton100.style.top= theY +200 + 'px';
+                        playButton100.style.zIndex="15";
+
+                        playButton100.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',1.0, 0)" class="videoButtons">&#9684;100</button><br>';
+
+                        let playButton50 = document.createElement("div");
+                        playButton50.style.position="absolute";
+                        playButton50.style.left= theX +'px';
+                        playButton50.style.top= theY +225 + 'px';
+
+                        playButton50.style.zIndex="15";
+
+                        playButton50.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',0.5, 0)" class="videoButtons">&#9684;50</button><br>';
+
+                        let playButton25 = document.createElement("div");
+                        playButton25.style.position="absolute";
+                        playButton25.style.left= theX +'px';
+                        playButton25.style.top= theY +250 + 'px';
+                        playButton25.style.zIndex="15";
+
+                        playButton25.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',0.25, 0)" class="videoButtons">&#9684;25</button><br>';
+
+                        let playButton10 = document.createElement("div");
+                        playButton10.style.position="absolute";
+                        playButton10.style.left= theX +'px';
+                        playButton10.style.top= theY +275 + 'px';
+
+                        playButton10.style.zIndex="15";
+
+                        playButton10.innerHTML += '<button onclick="playVideo(\''+theVideoHere.id+'\', \''+ourVideoFiles[i].starttime+'\',\''+ourVideoFiles[i].endtime+'\',0.10, 0)" class="videoButtons">&#9684;10</button><br>';
+                        
+                        document.body.append(theVideoTitle);
+                        document.body.append(theCategoriesTitle);
+                        document.body.append(theVideoHere);
+                        document.body.append(thePrintButtonHere);
+                        document.body.append(continuePlay100);
+                        document.body.append(continuePlay50);
+                        document.body.append(continuePlay25);
+                        document.body.append(continuePlay10);
+                        document.body.append(playButton100);
+                        document.body.append(playButton50);
+                        document.body.append(playButton25);
+                        document.body.append(playButton10);
+                    }
+                }
+            }
+        }   
+
+        function secondsFromTimeCode(fullTimeCode)
+        {
+	        if(!fullTimeCode) fullTimeCode = '00:00:00';
+	        let theStringSeconds = fullTimeCode;
+	        let splitValue = theStringSeconds.split(":");
+
+	        let secondsOnly = parseInt(splitValue[2]);
+	        let secondsFromMinutes = parseInt(splitValue[1]) * 60;
+	        let secondsFromHours = parseInt(splitValue[0]) * 3600;
+
+	        let calculatedSeconds = secondsFromHours + secondsFromMinutes + secondsOnly;
+	        //now seconds variable is an array, 1:2:3
+
+	        return calculatedSeconds;
+        }
+
+        let endTimeEntered;
+        let ourVideoHere;
+
+        function playVideo(elementid, starttime, endtime, videoSpeed, continueOption)
+        {
+            starttime = secondsFromTimeCode(starttime);
+            endtime = secondsFromTimeCode(endtime);
+        
+            ourVideoHere = document.getElementById(elementid);
+
+            ourVideoHere.playbackRate = videoSpeed;
+
+            ourVideoHere.addEventListener("timeupdate",pauseVideo);
+
+            if(continueOption == 1)
+            {
+                ourVideoHere.removeEventListener("timeupdate",pauseVideo);
+            }
+            ourVideoHere.currentTime = starttime;
+            ourVideoHere.play(); 
+            endTimeEntered = endtime;
+        }
+
+        function pauseVideo()
+        {
+	       if (ourVideoHere.currentTime >= endTimeEntered)
+	       {
+               ourVideoHere.pause();
+           }
+        }
+
+        /*Makes divs in a row - custom for news Data*/
+        function newsRow(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        let newsTitle = document.createElement("div");
+                        newsTitle.style.position="absolute";
+                        newsTitle.style.left= theX +'px';
+                        newsTitle.style.top= theY -22 + 'px'; 
+                                
+                        newsTitle.style.color="white";
+                        newsTitle.style.zIndex="10";
+                        newsTitle.style.fontFamily="exo";
+                        newsTitle.style.fontWeight="bold";
+                        newsTitle.style.fontSize="medium";
+                        newsTitle.style.background="black";
+                        newsTitle.style.textAlign="center";
+                        newsTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        newsTitle.style.width= sizeX +'px';
+                        newsTitle.innerHTML="NEWS";
+
+                        let newsSpace = document.createElement("div");
+                        newsSpace.style.position="absolute";
+                        newsSpace.style.left= theX +'px';
+                        newsSpace.style.top= theY + 'px';
+                        newsSpace.style.color="black";
+                        newsSpace.style.zIndex="100";
+                        newsSpace.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        newsSpace.style.fontFamily="exo";
+                        newsSpace.style.fontWeight="bold";
+                        newsSpace.style.fontSize="normal";
+                        newsSpace.style.width= sizeX +'px';
+                        newsSpace.style.height= sizeY +'px';
+                        newsSpace.style.background="white";
+                        newsSpace.style.textAlign="center";
+
+                        //newsSpace.id = whichArray[i].id;
+                        newsSpace.id = Math.floor(352000 + Math.random() * 9740000);
+
+                        newsSpace.innerHTML += '<button onclick="printOnlyDiv(\''+newsSpace.id+'\');" class="ourButton">print</button><br>';
+
+                        newsSpace.innerHTML += whichArray[i].headline + "<br>";
+
+                        newsSpace.innerHTML+= whichArray[i].date + "<br>";
+
+                        newsSpace.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a>';
+
+                        document.body.append(newsSpace);
+                        document.body.append(newsTitle);
+                    }
+                }
+            }
+        }
+
+        function evidenceRow(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        let evidenceTitle = document.createElement("div");
+                        evidenceTitle.style.position="absolute";
+                        evidenceTitle.style.left= theX +'px';
+                        evidenceTitle.style.top= theY -22 + 'px'; 
+                                        
+                        evidenceTitle.style.color="white";
+                        evidenceTitle.style.zIndex="10";
+                        evidenceTitle.style.fontFamily="exo";
+                        evidenceTitle.style.fontWeight="bold";
+                        evidenceTitle.style.fontSize="medium";
+                        evidenceTitle.style.background="black";
+                        evidenceTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        //evidenceTitle.style.padding="0px 5px 0px 5px";
+
+                        evidenceTitle.style.paddingLeft="20px";
+                        evidenceTitle.style.paddingRight="20px";
+
+                        evidenceTitle.style.textAlign="center";
+                        evidenceTitle.style.width= sizeX +'px';
+                        evidenceTitle.innerHTML="EvidenceRow";
+
+                        let evidenceRow = document.createElement("p");
+                        evidenceRow.style.position="absolute";
+                        evidenceRow.style.left= theX + 'px';
+                        evidenceRow.style.top= theY +'px';
+                        evidenceRow.style.color="black";
+                        evidenceRow.style.zIndex="1";
+                        evidenceRow.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        evidenceRow.style.fontFamily="exo";
+                        evidenceRow.style.fontWeight="normal";
+                        evidenceRow.style.fontSize="medium";
+                    
+                        //evidenceRow.style.padding="0px 5px 0px 5px";
+                        evidenceRow.style.paddingLeft="20px";
+                        evidenceRow.style.paddingRight="20px";
+
+                        evidenceRow.style.background="white";
+                        evidenceRow.style.textAlign="center";
+                        evidenceRow.style.width= sizeX +'px';
+                        evidenceRow.style.height= sizeY +'px'; 
+                
+                        //evidenceRow.id = whichArray[i].id;
+                        evidenceRow.id = Math.floor(356000 + Math.random() * 9760000);
+
+                        evidenceRow.innerHTML += '<button onclick="printOnlyDiv(\''+evidenceRow.id+'\');" class="ourButton">print</button><br>';
+
+                        evidenceRow.innerHTML += whichArray[i].title + "<br>";
+
+                        evidenceRow.innerHTML += whichArray[i].date + "<br>";
+                    
+                        evidenceRow.innerHTML += whichArray[i].info +  "<br>";
+
+                        evidenceRow.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a>';
+
+                        document.body.append(evidenceRow);
+                        document.body.append(evidenceTitle);
+                    }
+                }
+            }
+        }
+
+        function evidenceWithImageRow(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        let theTitle = document.createElement("div");
+                        theTitle.style.position="absolute";
+                        theTitle.style.left= theX +'px';
+                        theTitle.style.top= theY -22 + 'px';
+                         
+                        theTitle.style.color="white";
+                        theTitle.style.zIndex="10";
+                        theTitle.style.fontFamily="exo";
+                        theTitle.style.fontWeight="bold";
+                        theTitle.style.fontSize="medium";
+                        theTitle.style.background="black";
+                        theTitle.style.textAlign="center";
+                        theTitle.style.padding="0px 20px 0px 20px";
+                                //top //right //bottom //left
+                        theTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        theTitle.style.width= sizeX +'px';
+                        theTitle.innerHTML="EvidenceRowWithImage";
+
+                        let theDiv = document.createElement("div");
+                   
+                        //theDiv.id = whichArray[i].id;
+                        theDiv.id = Math.floor(357000 + Math.random() * 9770000);
+
+                        theDiv.innerHTML += '<button onclick="printOnlyDiv(\''+theDiv.id+'\');" class="ourButton">print</button><br>';
+
+                        theDiv.style.position="absolute";
+                        theDiv.style.left= theX +'px';
+                        theDiv.style.top= theY +'px';
+                        theDiv.style.color="black";
+                        theDiv.style.zIndex="1";
+                        theDiv.style.padding="0px 20px 0px 20px";
+                                         //top //right //bottom //left
+                        theDiv.style.border = "solid 2px rgba(100,100,255,1.0)";
+                        theDiv.style.fontFamily="exo";
+                        theDiv.style.fontWeight="normal";
+                        theDiv.style.fontSize="medium";
+                        theDiv.style.width= sizeX +'px';
+                        theDiv.style.height= sizeY + 'px';
+                        theDiv.style.background="white";
+                        theDiv.style.textAlign="center";
+
+                        theDiv.setAttribute("class", "evidenceWithImage");
+                        //theDiv.style.whiteSpace="pre-wrap";
+                        //theDiv.style.wordWrap="break-word";
+                
+                        theDiv.innerHTML += whichArray[i].title + "<br>";
+                    
+                        theDiv.innerHTML += whichArray[i].date + "<br>";
+
+                        theDiv.innerHTML += whichArray[i].info + "<br>";
+
+                        theDiv.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                        theDiv.innerHTML += '<img src= \''+whichArray[i].image+'\' class="theImage">';
+
+                        document.body.append(theDiv);
+                        document.body.append(theTitle);
+                    }
+                }
+            }
+        }
+
+        function socialMediaEvidenceRow(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        { 
+            theX -= sizeX;
+            
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                //alert(whichArray[i].date.substring(6,10));
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    if(whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    //if(whichArray) //shows all items
+                    {
+                        if(whichArray[i].probability >= 50)
+                        {
+                            theX = theX + sizeX;  //columns across
+
+                            let divTitle = document.createElement("div");
+                            divTitle.style.position="absolute";
+                            divTitle.style.left= theX +'px';
+                            divTitle.style.top= theY -22 + 'px';
+                        
+                            divTitle.style.color="white";
+                            divTitle.style.zIndex="10";
+                            divTitle.style.fontFamily="exo";
+                            divTitle.style.fontWeight="bold";
+                            divTitle.style.fontSize="medium";
+                            divTitle.style.background="black";
+                            divTitle.style.textAlign="center";
+                            //divTitle.style.padding="0px 5px 0px 5px";
+                            divTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                            divTitle.style.width= sizeX +'px';
+                            divTitle.innerHTML="Social Media Evidence Rating";
+
+                            let divHere = document.createElement("div");
+                   
+                            //theDiv.id = whichArray[i].id;
+                            divHere.id = Math.floor(357000 + Math.random() * 9770000);
+
+                            divHere.innerHTML += '<button onclick="printOnlyDiv(\''+divHere.id+'\');" class="ourButton">print</button><br>';
+
+                            divHere.style.position="absolute";
+                            divHere.style.left= theX +'px';
+                            divHere.style.top= theY +'px';
+                            divHere.style.color="black";
+                            divHere.style.zIndex="1";
+                            //divHere.style.padding="0px 5px 0px 5px";
+                            divHere.style.border = "solid 2px rgba(100,100,255,1.0)";
+                            divHere.style.fontFamily="exo";
+                            divHere.style.fontWeight="normal";
+                            divHere.style.fontSize="medium";
+                            divHere.style.width= sizeX +'px';
+                            divHere.style.height= sizeY + 'px';
+                            divHere.style.background="white";
+                            divHere.style.textAlign="center";
+                   
+                            //you can also set the class of the div, 
+                            //to style it easier in the css section
+                            //divHere.setAttribute("class", "socialMediaEvidence");
+                
+                            divHere.innerHTML += whichArray[i].title + "<br>";
+                    
+                            divHere.innerHTML += whichArray[i].date + "<br>";
+                    
+                            divHere.innerHTML += whichArray[i].info + "<br>";
+
+                            divHere.innerHTML += "Probability Rating: " + whichArray[i].probability + "%" + "<br>";
+
+                            divHere.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                            divHere.innerHTML += '<img src= \''+whichArray[i].image+'\' class="theImage">';
+
+                            document.body.append(divHere);
+                            document.body.append(divTitle);
+                        }
+                    }
+                }
+            }
+        }
+
+        function detailsRow(theX, theY, sizeX, sizeY, whichArray, criteria1)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                if(whichArray[i].tag == criteria1)
+                {
+                    //filter for a MONTH, meaning, SHOW ONLY 1 month
+                    //if(whichArray[i].date.substring(0,2) == 3)
+
+                    //filter for Multiple MONTHS
+                    //if(whichArray[i].date.substring(0,2) == 8 || whichArray[i].date.substring(0,2) == 9)
+
+                    //filter for a DATE
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018")
+
+                    //filter for a Multiple DATES
+                    //if(whichArray[i].date.substring(0,10) == "02/29/2018" || whichArray[i].date.substring(0,10) == "02/29/2020")
+
+                    //filter for a DAY, of any month, of any year
+                    //if(whichArray[i].date.substring(3,5) == 2)
+
+                    //filter for a YEAR
+                    //if(whichArray[i].date.substring(6,10) == 2019)
+
+                    //filter for MULTIPLE YEARS
+                    //if(whichArray[i].date.substring(6,10) == 2019 || whichArray[i].date.substring(6,10) == 2020)
+
+                    //filter for MONTH and YEAR
+                    //if(whichArray[i].date.substring(0,2) == 2 && whichArray[i].date.substring(6,10) == 2020)
+
+                    //You can replace the if statement below,
+                    //with one of the options above.
+                    if(whichArray) //shows all items
+                    {
+                        if(whichArray[i].probability >= 50)
+                        {
+                            theX = theX + sizeX;  //columns across
+
+                            let divTitle = document.createElement("div");
+                            divTitle.style.position="absolute";
+                            divTitle.style.left= theX +'px';
+                            divTitle.style.top= theY -55 + 'px';
+                         
+                            divTitle.style.color="white";
+                            divTitle.style.zIndex="10";
+                            divTitle.style.fontFamily="exo";
+                            divTitle.style.fontWeight="bold";
+                            divTitle.style.fontSize="medium";
+                            divTitle.style.background="black";
+                            divTitle.style.textAlign="center";
+                            //divTitle.style.padding="0px 5px 0px 5px";
+                            divTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                            divTitle.style.width= sizeX +'px';
+                            divTitle.innerHTML="Content Sensitive - Open at Your Discretion";
+                
+                            let theVidTitle = document.createElement("div");
+
+                            theVidTitle.setAttribute("class", "defaultDiv");
+                            theVidTitle.style.position="absolute";
+                            theVidTitle.style.left= theX +'px';
+                            theVidTitle.style.top= theY -30 + 'px';
+                            theVidTitle.style.zIndex="15";
+                            theVidTitle.style.width= sizeX +'px';
+                            theVidTitle.style.height= "22px";
+                            theVidTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+
+                            theVidTitle.innerHTML += whichArray[i].title + "<br>";
+
+                            let divHere = document.createElement("details");
+                   
+                            //theDiv.id = whichArray[i].id;
+                            divHere.id = Math.floor(357000 + Math.random() * 9770000);
+
+                            divHere.innerHTML += '<button onclick="printOnlyDiv(\''+divHere.id+'\');" class="ourButton">print</button><br>';
+
+                            divHere.style.position="absolute";
+                            divHere.style.left= theX +'px';
+                            divHere.style.top= theY +'px';
+                            divHere.style.color="black";
+                            divHere.style.zIndex="1";
+                            //divHere.style.padding="0px 5px 0px 5px";
+                            divHere.style.border = "solid 2px rgba(100,100,255,1.0)";
+                            divHere.style.fontFamily="exo";
+                            divHere.style.fontWeight="bold";
+                            divHere.style.fontSize="large";
+                            divHere.style.width= sizeX +'px';
+                            divHere.style.height= sizeY + 'px';
+                            divHere.style.background="rgb(200,200,200)";
+                            divHere.style.textAlign="center";
+                   
+                            //you can also set the class of the div, 
+                            //to style it easier in the css section
+                            //divHere.setAttribute("class", "socialMediaEvidence");
+                
+                            divHere.innerHTML += whichArray[i].title + "<br>";
+                    
+                            divHere.innerHTML += whichArray[i].date + "<br>";
+                    
+                            divHere.innerHTML += whichArray[i].info + "<br>";
+
+                            divHere.innerHTML += "Probability Rating: " + whichArray[i].probability + "%" + "<br>";
+
+                            divHere.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                            divHere.innerHTML += '<img src= \''+whichArray[i].image+'\' class="theImage">';
+
+                            document.body.append(theVidTitle);
+                            document.body.append(divHere);
+                            document.body.append(divTitle);
+                        }
+                    }
+                }
+            }
+        }
+
+        function collegeBooksRow(theX, theY, sizeX, sizeY, whichArray)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let ourTitle = document.createElement("div");
+                ourTitle.style.position="absolute";
+                ourTitle.style.left= theX +'px';
+                ourTitle.style.top= theY -28 + 'px';
+                        
+                ourTitle.style.color="white";
+                ourTitle.style.zIndex="10";
+                ourTitle.style.fontFamily="exo";
+                ourTitle.style.fontWeight="bold";
+                ourTitle.style.fontSize="medium";
+                ourTitle.style.background="black";
+                ourTitle.style.textAlign="center";
+                ourTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                ourTitle.style.width= sizeX +'px';
+                ourTitle.innerHTML="College Books";
+
+                let ourDiv = document.createElement("p");
+                   
+                //theDiv.id = whichArray[i].id;
+                ourDiv.id = Math.floor(457000 + Math.random() * 9870000);
+
+                ourDiv.innerHTML += '<button onclick="printOnlyDiv(\''+ourDiv.id+'\');" class="ourButton">print</button><br>';
+
+                ourDiv.style.position="absolute";
+                ourDiv.style.left= theX +'px';
+                ourDiv.style.top= theY +'px';
+                ourDiv.style.color="black";
+                ourDiv.style.zIndex="1";
+                ourDiv.style.border = "solid 2px rgba(100,100,255,1.0)";
+                ourDiv.style.fontFamily="exo";
+                ourDiv.style.fontWeight="normal";
+                ourDiv.style.fontSize="medium";
+                ourDiv.style.width= sizeX +'px';
+                ourDiv.style.height= sizeY + 'px';
+                ourDiv.style.background="white";
+                ourDiv.style.textAlign="center";
+                
+                ourDiv.innerHTML += whichArray[i].name + "<br>";
+                    
+                ourDiv.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                ourDiv.innerHTML += '<img src= \''+whichArray[i].image+'\' class="theImage">';
+
+                document.body.append(ourDiv);
+                document.body.append(ourTitle);
+            }
+        } 
+
+        function collegeLinksRow(theX, theY, sizeX, sizeY, whichArray)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                theX = theX + sizeX;  //columns across
+
+                let thisTitle = document.createElement("div");
+                thisTitle.style.position="absolute";
+                thisTitle.style.left= theX +'px';
+                thisTitle.style.top= theY -28 + 'px';
+                        
+                thisTitle.style.color="white";
+                thisTitle.style.zIndex="10";
+                thisTitle.style.fontFamily="exo";
+                thisTitle.style.fontWeight="bold";
+                thisTitle.style.fontSize="medium";
+                thisTitle.style.background="black";
+                thisTitle.style.textAlign="center";
+                thisTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                thisTitle.style.width= sizeX +'px';
+                thisTitle.innerHTML="College Links";
+
+                let thisDiv = document.createElement("p");
+                   
+                //theDiv.id = whichArray[i].id;
+                thisDiv.id = Math.floor(456000 + Math.random() * 9770000);
+
+                //Print Feature
+                //thisDiv.innerHTML += '<button onclick="printOnlyDiv(\''+thisDiv.id+'\');">print</button><br>';
+
+                thisDiv.style.position="absolute";
+                thisDiv.style.left= theX +'px';
+                thisDiv.style.top= theY +'px';
+                thisDiv.style.color="black";
+                thisDiv.style.zIndex="1";
+                thisDiv.style.border = "solid 2px rgba(100,100,255,1.0)";
+                thisDiv.style.fontFamily="exo";
+                thisDiv.style.fontWeight="bold";
+                thisDiv.style.fontSize="medium";
+                thisDiv.style.width= sizeX +'px';
+                thisDiv.style.height= sizeY + 'px';
+                thisDiv.style.background="white";
+                thisDiv.style.textAlign="center";
+                
+                thisDiv.innerHTML += whichArray[i].name + "<br>";
+                    
+                thisDiv.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br>';
+
+                document.body.append(thisDiv);
+                document.body.append(thisTitle);
+            }
+        } 
+
+        function languageRow(theX, theY, sizeX, sizeY, whichArray, criteria)
+        { 
+            theX -= sizeX;
+
+            for(let i = 0; i < whichArray.length; i++)
+	        {
+                 if(whichArray[i].tag == criteria)
+                 {
+                    theX = theX + sizeX + 20;  //columns across + the padding!
+
+                    let languageTitle = document.createElement("div");
+                    languageTitle.style.position="absolute";
+                    languageTitle.style.left= theX +'px';
+                    languageTitle.style.top= theY -55 + 'px';
+
+                    languageTitle.style.color="white";
+                    languageTitle.style.zIndex="10";
+                    languageTitle.style.fontFamily="exo";
+                    languageTitle.style.fontWeight="bold";
+                    languageTitle.style.fontSize="medium";
+                    languageTitle.style.background="black";
+                    languageTitle.style.textAlign="center";
+                    languageTitle.style.paddingLeft="20px";
+                    languageTitle.style.paddingRight="20px";
+                    languageTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    languageTitle.style.width= sizeX +'px';
+                    languageTitle.innerHTML=whichArray[i].language;
+
+                    let languageSpace = document.createElement("p");
+                    languageSpace.style.position="absolute";
+                    languageSpace.style.left= theX +'px';
+                    languageSpace.style.top= theY +25 + 'px';
+                    languageSpace.style.color="black";
+                    languageSpace.style.zIndex="100";
+                    languageSpace.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    languageSpace.style.fontFamily="exo";
+                    languageSpace.style.fontWeight="bold";
+                    languageSpace.style.fontSize="normal";
+                    languageSpace.style.width= sizeX +'px';
+                    languageSpace.style.height= sizeY +'px';
+                    languageSpace.style.background="white";
+                    languageSpace.style.textAlign="left";
+                    languageSpace.style.paddingLeft="20px";
+                    languageSpace.style.paddingRight="20px";
+
+                    let nameTitle = document.createElement("div");
+                    nameTitle.style.position="absolute";
+                    nameTitle.style.left= theX +'px';
+                    nameTitle.style.top= theY +5 + "px";
+                    nameTitle.style.color="yellow";
+                    nameTitle.style.zIndex="10";
+                    nameTitle.style.fontFamily="exo";
+                    nameTitle.style.fontWeight="bold";
+                    nameTitle.style.fontSize="large";
+                    nameTitle.style.background="black";
+                    nameTitle.style.textAlign="center";
+                    nameTitle.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    nameTitle.style.width= sizeX +'px';
+                    nameTitle.style.paddingLeft="20px";
+                    nameTitle.style.paddingRight="20px";
+                    nameTitle.innerHTML=whichArray[i].name;
+
+                    let functionCategory = document.createElement("div");
+                    functionCategory.style.position="absolute";
+                    functionCategory.style.left= theX +'px';
+                    functionCategory.style.top= theY -25 + 'px';
+                    functionCategory.style.color="aqua";
+                    functionCategory.style.zIndex="10";
+                    functionCategory.style.fontFamily="exo";
+                    functionCategory.style.fontWeight="bold";
+                    functionCategory.style.fontSize="large";
+                    functionCategory.style.background="black";
+                    functionCategory.style.textAlign="center";
+                    functionCategory.style.border = "solid 2px rgba(100,100,255,1.0)";
+                    functionCategory.style.width= sizeX +'px';
+                    functionCategory.style.paddingLeft="20px";
+                    functionCategory.style.paddingRight="20px";
+                    functionCategory.innerHTML=whichArray[i].category;
+
+                    //languageSpace.id = whichArray[i].id;
+                    languageSpace.id = Math.floor(351000 + Math.random() * 9710000);
+
+                    languageSpace.innerHTML += '<hr><button onclick="printOnlyDiv(\''+languageSpace.id+'\');" class="ourButton">Print</button><br><hr>';
+
+                    languageSpace.innerHTML+= "Name of Function:<br>";
+                    languageSpace.innerHTML += whichArray[i].name + "<br><hr>";
+ 
+                    languageSpace.innerHTML+= "Description:<br>";
+                    languageSpace.innerHTML+= whichArray[i].description + "<br><hr>";
+
+                    languageSpace.innerHTML+= "Syntax:<br>";
+                    languageSpace.innerHTML += whichArray[i].syntax + "<br><hr>";
+
+                    languageSpace.innerHTML+= "Useage:<br>";
+                    languageSpace.innerHTML+= whichArray[i].useage + "<br><hr>";
+
+                    languageSpace.innerHTML+= "URL:<br>";
+                    languageSpace.innerHTML+='<a href=\''+whichArray[i].url+'\' target="_blank">Link</a><br><hr>';
+
+                    languageSpace.innerHTML+= "Return Value Type:<br>";
+                    languageSpace.innerHTML+= whichArray[i].type + "<br><hr>";
+
+                    languageSpace.innerHTML += '<hr><button onclick="deleteThisRecord(\''+languageSpace.id+'\');" class="ourButton">Delete</button><br><hr>';
+
+                    document.body.append(languageSpace);
+                    document.body.append(languageTitle);
+                    document.body.append(nameTitle);
+                    document.body.append(functionCategory);
+                }
+            }
+        }
+
+        function deleteThisRecord(whichDiv)
+        {
+	        let warningDelete = confirm("DELETE ONLY This Record?");
+
+	        if (warningDelete == true)
+	        {
+               document.getElementById(whichDiv).outerHTML = "";
+	        }
+	        else if(warningDelete == false)
+	        {
+		        alert("Canceled");
+		        return;
+            }
+            //For the moment, we are using an empty outerHTML to experiment with the function, but soon we will utilize an array method instead, so that the array item is deleted from the array and the row is re-created on the screen minus the item we deleted.
+	        //whichArray.splice(whichArray,1);
+        }
+
+        function printOnlyDiv(whichDiv) 
+        { 
+            let mywindow = window.open('', 'PRINT', 'height=800,width=1000 top=50, left=100');
+
+            mywindow.document.write('<style>img{width:75%;</style></head><body>');
+
+            mywindow.document.write('<h4>' + document.title  + '</h4>');
+
+            mywindow.document.write(document.getElementById(whichDiv).innerHTML);
+            
+            mywindow.print();
+            //mywindow.close();
+        } 
+
+        //We are using this SORT FUNCTION BELOW to sort many of the arrays!
+        //But, you can also use the spreadsheet tools to sort. Either is fine.
+        //Just keep in mind, that you are SORTING arrays in the function below
+        function sortIt()
+        {
+            //the sort function default in ascending order
+            //change sort to reverse for descending order
+            //meaning if you want the Newest Date shown first, then use the reverse function, instead of the sort function, as shown here:
+            //theNews.reverse(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+            ////Sort By Date////
+            theNews.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+        
+            evidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+            videoEvidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+
+            //socialMediaEvidence.sort(function(a,b){return new Date(a.date) - new Date(b.date);});    
+
+            boxingVideos.sort(function(a,b){return new Date(a.date) - new Date(b.date);});
+        
+            collegeVideos.sort(function(a,b){return new Date(a.date) - new Date(b.date);}); 
+
+            ourVideoFiles.sort(function(a,b){return new Date(a.date) - new Date(b.date);}); 
+
+            ////Sort by Multiple Criteria, category and name////
+            javascriptLanguage.sort(function(a, b)
+            {
+                return a.category.localeCompare(b.category) || b.name - a.name;
+            });
+
+            ////Sort by Multiple Criteria, category and name////
+            lindenLanguage.sort(function(a, b)
+            {
+                return a.category.localeCompare(b.category) || b.name - a.name;
+            });
+        
+            ////Sort by one number only, number////
+            theNotes.sort(function(a, b)
+            {
+                return a.number.localeCompare(b.number, 'en-US', {numeric:"true"}); //|| b.note - a.note;
+            });
+       
+            ////Sort by one number only, probability////
+            socialMediaEvidence.sort(function(a, b)
+            {
+                return a.probability.localeCompare(b.probability, 'en-US', {numeric:"true"}); //|| b.title - a.title;
+            });
+
+            //To sort by additional criteria, just use another ||
+        }
+
+        /* When the Page Loads */
+        function whenLoaded()
+        {
+            loadTriggers(triggerPointsArray);
+
+            sortIt();
+
+            newsRow(100, 6200, 800, 250, theNews, "news"); 
+                  //theX,theY,sizeX,sizeY, whichArray, criteria1
+
+            evidenceRow(100,5070,700,300, evidence, "fact");
+                  //theX, theY, sizeX, sizeY, whichArray, criteria1
+           
+            makeWebsitesOrVideos(100,400,700,500, videoEvidence, "youtubeVideo"); 
+                    //theX,theY,sizeX,sizeY, whichArray, criteria1
+
+            evidenceWithImageRow(100,5500,1250,600, evidence, "fact");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1
+
+            makeVideos(100, 1100, 800, 600, videoEvidence, "exercise");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1
+
+            makeVideos(100, 1900, 800, 600, videoEvidence, "mask");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1
+
+            notesRow(100, 2600, 400, 400, theNotes, "note");
+                  //theX, theY, sizeX, sizeY, whichArray, criteria1
+
+            languageRow(100, 3150, 400, 500, lindenLanguage, "function");
+                      //whichArray, theX, theY, sizeX, sizeY, criteria
+
+            languageRow(100, 4000, 400, 500, javascriptLanguage, "function");
+                       //whichArray, theX, theY, sizeX, sizeY, criteria
+
+            collegeBooksRow(100, 6700, 400, 400, collegeBooks);
+                        //theX, theY, sizeX, sizeY, whichArray
+
+            collegeLinksRow(100, 7300, 300, 50, collegeLinks);
+                        //theX, theY, sizeX, sizeY, whichArray
+
+            window.addEventListener("click", mousePos, false);
+            window.addEventListener("keydown", theControls, false);
+            window.addEventListener("keyup", theControls, false);
+        }
+
+        /* The Keyboard Letter Codes that are Being Pressed */
+        let keyboard = {};
+            keyboard.UP = 87;    //87 is w, 38 is up arrow
+            keyboard.DOWN = 83;  //83 is s, 40 is down arrow
+            keyboard.LEFT = 65;  //65 is a, 37 is left arrow
+            keyboard.RIGHT = 68; //68 is d, 39 is right arrow       
+
+        /* Player's start position and id */
+        let ourPlayer = {
+            x: 365,
+            y: 7354,
+            speedMultiplier: 3,
+            playerId: document.getElementById("thePlayer")
+        }; 
+        
+        //Key Press Detection
+        //document.body.onkeyup =
+        //document.body.onkeydown = function(e){
+
+        function theControls(e)
+        { 
+            if(e.keyCode == 77) //Letter m
+            {
+                ourPlayer.playerId.style.opacity="1.0";
+            }
+            if(e.keyCode == 78) //Letter n
+            {
+                ourPlayer.playerId.style.opacity="0.2";
+                ourPlayer.playerId.innerHTML= "";
+            }
+            if(e.keyCode == 192) //tilda
+            {
+                ourPlayer.speedMultiplier=1;
+                ourPlayer.playerId.innerHTML="Speed 1";
+            }
+            if(e.keyCode == 49 || e.keyCode == 97) //number 1, or numpad 1
+            {
+                ourPlayer.speedMultiplier=2;
+                ourPlayer.playerId.innerHTML="Speed 2";
+            }
+            if(e.keyCode == 50 || e.keyCode == 98) //number 2
+            {
+                ourPlayer.speedMultiplier=3;
+                ourPlayer.playerId.innerHTML="Speed 3";
+            }
+            if(e.keyCode == 51 || e.keyCode == 99) //number 3
+            {
+                ourPlayer.speedMultiplier=4;
+                ourPlayer.playerId.innerHTML="Speed 4";
+            }
+            if(e.keyCode == 52 || e.keyCode == 100) //number 4
+            {
+                ourPlayer.speedMultiplier=5;
+                ourPlayer.playerId.innerHTML="Speed 5";
+            }
+            if(e.keyCode == 53 || e.keyCode == 101) //number 5
+            {
+                ourPlayer.speedMultiplier=10;
+                ourPlayer.playerId.innerHTML="Speed 10";
+            }
+            if(e.keyCode == 54  || e.keyCode == 102) //number 6
+            {
+                ourPlayer.speedMultiplier=15;
+                ourPlayer.playerId.innerHTML="Speed 15";
+            }
+            if(e.keyCode == 55 || e.keyCode == 103) //number 7
+            {
+                ourPlayer.speedMultiplier=20;
+                ourPlayer.playerId.innerHTML="Speed 20";
+            }
+            if(e.keyCode == 56 || e.keyCode == 104) //number 8
+            {
+                ourPlayer.speedMultiplier=25;
+                ourPlayer.playerId.innerHTML="Speed 25";
+            }
+            if(e.keyCode == 57 || e.keyCode == 105) //number 9
+            {
+                ourPlayer.speedMultiplier=30;
+                ourPlayer.playerId.innerHTML="Speed 30";
+            }
+            if(e.keyCode == 48 || e.keyCode == 96) //number 0
+            {
+                ourPlayer.speedMultiplier=50;
+                ourPlayer.playerId.innerHTML="Speed 50";
+            }
+            if(e.keyCode == 189) //dash
+            {
+                ourPlayer.speedMultiplier=100;
+                ourPlayer.playerId.innerHTML="Speed 100";
+            }
+            if(e.keyCode == 187) //+
+            {
+                ourPlayer.speedMultiplier=200;
+                ourPlayer.playerId.innerHTML="Speed 200";
+            }
+            if(e.keyCode == 8) //back space button
+            {
+                ourPlayer.speedMultiplier=400;
+                ourPlayer.playerId.innerHTML="Speed 400";
+            }
+            if(e.keyCode == 36) //Home Button
+            {
+                ourPlayer.speedMultiplier=800;
+                ourPlayer.playerId.innerHTML="Speed 800";
+            }
+            if(e.keyCode == 35) //End Button
+            {
+                ourPlayer.speedMultiplier=1600;
+                ourPlayer.playerId.innerHTML="Speed 1600";
+            }
+        
+            //Find out which key was pressed
+            let theKeyCode = e.keyCode || e.which;
+            keyboard[theKeyCode] = e.type == 'keydown';
+        };
+         
+        /* Character Movement Updating */
+        let movePlayer = function(theX, theY){
+           ourPlayer.x += (theX||0) * ourPlayer.speedMultiplier;
+           ourPlayer.y += (theY||0) * ourPlayer.speedMultiplier;
+
+           ourPlayer.playerId.style.left = ourPlayer.x + 'px';
+           ourPlayer.playerId.style.top = ourPlayer.y + 'px';
+        };
+            
+        /* Player Controls */
+        let sensePlayerMotion = function(){
+            if(keyboard[keyboard.LEFT]){
+                movePlayer(-1,0);
+               // ourPlayer.playerId.style.backgroundPosition=-2;
+                //Note: need to simplify for logical backgroundPosition coordinates.
+            }
+            if(keyboard[keyboard.RIGHT]){
+                movePlayer(1,0);
+               // ourPlayer.playerId.style.backgroundPosition=302;
+            }
+            if(keyboard[keyboard.UP]){
+                movePlayer(0,-1);
+               // ourPlayer.playerId.style.backgroundPosition=97;
+            }
+            if(keyboard[keyboard.DOWN]){
+                movePlayer(0,1);
+                //ourPlayer.playerId.style.backgroundPosition=625;
+            }
+        };
+        
+        function getAllInfo(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            return theRect;
+        }
+        //console.log(JSON.stringify(getAllInfo('boxOne')));
+
+        function getPos(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+            let theRectY = theId.getBoundingClientRect().top + window.scrollY; 
+
+            let posXY = { 
+                x:parseInt(theRect.x) + parseInt(theRect.width)/2 + window.scrollX, 
+                y:parseInt(theRectY) + parseInt(theRect.height)/2
+            }; 
+            return posXY;
+        }
+        
+        //Camera Follows the Player
+        function scrollIt()
+        {
+           ourPlayer.playerId.scrollIntoView({block: "center", inline: "center"});
+        }
+
+        //Get Size of the id
+        function getSize(theId)
+        {
+            theId = document.getElementById(theId);
+            let theRect = theId.getBoundingClientRect();
+       
+            let sizeXY = {
+                x: parseInt(theRect.width),
+                y: parseInt(theRect.height)
+            };
+            return sizeXY;
+        }
+
+        // Position and Size Objects according to if condition
+        // not used in this tutorial
+        function posSizeObject(whichArray)  
+        {
+            for(var i = 0; i < whichArray.length; i++)
+            {
+                  if(whichArray[i].kind == "box" || whichArray[i].kind =="tile")
+                  {
+                        var d = document.getElementById(whichArray[i].id);
+                        d.style.position = "absolute";
+                        d.style.left = whichArray[i].xPos +'px';
+                        d.style.top = whichArray[i].yPos +'px';
+                        d.style.width = whichArray[i].width +'px';
+                        d.style.height = whichArray[i].height +'px';
+                  }
+            }
+        }
+        
+        function mousePos(theEvent)
+        {
+            let mouseX = theEvent.pageX;
+            let mouseY = theEvent.pageY;
+            let mousePos = "Mouse" + "<br>" + "X " + mouseX + "<br>"+ "Y " + mouseY;
+            console.log(mousePos);
+            ourPlayer.playerId.innerHTML= mousePos;
+        }
+
+        let lineY7730 = 0;
+        function wasLineCrossed()
+        {
+            //due to the player speed being possibly Extremely fast, we have to allow multiple Y positions to be able to trigger the event
+            if(Math.floor(getPos("thePlayer").y) > 7730 && Math.floor(getPos("thePlayer").y) < 7765)
+            {
+                ourPlayer.playerId.innerHTML = "lineY7730 Crossed";
+
+                if(lineY7730 == 0)
+                {
+                    makeVideosMultiFilters(100, 7875, 800, 600, boxingVideos,"boxing", "furyWilder1");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2
+
+                    makeVideosMultiFilters(100, 8670, 800, 600, boxingVideos, "boxing", "furyWilder2");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2
+
+                    makeVideosMultiFilters(100, 9500, 800, 600, collegeVideos,"youtubeVideo", "javascript");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2
+
+                    makeVideosMultiFilters(100, 10320, 800, 600, collegeVideos,"youtubeVideo", "papercliptronics");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2
+
+                    makeVideosMultiFilters(100, 11200, 800, 600, collegeVideos,"youtubeVideo", "breadboard");
+                    //theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2
+
+                    socialMediaEvidenceRow(100, 12500, 1250, 700, socialMediaEvidence, "twitter");
+                        //theX, theY, sizeX, sizeY,whichArray, criteria1
+
+                    detailsRow(100, 13500, 1250, 900, socialMediaEvidence, "twitter");
+                     //theX, theY, sizeX, sizeY, whichArray, criteria1
+                }
+                lineY7730 = 1; //makes it so the row is only created one time
+            }
+        }
+
+        /* Load Content When User PRESSES the Button */
+        let lineY14583 = 0;
+        function loadOurVideoFiles()
+        {
+            if(lineY14583 == 0)
+            {
+                makeVideosUsingVideoFile(100, 14800, 790, 445, ourVideoFiles,"personal", "personal")
+                //theX, theY, sizeX, sizeY, whichArray, criteria1, criteria2)
+            }
+            lineY14583 =1; //allows the row to be created only one time
+        }
+
+        function doThisLoop()
+        {
+            sensePlayerMotion();
+            scrollIt();   
+            wasLineCrossed();      
+            requestAnimationFrame(doThisLoop);  
+        }
+        doThisLoop();
+          
+        //Update the Position of the player
+        movePlayer();
+    
+</script>
+</body>
+</html>
