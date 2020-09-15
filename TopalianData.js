@@ -1786,7 +1786,7 @@ let ourVideoFiles =
     
     { title:"Video Simulation Team", type:"mp4", date:"04/26/2011 12:00 AM", url:"https://www.youtube.com/watch?v=84bIBZFFVYk", url2:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/video_simulation_team.mp4", tag:"personal", description:"personal", starttime:"00:00:00", endtime:"00:00:20", kind:"video"},
     
-    { title:"Jokull", type:"mp3", date:"01/26/2018 12:00 AM", url:"https://www.google.com/search?client=firefox-b-1-d&q=public+domain+music", url2:"null", tag:"personal", description:"personal", starttime:"00:00:52", endtime:"00:01:15", kind:"audio"}   
+    { title:"Jokull", type:"mp3", date:"01/26/2018 12:00 AM", url:"https://www.google.com/search?client=firefox-b-1-d&q=public+domain+music", url2:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/jokull.mp3", tag:"personal", description:"personal", starttime:"00:00:52", endtime:"00:01:15", kind:"audio"}   
 ];
 
 /*  NOTES ABOUT the array named  ourVideoFiles
