@@ -11,6 +11,7 @@ This JAVASCRIPT APPLICATION is useful for:
     • Professional Investigators (police, fbi, M.I. etc)
     • Teachers/Students (All levels)
     • Musicians, Artists, Scientists in all fields
+    
 Features
 Moving Character that Explores the Data
 Abilities:
@@ -19,12 +20,14 @@ Abilities:
     • 🏃 Speeds - Very Slow to Extremely Fast
     • ⚪ ⚫ Transparent or Solid Player Body
     • 📌 Mouse Position of where Player clicks on the screen
+    
 Play Video and Audio
 From:
     • Internet URL address as a LINK you visit
     • Internet URL address as an Embeded video on the page
     • File on your computer
     • File on a Server
+    
 Video and Audio Playback Features: 🎥 🎵 📺  📷 
     • 🏃 Speed Buttons of 100%, 75%, 50%, 25%, 10%
     • > || Play/Pause, Spacebar, or K
