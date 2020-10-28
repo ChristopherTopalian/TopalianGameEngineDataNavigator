@@ -1,8 +1,5 @@
 # TopalianGameEngineDataNavigator
-Turn spreadsheets into video games! Make video game websites easily! Automatic Timeline Generation using pure Javascript for our Website! We Navigate the Data using a VIDEO GAME PLAYER THAT MOVES!!!  Video of the script https://www.youtube.com/watch?v=QVVxs3296V8     https://www.youtube.com/watch?v=jMBKRbG_bXw and https://www.youtube.com/watch?v=9QWhAHqxB_Q and https://www.youtube.com/watch?v=NJTroYzxz0s and https://www.youtube.com/watch?v=8nVznIJJTtQ and here is the working version of the script https://collegeofscripting.weebly.com/ This makes it very easy to generate worlds of content that we can explore using any web browser!
-
-Here is another video showing the spreadsheet to javascript in action https://youtu.be/NY5cLxEx1gY and  some other videos showing the script:
-https://youtu.be/CW6PQg5c4RY  ,  https://youtu.be/Q4tPG-cwiWE  and https://youtu.be/TBG9nsk5CMY
+Turn spreadsheets into video games! Make video game websites easily! Automatic Timeline Generation using pure Javascript for our Website! We Navigate the Data using a VIDEO GAME PLAYER THAT MOVES!!!  Video of the script https://www.youtube.com/watch?v=QVVxs3296V8 
 
 The Topalian Game Engine Data Navigator is a JS, HTML, CSS Application designed to organize and display hundreds of thousands of pieces of information, including video, audio, images, text, links, and web pages.
 The Topalian Game Engine Data Navigator is a 100% PURE JAVASCRIPT Application. There are NO other libraries used. 
@@ -88,3 +85,8 @@ If the website allows iframe, then you can use an iframe to place that website o
 Keep in mind that some websites will effect loading time if you load them at the start of the application. If a website takes much time to load, then it is a good idea to allow the user the choice of loading it or not, by using a push button option to load the content.
 
 The functionality of the website will be the same on your webpage.
+
+ https://www.youtube.com/watch?v=jMBKRbG_bXw and https://www.youtube.com/watch?v=9QWhAHqxB_Q and https://www.youtube.com/watch?v=NJTroYzxz0s and https://www.youtube.com/watch?v=8nVznIJJTtQ and here is the working version of the script https://collegeofscripting.weebly.com/ This makes it very easy to generate worlds of content that we can explore using any web browser!
+
+Here is another video showing the spreadsheet to javascript in action https://youtu.be/NY5cLxEx1gY and  some other videos showing the script:
+https://youtu.be/CW6PQg5c4RY  ,  https://youtu.be/Q4tPG-cwiWE  and https://youtu.be/TBG9nsk5CMY
