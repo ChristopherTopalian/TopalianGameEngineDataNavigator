@@ -1,0 +1,165 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020 -->
+
+<!-- Topalian Spreadsheet To Javascript -->
+
+<!-- Open this page in your web browser -->
+<!-- Paste your spreadsheet data into the text area -->
+
+<!-- Copy the converted text that appears on the screen -->
+<!-- Paste the converted text into TopalianData.js -->
+
+<!-- The spreadsheet data we paste is ONE Array of Objects at a time
+     which means one spreadsheet at time -->
+
+<!-- For example, we can paste the spreadsheet named theNews into theNews array of TopalianData.js. Then we would paste the videoEvidence spreadsheet into the videoEvidence array of TopalianData.js. We update data one spreadsheet at a time. We do this because each array is different and has different requirements  -->
+
+<!-- This script makes it very easy to add data to our game/website.
+     We add the data to our spreadsheet, which we can sort anyway we want using the spreadsheet tools. Then we just convert that spreadsheet data to javascript format using this script here, and we paste the converted data into our TopalianData.js file, one spreadsheet at a time into one array at a time -->
+
+<!-- If your title or name has a double quote "  change the double quote to a single quote instead, because we are already using double quotes to contain each string -->
+
+<!--     CORRECT:  "Earth 'seems' nice"   
+     NOT CORRECT:  "Earth "seems" nice"
+     
+     as you can see, the double quote useage in the title, would have ended the string before the end of the actual title. -->
+
+<html>
+<head>
+<style>
+
+#pasteDataHere
+{
+    position:absolute;
+    left: 100px;
+    top: 120px;
+	height: 25%;
+	width: 80%;
+	box-sizing: border-box;
+	background-color: rgb(240,240,240);
+	border-radius:6px;
+	border:3px solid rgb(0,0,0);
+	border-color: black;
+	cursor:pointer;
+	color:black;
+	font-size:14px;
+	padding:9px 9px;
+	text-decoration:none;
+}
+
+#displayData
+{
+    position:absolute;
+    left: 100px;
+    top: 290px;
+	height: 25%;
+	width: 80%;
+	box-sizing: border-box;
+	background-color: rgb(240,240,240);
+	border-radius:6px;
+	border:3px solid rgb(0,0,0);
+	border-color: black;
+	cursor:pointer;
+	color:black;
+	font-size:14px;
+	padding:9px 9px;
+	text-decoration:none;
+}
+
+#copyButton
+{
+    position:absolute;
+    left: 200px;
+    top: 460px;
+    width: 100px;
+    background-color: rgb(0, 77, 129);
+    font-family: exo black;
+    font-size: 26px;
+    color: white;
+    border-radius: 7px;
+}
+#copyButton:hover
+{
+    background-color: rgb(36, 135, 201);
+}
+
+#titleText
+{
+    position:absolute;
+    left: 100px;
+    top: 20px;
+    font-family: exo black;
+    font-size: 40px;
+    color: white;
+}
+
+#instructions
+{
+    position:absolute;
+    left: 125px;
+    top: 75px;
+    font-family: tahoma;
+    font-size: 26px;
+    color: white;
+}
+
+body
+{
+    background: rgb(104, 104, 104);
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice_orig.png");   
+    background-repeat: repeat;  
+}
+
+</style>
+</head>
+
+<body onload="whenLoaded();">
+
+<script>
+
+    function whenLoaded()
+    {
+       document.getElementById("pasteDataHere").addEventListener("input", processSpreadsheetData, false);
+    }
+
+    function processSpreadsheetData()
+    {
+        let ourData = document.getElementById("pasteDataHere").value;
+        ourData.trim();
+
+        for (let j = 0; j < ourData.length; j++)
+        {   
+            //ourData = ourData.replace("**", "\"");//replace ** with "
+            ourData = ourData.replace(/\"\s/g,'\"'); //trim white space
+            ourData = ourData.replace(/\s\"/g,'\"'); //trim white space
+        }
+
+        //var test = document.getElementById("displayData").innerHTML=ourData.split(/},/g).join('},'+ '<br><br>');
+        var test = document.getElementById("displayData").innerHTML=ourData.split(/},/g).join('},'+ '\n');
+    }
+
+    function copyIt()
+    {
+        let copyText = document.getElementById("displayData");
+        copyText.select();
+        copyText.setSelectionRange(0, 1000000);
+        document.execCommand("copy");
+        alert("Successfully COPIED. \nNow PASTE it in TopalianData.js");
+        //alert("Successfully Copied " + copyText.value);
+    }
+
+</script>
+    
+    <div id="titleText">Topalian Spreadsheet To Javascript Converter</div>
+    <div id="instructions">Paste Data Into the Text Area Below</div>
+
+    <textarea id="pasteDataHere" placeholder="Paste Here" rows="4" cols="50" type="text">
+    </textarea>
+
+    <br>
+    
+    <button id="copyButton" onclick="copyIt();">COPY</button>
+    
+    <textarea id="displayData"></textarea>
+</body>
+</html>
