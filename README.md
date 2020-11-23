@@ -86,7 +86,15 @@ Keep in mind that some websites will effect loading time if you load them at the
 
 The functionality of the website will be the same on your webpage.
 https://www.youtube.com/watch?v=QVVxs3296V8 
- https://www.youtube.com/watch?v=jMBKRbG_bXw and https://www.youtube.com/watch?v=9QWhAHqxB_Q and https://www.youtube.com/watch?v=NJTroYzxz0s and https://www.youtube.com/watch?v=8nVznIJJTtQ and here is the working version of the script https://collegeofscripting.weebly.com/ This makes it very easy to generate worlds of content that we can explore using any web browser!
+ https://www.youtube.com/watch?v=jMBKRbG_bXw and 
+ https://www.youtube.com/watch?v=9QWhAHqxB_Q and 
+ https://www.youtube.com/watch?v=NJTroYzxz0s and 
+ https://www.youtube.com/watch?v=8nVznIJJTtQ and 
+ here is the working version of the script https://collegeofscripting.weebly.com/ 
+ 
+ This makes it very easy to generate worlds of content that we can explore using any web browser!
 
-Here is another video showing the spreadsheet to javascript in action https://youtu.be/NY5cLxEx1gY and  some other videos showing the script:
-https://youtu.be/CW6PQg5c4RY  ,  https://youtu.be/Q4tPG-cwiWE  and https://youtu.be/TBG9nsk5CMY
+Here is another video showing the spreadsheet to javascript in action https://youtu.be/NY5cLxEx1gY and some other videos showing the script:
+https://youtu.be/CW6PQg5c4RY   
+https://youtu.be/Q4tPG-cwiWE  and 
+https://youtu.be/TBG9nsk5CMY
