@@ -42,13 +42,15 @@ let scienceImages =
 
 let theNews = 
 [
-{	headline:"Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past",	date:"10/12/2019 12:00 AM",	url:"https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html",	tag:"news",	description:"epstein"},
+    {	headline:"Bill Gates Met With Jeffrey Epstein Many Times, Despite His Past",	date:"10/12/2019 12:00 AM",	url:"https://www.nytimes.com/2019/10/12/business/jeffrey-epstein-bill-gates.html",	tag:"news",	description:"epstein"},
 
-{	headline:"CDC Finds Another 5,000+ NYC Deaths in March and April With Potential COVID-19 Links",	date:"05/11/2020 12:00 AM",	url:"https://www.nbcnewyork.com/news/local/cdc-finds-another-5000-nyc-deaths-in-march-and-april-with-potential-covid-19-links/2411670/",	tag:"news",	description:"pandemic"},
-
-{	headline:"Ghislaine Maxwell was a faithful lapdog to Jeffrey Epstein, wanted to marry him, royal cousin claims",	date:"07/06/2020 12:00 AM",	url:"https://www.foxnews.com/entertainment/ghislaine-maxwell-jeffrey-epstein-christina-oxenberg-prince-andrew",	tag:"news",	description:"epstein"},
-
-{	headline:"Twitter cracks down on QAnon, will ban thousands of accounts",	date:"07/21/2020 12:00 AM",	url:"https://fortune.com/2020/07/21/twitter-qanon-accounts-banned-crackdown/",	tag:"news",	description:"qanon"}
+    {	headline:"CDC Finds Another 5,000+ NYC Deaths in March and April With Potential COVID-19 Links",	date:"05/11/2020 12:00 AM",	url:"https://www.nbcnewyork.com/news/local/cdc-finds-another-5000-nyc-deaths-in-march-and-april-with-potential-covid-19-links/2411670/",	tag:"news",	description:"pandemic"},
+    
+    {	headline:"Ghislaine Maxwell was a faithful lapdog to Jeffrey Epstein, wanted to marry him, royal cousin claims",	date:"07/06/2020 12:00 AM",	url:"https://www.foxnews.com/entertainment/ghislaine-maxwell-jeffrey-epstein-christina-oxenberg-prince-andrew",	tag:"news",	description:"epstein"},
+    
+    {	headline:"Twitter cracks down on QAnon, will ban thousands of accounts",	date:"07/21/2020 12:00 AM",	url:"https://fortune.com/2020/07/21/twitter-qanon-accounts-banned-crackdown/",	tag:"news",	description:"qanon"},
+    
+    {	headline:"Massachusetts Legislature Overrides Governor’s Veto, Allowing Minors to Obtain Abortions without Parental Consent",	date:"01/18/2021 02:23 PM",	url:"https://www.nationalreview.com/corner/massachusetts-legislature-overrides-governors-veto-allowing-minors-to-obtain-abortions-without-parental-consent/",	tag:"news",	description:"crimes against humanity"}    
 ];  
 
 let videoEvidence = 
@@ -97,15 +99,15 @@ let evidence =
 
 let socialMediaEvidence =
 [  
-    { title:"Bill Clinton reported by witness to be present with Epstein on Epstein island.", date:"07/31/2020 02:05 AM", url:"https://twitter.com/ISCResearch/status/1289079824439554048", info:"Witness Testimony", image:"https://pbs.twimg.com/media/EeO7QzFXoAA8Jlo?format=jpg&name=900x900", tag:"twitter", description:"epstein", probability:"98"},
+    {	title:"Jeffrey Epstein hosted Bill Clinton on his private island, documents reveal",	date:"07/31/2020 03:05 AM",	url:"https://nypost.com/2020/07/31/jeffrey-epstein-hosted-bill-clinton-on-private-island-court-docs/",	info:"Witness Testimony",	image:"https://nypost.com/wp-content/uploads/sites/2/2020/07/clinton-epstein.jpg?quality=90&strip=all&w=1236&h=820&crop=1",	tag:"twitter",	description:"epstein",	probability:"98"},
 
-    { title:"When did Donald Trump flirt with you? He didnt.", date:"07/31/2020 02:12 AM", url:"https://twitter.com/ISCResearch/status/1289081444686614528", info:"testimony", image:"https://pbs.twimg.com/media/EeO8vRRWoAAI9MO?format=jpg&name=small", tag:"twitter", description:"epstein", probability:"97"},
-    
-    { title:"MIT Technology Review @techreview", date:"07/31/2020 02:55 PM", url:"https://twitter.com/techreview/status/1289273594761994241", info:"The pandemic has rapidly grown the presence of QAnon and the spread of its conspiracy theories. If we stand any hope of stopping it, online platforms must do much more than fact checks and account bans.", image:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/mit_orig.jpg", tag:"twitter", description:"censorship", probability:"99"},
-    
-    { title:"Save the Children", date:"08/01/2020 12:04 AM", url:"https://twitter.com/i/status/1289411729265393664", info:"HUMANITY IS ALIVE", image:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/save_orig.jpg", tag:"twitter", description:"epstein", probability:"100"},
-    
-    { title:"Thousands of protesters against German coronavirus restrictions converge in Berlin", date:"08/01/2020 08:31 AM", url:"https://twitter.com/AP/status/1289539152258662402", info:"German People unite for freedom", image:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/germanprotest_orig.jpg", tag:"twitter", description:"freedom", probability:"100"}
+{	title:"Bill Clinton visited Jeffrey Epstein’s private island, unsealed court documents suggest",	date:"07/31/2020 12:00 AM",	url:"https://www.foxnews.com/us/bill-clinton-visited-jeffrey-epsteins-private-island-unsealed-court-documents-suggest",	info:"testimony",	image:"https://a57.foxnews.com/cf-images.us-east-1.prod.boltdns.net/v1/static/694940094001/a178ccca-ad16-4650-9e23-b520d8f99642/c0ebbece-df07-4bcf-852b-2e84318ee934/1280x720/match/931/524/image.jpg?ve=1&tl=1",	tag:"twitter",	description:"epstein",	probability:"97"},
+
+{	title:"MIT Technology Review @techreview",	date:"07/31/2020 02:55 PM",	url:"https://twitter.com/techreview/status/1289273594761994241",	info:"The pandemic has rapidly grown the presence of QAnon and the spread of its conspiracy theories. If we stand any hope of stopping it, online platforms must do much more than fact checks and account bans.",	image:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/mit_orig.jpg",	tag:"twitter",	description:"censorship",	probability:"99"},
+
+{	title:"Save the Children",	date:"08/01/2020 12:04 AM",	url:"https://twitter.com/i/status/1289411729265393664",	info:"HUMANITY IS ALIVE",	image:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/save_orig.jpg",	tag:"twitter",	description:"epstein",	probability:"100"},
+
+{	title:"Thousands of protesters against German coronavirus restrictions converge in Berlin",	date:"08/01/2020 08:31 AM",	url:"https://twitter.com/AP/status/1289539152258662402",	info:"German People unite for freedom",	image:"https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/germanprotest_orig.jpg",	tag:"twitter",	description:"freedom",	probability:"100"}
 ];
 
 let theNotes =
