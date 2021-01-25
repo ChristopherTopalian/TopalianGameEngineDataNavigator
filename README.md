@@ -1,5 +1,5 @@
 # TopalianGameEngineDataNavigator
-Turn spreadsheets into video games! Make video game websites easily! Automatic Timeline Generation using pure Javascript for our Website! We Navigate the Data using a VIDEO GAME PLAYER THAT MOVES!!!  Video of the script https://www.youtube.com/watch?v=xymX7b8Qvm4 and here is the working version of the script https://collegeofscripting.weebly.com/ 
+Turn spreadsheets into video games! Make video game websites easily! Automatic Timeline Generation using pure Javascript for our Website! We Navigate the Data using a VIDEO GAME PLAYER THAT MOVES!!!  Video of the script https://www.youtube.com/watch?v=xymX7b8Qvm4 and here is the script in action https://collegeofscripting.weebly.com/ 
 
 The Topalian Game Engine Data Navigator is a JS, HTML, CSS Application designed to organize and display hundreds of thousands of pieces of information, including video, audio, images, text, links, and web pages.
 The Topalian Game Engine Data Navigator is a 100% PURE JAVASCRIPT Application. There are NO other libraries used. 
