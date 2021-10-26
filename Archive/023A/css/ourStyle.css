@@ -1,0 +1,188 @@
+/* Dedicated to God the Father */
+
+/* All Rights Reserved Christopher Topalian Copyright 2020-2021 */
+
+/* ourStyle.css */
+
+#thePlayer
+{
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    /* padding effects size */
+    /* padding: 4px; */
+
+    background: rgb(73, 100, 150);
+
+    z-index: 1020;
+
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255,255,255);
+    line-height: 18px;
+    /* word-wrap: break-word; */
+    text-align: center;
+
+    border-radius: 7px;
+}
+
+#theBackground
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    width: 250000px;
+    height: 250000px;
+
+    background: black;
+
+    opacity: 1.0;
+    z-index: -99;
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice-edited_orig.png");
+
+    /* background-repeat: repeat;  */   
+}
+
+.divBackground
+{
+    background: black;
+
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice-edited_orig.png");
+
+    /* background-repeat: repeat; */
+}
+
+a:link
+{
+    color:rgb(111, 162, 255);
+}
+
+a:visited
+{
+    color:rgb(133, 134, 209);
+}
+
+.ourButton
+{
+    /* width: 55px; */
+    height: 18px;
+
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-right: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+    border-radius: 4px;
+    background-color: rgb(0, 77, 129);
+    border: solid 1px rgb(100, 100, 255);
+
+    opacity: 1.0;
+
+    text-align: center;
+    line-height: 5px;
+    font-size: 15px;
+    color: rgb(255,255,255);
+    font-weight: normal;
+}
+
+.ourButton:hover
+{
+    background-color: rgb(6, 31, 47);
+}
+
+.hrCompact
+{
+    background-color: rgb(255,255,255);
+    border: 0 none;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
+
+.textCompact
+{
+    font-family: arial;
+    font-size: 11pt;
+    font-weight: normal;
+    color: rgb(255,255,255);
+}
+
+.theImage
+{
+    height: 75%;
+    object-fit: contain;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.theScienceImages
+{
+    max-width:100%;
+    height: auto;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    z-index: 10;
+}
+
+.vidStyle
+{
+   transition: transform .2s;
+}
+
+/* zoom feature for videos to be added */
+.vidStyle:hover
+{
+    /* transform: scale(2.5); */
+    position: "absolute";
+    transform: translateY(+79%) scale(2.5);
+}
+
+.bookImage
+{
+   /* height:100%;  */
+   /*  width: 100%; */
+    object-fit: contain;
+    max-width: 100%;
+   /* max-height:100%; */
+    vertical-align: middle;
+    z-index: 10;
+}
+
+/* zoom feature to be added */
+.bookImage:hover 
+{
+    /* position: "absolute"; */
+    /* transform: scale(1.2); */
+     z-index:100;
+    /* transform: translateY(+79%) scale(2.5); */
+    /* transform: translateY(+5%) scale(1.2); */
+}
+
+.textInput
+{
+    height: 20px;
+    width: 100px;
+    overflow: hidden;
+    resize: none;
+}
+
+b
+{
+    color: aqua;
+    font-weight: 900;
+}
+
+

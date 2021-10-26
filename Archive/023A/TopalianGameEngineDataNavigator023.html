@@ -1,0 +1,519 @@
+<!-- Dedicated to God the Father -->
+
+<!-- Topalian Game Engine Data Navigator -->
+<!-- All Rights Reserved Christopher Topalian Copyright 2020-2021 -->
+<!-- TGEDN Version 023 -->
+
+<!-- 
+    PLAYER MENU
+    press Z for the Player Menu, or
+    Double Click the Player for the Player Menu
+
+    CAMERA
+    Follows Player
+
+    CONTROLS
+    W is Up, S is Down, A is Left, D is Right.
+
+    MOUSE POSITION
+    press X to activate mousePos mode.
+    Left Click Mouse to get X and Y coordinates of any place on the screen.
+    press V to deactivate mousePos mode.
+    In the playerMenu, there is an on button and off button, to activate/deactivate mouse pos mode.
+
+    PLAYER POSITION MENU
+    playerMenu, click the Player Get Position button.
+    This shows us the location of the player on the screen.
+    playerMenu, click the Set position button.
+    This places the player where we specify.
+
+    PLAYER SIZE MENU
+    playerMenu, click the GET button to get the size of the player.
+    playerMenu, click the SET button to set the size of the player.
+
+    TRAVEL TO
+    press Z to Show the player menu or Double Click the Player, which also shows the SECTIONS of the World listed as Buttons, that the player can travel to.
+    The Player is expected to first explore the world.
+    After the player explores a new section, that Section's button will now function, when the player presses it, to take the player to that specified section.
+
+    The SCRIPTING Section is currently the only section that loads upon the start of the world.
+    Thus, when pressed, the Scripting Button takes the player instantly to the Scripting section. 
+
+    SPEED BUTTONS
+    press numbers 1 to 9 to adjust Speed
+    press - + BackSpace Home End for Super Speeds
+
+    SPEED MENU
+    Choose a Speed for the Player using a menu of choices
+
+    COLOR OF PLAYER MENU
+    Letter P, or choose from playerMenu
+    Choose the Color of the Player
+
+    COLOR OF PLAYER TEXT MENU
+    playerMenu, click the TEXT button, to choose the Text Color of the Player
+
+    TEXTURE MENU
+    Letter T, or choose from playerMenu
+    Choose the Texture of the Player
+
+    OPACITY MENU
+    Letter O, or choose from playerMenu.
+    Choose the transparency value of the player.
+
+    TRANSPARENCY
+    press N for the player to be see-through
+    press M for solid
+
+    STRUCTURES MODE
+    press B to Activate Structure Creation Mode,
+    or click the Create button in the playerMenu and then
+    Left Click Mouse to Create a Structure
+        press Shift + 1 to go to 1st Structure
+        press Shift + 2 to go to 2nd Structure, etc
+    press Esc to End Structure Mode
+    Left Click on any Structure to EDIT that Structure
+        We can change many Attributes of the Structure (name, color, texture, opacity, position, size).
+    press J to Create a Structures GoTo Menu
+    press Delete Button to Remove All Structures
+    press Load Button to Load Structures from File
+
+    FIND (SEARCH)
+    Control + F, to activate Search mode.
+    Search mode allows the window to scroll to the location of the found word.
+    The player then clicks their mouse anywhere on the screen and they will travel to that location of that found word.
+    The player's camera then goes back to active mode and the player can now move around the found word and continue exploring the world.
+
+    DISTANCE
+    playerMenu, click the DISTANCE button to show Distance menu.
+    Find the distance from the player to any object with id.
+    The player types in the textarea, the id of any object, that they want to find the distance of, compared to our player location.
+    When the person types in the textarea, all keyboard shortcuts are deactivated, so that the person can type freely. When the person presses the Enter button, the short cuts are active again.
+-->
+
+<!--
+    Use the Chrome Browser for the Fastest Load Time and Performance.
+    Works nicely also in Firefox, Brave, and others.
+-->
+
+<!-- See the Code in Action
+https://collegeofscripting.weebly.com  -->
+
+<!-- See the Video Tutorials
+https://youtube.com/ScriptingCollege  -->
+
+<!-- See the Data Navigator Code here
+https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
+
+<html>
+<title>Topalian Game Engine Data Navigator</title>
+<head>
+
+<style>
+#thePlayer
+{
+    position: absolute;
+
+    width: 70px;
+    height: 70px;
+
+    /* padding effects size */
+    /* padding: 4px; */
+
+    background: rgb(73, 100, 150);
+
+    z-index: 1020;
+
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255,255,255);
+    line-height: 18px;
+    /* word-wrap: break-word; */
+    text-align: center;
+
+    border-radius: 7px;
+}
+
+#theBackground
+{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+    width: 250000px;
+    height: 250000px;
+
+    background: black;
+
+    opacity: 1.0;
+    z-index: -99;
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice-edited_orig.png");
+
+    /* background-repeat: repeat;  */   
+}
+
+.divBackground
+{
+    background: black;
+
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice-edited_orig.png");
+
+    /* background-repeat: repeat; */
+}
+
+a:link
+{
+    color:rgb(111, 162, 255);
+}
+
+a:visited
+{
+    color:rgb(133, 134, 209);
+}
+
+.ourButton
+{
+    /* width: 55px; */
+    height: 18px;
+
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    margin-right: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+    border-radius: 4px;
+    background-color: rgb(0, 77, 129);
+    border: solid 1px rgb(100, 100, 255);
+
+    opacity: 1.0;
+
+    text-align: center;
+    line-height: 5px;
+    font-size: 15px;
+    color: rgb(255,255,255);
+    font-weight: normal;
+}
+
+.ourButton:hover
+{
+    background-color: rgb(6, 31, 47);
+}
+
+.hrCompact
+{
+    background-color: rgb(255,255,255);
+    border: 0 none;
+
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
+
+.textCompact
+{
+    font-family: arial;
+    font-size: 11pt;
+    font-weight: normal;
+    color: rgb(255,255,255);
+}
+
+.theImage
+{
+    height: 75%;
+    object-fit: contain;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.theScienceImages
+{
+    max-width:100%;
+    height: auto;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    z-index: 10;
+}
+
+.vidStyle
+{
+   transition: transform .2s;
+}
+
+/* zoom feature for videos to be added */
+.vidStyle:hover
+{
+    /* transform: scale(2.5); */
+    position: "absolute";
+    transform: translateY(+79%) scale(2.5);
+}
+
+.bookImage
+{
+   /* height:100%;  */
+   /* width: 100%; */
+    object-fit: contain;
+    max-width: 100%;
+   /* max-height:100%; */
+    vertical-align: middle;
+    z-index: 10;
+}
+
+/* zoom feature to be added */
+.bookImage:hover 
+{
+    /* position: "absolute"; */
+    /* transform: scale(1.2); */
+     z-index:100;
+    /* transform: translateY(+79%) scale(2.5); */
+    /* transform: translateY(+5%) scale(1.2); */
+}
+
+.textInput
+{
+    height: 20px;
+    width: 100px;
+    overflow: hidden;
+    resize: none;
+}
+
+b
+{
+    color: aqua;
+    font-weight: 900;
+}
+
+</style>
+
+<!-- or we can link to our style sheet instead -->
+<!-- <link rel="stylesheet" href="./css/ourStyle.css"> -->
+
+<!-- Spreadsheet Data, for the Rows -->
+<script src = "TopalianData.js"></script>
+
+<!-- Structure Data -->
+<script src = "TopalianStructureData.js"></script>
+
+<!-- Player Data -->
+<script src = "TopalianPlayerData.js"></script>
+
+<!--
+    For easy uploading, we can combine all the scripts below into one main.js script. We learn to use the command prompt and the command 
+    copy *.js main.js
+    The full instructions on how to combine all scripts into one can be found in the tutorials folder.
+    If we choose to use the main.js, we have to comment out the separate files below and just keep the main.js as the source.
+-->
+
+<!-- <script src = "./js/main.js"></script> -->
+
+<script src = "./js/cameraFollowsPlayer.js"></script>
+
+<script src = "./js/contentContainers.js"></script>
+
+<script src = "./js/contentContainersLineCrossed.js"></script>
+
+<script src = "./js/controls.js"></script>
+
+<script src = "./js/copyIt.js"></script>
+
+<script src = "./js/downloadData.js"></script>
+
+<script src = "./js/listens.js"></script>
+
+<script src = "./js/loadScript.js"></script>
+
+<script src = "./js/menuPlayer.js"></script>
+
+<script src = "./js/menuPlayerColor.js"></script>
+
+<script src = "./js/menuPlayerColorText.js"></script>
+
+<script src = "./js/menuPlayerDistance.js"></script>
+
+<script src = "./js/menuPlayerOpacity.js"></script>
+
+<script src = "./js/menuPlayerPositionSet.js"></script>
+
+<script src = "./js/menuPlayerPositionGet.js"></script>
+
+<script src = "./js/menuPlayerName.js"></script>
+
+<script src = "./js/menuPlayerSizeGet.js"></script>
+
+<script src = "./js/menuPlayerSizeSet.js"></script>
+
+<script src = "./js/menuPlayerSpeed.js"></script>
+
+<script src = "./js/menuPlayerTexture.js"></script>
+
+<script src = "./js/menuSearch.js"></script>
+
+<script src = "./js/menuStructureColor.js"></script>
+
+<script src = "./js/menuStructureColorText.js"></script>
+
+<script src = "./js/menuStructureDistance.js"></script>
+
+<script src = "./js/menuStructureEdit.js"></script>
+
+<script src = "./js/menuStructureName.js"></script>
+
+<script src = "./js/menuStructureOpacity.js"></script>
+
+<script src = "./js/menuStructurePositionGet.js"></script>
+
+<script src = "./js/menuStructurePositionSet.js"></script>
+
+<script src = "./js/menuStructureTexture.js"></script>
+
+<script src = "./js/menuStructureSizeGet.js"></script>
+
+<script src = "./js/menuStructureSizeSet.js"></script>
+
+<script src = "./js/messageLine.js"></script>
+
+<script src = "./js/messageStart.js"></script>
+
+<script src = "./js/messageStays.js"></script>
+
+<script src = "./js/mousePos.js"></script>
+
+<script src = "./js/movePlayer.js"></script>
+
+<script src = "./js/playerLoadData.js"></script>
+
+<script src = "./js/playerUpdate.js"></script>
+
+<script src = "./js/positionDistance.js"></script>
+
+<script src = "./js/positionGet.js"></script>
+
+<script src = "./js/positionGetSizeAndSides.js"></script>
+
+<script src = "./js/printing.js"></script>
+
+<script src = "./js/recordDelete.js"></script>
+
+<script src = "./js/removeElement.js"></script>
+
+<script src = "./js/rowOfLanguage.js"></script>
+
+<script src = "./js/rowOfLanguageShowAll.js"></script>
+
+<script src = "./js/rowOfNews.js"></script>
+
+<script src = "./js/rowOfNotes.js"></script>
+
+<script src = "./js/rowOfNotesWithTextArea.js"></script>
+
+<script src = "./js/rowOfVideos.js"></script>
+
+<script src = "./js/rowOfVideosMultipleFilters.js"></script>
+
+<script src = "./js/rowOfWebsitesOrVideos.js"></script>
+
+<script src = "./js/rowOfEvidence.js"></script>
+
+<script src = "./js/rowOfEvidenceWithImage.js"></script>
+
+<script src = "./js/rowOfInvestigation.js"></script>
+
+<script src = "./js/rowOfScienceImagesAndLink.js"></script>
+
+<script src = "./js/rowOfSocialMediaEvidence.js"></script>
+
+<script src = "./js/rowOfDetails.js"></script>
+
+<script src = "./js/rowOfCollegeBooks.js"></script>
+
+<script src = "./js/rowOfCollegeLinks.js"></script>
+
+<script src = "./js/rowOfBookImages.js"></script>
+
+<script src = "./js/rowOfVideoFromFile.js"></script>
+
+<script src = "./js/rowOfVideosOnlineStartEnd.js"></script>
+
+<script src = "./js/rowOfVideosWithDetails.js"></script>
+
+<script src = "./js/showPlayerData.js"></script>
+
+<script src = "./js/showStructureData.js"></script>
+
+<script src = "./js/sizeGet.js"></script>
+
+<script src = "./js/sortData.js"></script>
+
+<script src = "./js/sound.js"></script>
+
+<script src="./js/structuresColorAll.js"></script>
+
+<script src="./js/structuresCreate.js"></script>
+
+<script src="./js/structuresCreateFromFile.js"></script>
+
+<script src="./js/structuresMenu.js"></script>
+
+<script src="./js/structuresRemoveAll.js"></script>
+
+<script src="./js/structuresRow.js"></script>
+
+<script src="./js/structuresGoTo.js"></script>
+
+<script src="./js/structuresUpdate.js"></script>
+
+<script src = "./js/travelTo.js"></script>
+
+<script src = "./js/textClear.js"></script>
+
+<script src = "./js/updateWorld.js"></script>
+
+<script src = "./js/whenLoaded.js"></script>
+
+<!-- positionSizeSet.js is not used yet -->
+<!-- <script src = "./js/positionSizeSet.js"></script> -->
+
+<!-- rowOfVideosOnlineStartSeconds.js is not used yet -->
+<!-- <script src = "./js/rowOfVideosOnlineStartSeconds.js"></script> -->
+
+<!--structuresGetInfo.js is not currently being used -->
+<!-- <script src="./js/structuresGetInfo.js"></script> -->
+
+</head>
+
+<body onload = "whenLoaded();">
+
+<!-- create the Player div-->
+<div id = "thePlayer" ondblclick="menuPlayer();" onclick="keyboardControlOn();"><br><br><br><br>WASD<br>TO MOVE</div>
+
+<!-- create the Background div -->
+<div id = "theBackground"></div>
+
+<script>
+
+/* Player's start position, speed, and id */
+let ourPlayer = {
+    x: playerArray[0].posX,
+    y: playerArray[0].posY,
+    speedMultiplier: 7,
+    playerId: document.getElementById("thePlayer")
+};
+
+//Update the Game World
+updateWorld();
+    
+//Update the Position of the player
+movePlayer();
+    
+</script>
+
+</body>
+</html>
