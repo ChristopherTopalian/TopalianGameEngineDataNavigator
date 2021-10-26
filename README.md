@@ -1,5 +1,5 @@
 UPDATE IN PROGRESS # TopalianGameEngineDataNavigator
-Turn Spreadsheets into Video Game Worlds that we explore! Make video game websites easily with 100% pure vanilla Javascript! No libraries used, No Canvass used. Automatic Timeline Generation using pure Javascript! We Navigate the Data using a VIDEO GAME PLAYER. Video of the script  https://www.youtube.com/watch?v=5Voxs5a7FtE and here is the script in action https://collegeofscripting.weebly.com/ 
+Turn Spreadsheets into Video Game Worlds that we explore! Make video game websites easily with 100% pure vanilla Javascript! No libraries used, No Canvass used. Automatic Timeline Generation using pure Javascript! We Navigate the Data using a VIDEO GAME PLAYER. Video of the script https://www.youtube.com/watch?v=rTqabnGT1t8 and here is the script in action https://collegeofscripting.weebly.com/ 
 
 The Topalian Game Engine Data Navigator is a JS, HTML, CSS Application designed to organize and display hundreds of thousands of pieces of information, including video, audio, images, text, links, and web pages.
 The Topalian Game Engine Data Navigator is a 100% PURE JAVASCRIPT Application. There are NO other libraries used. 
@@ -86,6 +86,7 @@ Keep in mind that some websites will effect loading time if you load them at the
 
 The functionality of the website will be the same on your webpage.
 Video tutorials on the Topalian Game Engine Data Navigator:
+https://www.youtube.com/watch?v=5Voxs5a7FtE
 https://www.youtube.com/watch?v=SGMHr5c3vW8
 https://www.youtube.com/watch?v=g1Rw2_hwqtY
 https://www.youtube.com/watch?v=xymX7b8Qvm4
