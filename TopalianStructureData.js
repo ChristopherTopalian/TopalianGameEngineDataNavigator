@@ -38,8 +38,8 @@ structuresArray=[
  {
   "name": "House 4",
   "id": "STRUCTURE4",
-  "posX": 466,
-  "posY": 578,
+  "posX": 967,
+  "posY": 480,
   "sizeX": 114,
   "sizeY": 49,
   "colorFill": "rgb(150, 50, 100)",
@@ -50,7 +50,7 @@ structuresArray=[
  {
   "name": "House 5",
   "id": "STRUCTURE5",
-  "posX": 679,
+  "posX": 1179,
   "posY": 581,
   "sizeX": 114,
   "sizeY": 49,
@@ -62,7 +62,7 @@ structuresArray=[
  {
   "name": "House 6",
   "id": "STRUCTURE6",
-  "posX": 884,
+  "posX": 1384,
   "posY": 581,
   "sizeX": 114,
   "sizeY": 49,
@@ -74,7 +74,7 @@ structuresArray=[
  {
   "name": "House 7",
   "id": "STRUCTURE7",
-  "posX": 1156,
+  "posX": 1656,
   "posY": 524.5,
   "sizeX": 114,
   "sizeY": 49,
