@@ -1,0 +1,228 @@
+/* style001.css */
+
+hr
+{
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: 0 none;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+    background-color: rgb(255, 255, 255);
+}
+
+a:link
+{
+    color:rgb(110, 162, 255);
+}
+
+a:visited
+{
+    color:rgb(133, 134, 209);
+}
+
+b
+{
+    color: aqua;
+    font-weight: 900;
+}
+
+.divStyle001
+{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgba(100, 100, 255, 1.0);
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    z-index: 998;
+    font-family: arial;
+    font-weight: bold;
+    font-size: large;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.divBackground
+{
+    background: black;
+    background-image: url("https://collegeofscripting.weebly.com/uploads/6/4/4/8/64482293/stars-nice-edited_orig.png");
+    /* background-repeat: repeat; */
+}
+
+.ourButton
+{
+    background-color: rgb(0, 77, 129);
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(100, 100, 255);
+    border-radius: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    opacity: 1.0;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.ourButton:hover
+{
+    background-color: rgb(6, 31, 47);
+    border-color: rgb(0, 255, 255);
+    color: rgb(0, 255, 255);
+}
+
+.ourButton:active
+{
+    color: rgb(255, 0, 255);
+}
+
+.hrCompact
+{
+    background-color: rgb(255,255,255);
+    border: 0 none;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+}
+
+.textCompact
+{
+    font-family: arial;
+    font-size: 11pt;
+    font-weight: normal;
+    color: rgb(255,255,255);
+}
+
+.theImage
+{
+    height: 75%;
+    object-fit: contain;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+.theScienceImages
+{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    z-index: 10;
+}
+
+.vidStyle
+{
+   transition: transform .2s;
+}
+
+/* zoom feature for videos to be added */
+.vidStyle:hover
+{
+    /* transform: scale(2.5); */
+    position: absolute;
+    transform: translateY(+79%) scale(2.5);
+}
+
+.bookImage
+{
+    object-fit: contain;
+    max-width: 100%;
+    vertical-align: middle;
+    z-index: 10;
+}
+
+/* zoom feature to be added */
+.bookImage:hover
+{
+    /* position: "absolute"; */
+    /* transform: scale(1.2); */
+     z-index:100;
+    /* transform: translateY(+79%) scale(2.5); */
+    /* transform: translateY(+5%) scale(1.2); */
+}
+
+.textInput
+{
+    height: 20px;
+    width: 100px;
+    overflow: hidden;
+    resize: none;
+}
+
+.glowBlue
+{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 60px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #18dcff, 0 0 30px #18b6ff, 0 0 40px #003cff, 0 0 55px #00d9ff, 0 0 75px #00e1ff, 2px 2px 2px rgba(115,246,255,0);
+    z-index: 1;
+}
+
+.glowRed
+{
+    position: absolute;
+    left: 55px;
+    top: 100px;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #ff1878, 0 0 30px #0ddbff, 0 0 40px #21f0ff, 0 0 55px #ff008c, 0 0 75px #ff168b, 2px 2px 2px rgba(115, 246, 255, 0);
+    z-index: 1;
+}
+
+.buttonBottomToolbar
+{
+    color: white;
+}
+
+summary
+{
+    list-style-type: '^';
+    margin-left: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#instructions
+{
+    margin: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: solid 2px rgba(100, 100, 255, 1.0);
+    border-radius: 10px;
+    background-color: rgb(0, 0, 0);
+    z-index: 998;
+    font-family: arial;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 20px;
+    overflow-y: scroll;
+}
+
+/* -- */
+
+/* Dedicated to God the Father */
+/* All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024 */
+/* https://github.com/ChristopherTopalian */
+/* https://github.com/ChristopherAndrewTopalian */
+

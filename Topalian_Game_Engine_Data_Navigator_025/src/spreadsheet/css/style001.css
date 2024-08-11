@@ -1,0 +1,79 @@
+/* style001.css */
+
+body
+{
+    background: rgb(30, 30, 30);
+}
+
+#pasteDataHere
+{
+    height: 100px;
+    width: 600px;
+    box-sizing: border-box;
+    background-color: rgb(0, 0, 0);
+    border-radius: 6px;
+    border: 3px solid rgb(0,0,0);
+    border-color: rgb(255, 255, 255);
+    cursor:pointer;
+    color:rgb(255, 255, 255);
+    font-size: 14px;
+    padding: 9px 9px;
+    text-decoration: none;
+}
+
+#displayData
+{
+    height: 100px;
+    width: 600px;
+    padding: 9px 9px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 6px;
+    border: 3px solid rgb(0,0,0);
+    border-color: black;
+    cursor: pointer;
+    color:rgb(255, 255, 255);
+    font-size: 14px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+#displayContainer
+{
+    display: flex;
+    flex-direction: column;
+}
+
+#copyButton
+{
+    width: 100px;
+    background-color: rgb(0, 77, 129);
+    font-family: exo black;
+    font-size: 26px;
+    color: white;
+    border-radius: 7px;
+}
+
+#copyButton:hover
+{
+    background-color: rgb(36, 135, 201);
+}
+
+#appTitle
+{
+    font-family: Arial;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+#instructions
+{
+    font-family: tahoma;
+    font-size: 26px;
+    color: white;
+}
+
+/* Dedicated to God the Father */
+/* All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024 */
+/* https://github.com/ChristopherTopalian */
+/* https://github.com/ChristopherAndrewTopalian */

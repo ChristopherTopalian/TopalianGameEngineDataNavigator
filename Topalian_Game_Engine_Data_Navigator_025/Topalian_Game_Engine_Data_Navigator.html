@@ -1,0 +1,320 @@
+<!-- Dedicated to God the Father -->
+<!-- All Rights Reserved Christopher Andrew Topalian Copyright 2000-2024 -->
+<!-- https://github.com/ChristopherTopalian -->
+<!-- https://github.com/ChristopherAndrewTopalian -->
+<!-- https://github.com/ChristopherTopalian/TopalianGameEngineDataNavigator -->
+<!-- Topalian_Game_Engine_Data_Navigator.html -->
+<!-- Version 025 - (2024-08-10) -->
+
+<html>
+<head>
+<title> Topalian Game Engine Data Navigator </title>
+
+<style>
+
+html, body
+{
+    background-color: rgb(0, 0, 0);
+}
+
+</style>
+
+<link rel = "stylesheet" href = "src/css/style001.css">
+
+<!-- shortcuts -->
+<script src = "src/js/1shortcuts/shortcuts.js"></script>
+
+<!-- playerArray -->
+<script src = "src/js/2data/playerData.js"></script>
+
+<!-- structuresArray -->
+<script src = "src/js/2data/structuresArray.js"></script>
+
+<!-- world variables -->
+<script src = "src/js/3worldVariables/worldVariables.js"></script>
+
+<!-- data -->
+<script src = "src/data/booksPdf.js"></script>
+
+<script src = "src/data/booksWebsite.js"></script>
+
+<script src = "src/data/boxingVideos.js"></script>
+
+<script src = "src/data/collegeBooks.js"></script>
+
+<script src = "src/data/collegeLinks.js"></script>
+
+<script src = "src/data/collegeVideos.js"></script>
+
+<script src = "src/data/evidence.js"></script>
+
+<script src = "src/data/javascriptLanguage.js"></script>
+
+<script src = "src/data/lindenLanguage.js"></script>
+
+<script src = "src/data/mathematics.js"></script>
+
+<script src = "src/data/petitoGabrielleInvestigation.js"></script>
+
+<script src = "src/data/ourVideoFiles.js"></script>
+
+<script src = "src/data/scienceImages.js"></script>
+
+<script src = "src/data/rickyHattonInterview.js"></script>
+
+<script src = "src/data/socialMediaEvidence.js"></script>
+
+<script src = "src/data/techVideos.js"></script>
+
+<script src = "src/data/theNews.js"></script>
+
+<script src = "src/data/theNotes.js"></script>
+
+<script src = "src/data/videoEvidence.js"></script>
+
+<script src = "src/data/videoInvestigator.js"></script>
+
+<script src = "src/data/computerSciencePdf.js"></script>
+
+<!-- get -->
+<script src = "src/js/get/get.js"></script>
+
+<!-- player -->
+<script src = "src/js/player/playerUpdate.js"></script>
+
+<!-- engine -->
+<script src = "src/js/engine/cameraFollowsPlayer.js"></script>
+
+<script src = "src/js/engine/keyboardControl.js"></script>
+
+<script src = "src/js/engine/keepPlayerInWorld.js"></script>
+
+<script src = "src/js/engine/keyboardMotion.js"></script>
+
+<script src = "src/js/engine/movePlayer.js"></script>
+
+<script src = "src/js/engine/gameLoop.js"></script>
+
+<!-- content containers -->
+<script src = "src/js/contentContainers/1contentWorldVariables.js"></script>
+
+<script src = "src/js/contentContainers/containerBooks.js"></script>
+
+<script src = "src/js/contentContainers/containerBoxingVideos.js"></script>
+
+<script src = "src/js/contentContainers/containerLanguage.js"></script>
+
+<script src = "src/js/contentContainers/containerNews.js"></script>
+
+<script src = "src/js/contentContainers/containerNewsVideos.js"></script>
+
+<script src = "src/js/contentContainers/containerScience.js"></script>
+
+<script src = "src/js/contentContainers/wasLineCrossed.js"></script>
+
+<!-- utility -->
+<script src = "src/js/utility/copyIt.js"></script>
+
+<script src = "src/js/utility/removeElement.js"></script>
+
+<script src = "src/js/utility/listens.js"></script>
+
+<script src = "src/js/utility/loadScript.js"></script>
+
+<script src = "src/js/utility/printing.js"></script>
+
+<script src = "src/js/utility/preventContextMenu.js"></script>
+
+<!-- menu -->
+<script src = "src/js/menu/menuPlayer.js"></script>
+
+<script src = "src/js/menu/menuPlayerColor.js"></script>
+
+<script src = "src/js/menu/menuPlayerColorText.js"></script>
+
+<script src = "src/js/menu/menuPlayerDistance.js"></script>
+
+<script src = "src/js/menu/menuPlayerOpacity.js"></script>
+
+<script src = "src/js/menu/menuPlayerPositionSet.js"></script>
+
+<script src = "src/js/menu/menuPlayerPositionGet.js"></script>
+
+<script src = "src/js/menu/menuPlayerName.js"></script>
+
+<script src = "src/js/menu/menuPlayerSizeGet.js"></script>
+
+<script src = "src/js/menu/menuPlayerSizeSet.js"></script>
+
+<script src = "src/js/menu/menuPlayerSpeed.js"></script>
+
+<script src = "src/js/menu/menuPlayerTexture.js"></script>
+
+<script src = "src/js/menu/menuSearch.js"></script>
+
+<script src = "src/js/menu/menuStructureColor.js"></script>
+
+<script src = "src/js/menu/menuStructureColorText.js"></script>
+
+<script src = "src/js/menu/menuStructureDistance.js"></script>
+
+<script src = "src/js/menu/menuStructureEdit.js"></script>
+
+<script src = "src/js/menu/menuStructureName.js"></script>
+
+<script src = "src/js/menu/menuStructureOpacity.js"></script>
+
+<script src = "src/js/menu/menuStructurePositionGet.js"></script>
+
+<script src = "src/js/menu/menuStructurePositionSet.js"></script>
+
+<script src = "src/js/menu/menuStructureTexture.js"></script>
+
+<script src = "src/js/menu/menuStructureSizeGet.js"></script>
+
+<script src = "src/js/menu/menuStructureSizeSet.js"></script>
+
+<!-- make -->
+<script src = "src/js/make/makePlayer.js"></script>
+
+<script src = "src/js/make/makeBackground.js"></script>
+
+<script src = "src/js/make/makeStructureTextArea.js"></script>
+
+<script src = "src/js/make/makeEngineTitle.js"></script>
+
+<script src = "src/js/make/makeInfoDiv.js"></script>
+
+<script src = "src/js/make/makeInfoDivPlayer.js"></script>
+
+<script src = "src/js/make/makeDedication.js"></script>
+
+<script src = "src/js/make/makePlayerTextArea.js"></script>
+
+<script src = "src/js/make/makeLine.js"></script>
+
+<script src = "src/js/make/makeInstructions.js"></script>
+
+<script src = "src/js/make/makeLogo.js"></script>
+
+<script src = "src/js/make/makeBottomToolbar.js"></script>
+
+<script src = "src/js/make/makeVideo.js"></script>
+
+<script src = "src/js/mouse/mousePos.js"></script>
+<script src = "src/js/mouse/mouseOn.js"></script>
+<script src = "src/js/mouse/mouseOff.js"></script>
+
+<!-- pos size -->
+
+<script src = "src/js/posSize/sizeGet.js"></script>
+
+<script src = "src/js/posSize/positionDistance.js"></script>
+
+<script src = "src/js/posSize/positionGet.js"></script>
+
+<script src = "src/js/posSize/positionGetSizeAndSides.js"></script>
+
+<script src = "src/js/posSize/travelTo.js"></script>
+
+<!-- rows -->
+<script src = "src/js/rows/rowOfLanguage.js"></script>
+
+<script src = "src/js/rows/rowOfLanguageShowAll.js"></script>
+
+<script src = "src/js/rows/rowOfNews.js"></script>
+
+<script src = "src/js/rows/rowOfNotes.js"></script>
+
+<script src = "src/js/rows/rowOfNotesWithTextArea.js"></script>
+
+<script src = "src/js/rows/rowOfVideos.js"></script>
+
+<script src = "src/js/rows/rowOfVideosMultipleFilters.js"></script>
+
+<script src = "src/js/rows/rowOfWebsitesOrVideos.js"></script>
+
+<script src = "src/js/rows/rowOfEvidence.js"></script>
+
+<script src = "src/js/rows/rowOfEvidenceWithImage.js"></script>
+
+<script src = "src/js/rows/rowOfInvestigation.js"></script>
+
+<script src = "src/js/rows/rowOfScienceImagesAndLink.js"></script>
+
+<script src = "src/js/rows/rowOfSocialMediaEvidence.js"></script>
+
+<script src = "src/js/rows/rowOfDetails.js"></script>
+
+<script src = "src/js/rows/rowOfCollegeBooks.js"></script>
+
+<script src = "src/js/rows/rowOfCollegeLinks.js"></script>
+
+<script src = "src/js/rows/rowOfBookImages.js"></script>
+
+<script src = "src/js/rows/rowOfVideosOnlineStartEnd.js"></script>
+
+<!-- data functions -->
+
+<script src = "src/js/dataFunctions/playerLoadData.js"></script>
+
+<script src = "src/js/dataFunctions/downloadData.js"></script>
+
+<script src = "src/js/dataFunctions/recordDelete.js"></script>
+
+<script src = "src/js/dataFunctions/showPlayerData.js"></script>
+
+<script src = "src/js/dataFunctions/showStructureData.js"></script>
+
+<script src = "src/js/dataFunctions/sort/sortData.js"></script>
+
+<script src = "src/js/dataFunctions/sort/sortByDate.js"></script>
+
+<script src = "src/js/dataFunctions/sort/sortByNumber.js"></script>
+
+<!-- sound -->
+<script src = "src/js/sound/1soundsArray.js"></script>
+
+<script src = "src/js/sound/2songsArray.js"></script>
+
+<script src = "src/js/sound/sound.js"></script>
+
+<script src = "src/js/sound/songChoicesMenu.js"></script>
+
+<script src = "src/js/sound/volumeSet.js"></script>
+
+<script src = "src/js/sound/stopSound.js"></script>
+
+<script src = "src/js/sound/audioPlay.js"></script>
+
+<script src = "src/js/sound/playSong.js"></script>
+
+<script src = "src/js/sound/enterButtonSound.js"></script>
+
+<!-- structures -->
+<script src = "src/js/structures/updateStructures.js"></script>
+
+<script src = "src/js/structures/structuresColorAll.js"></script>
+
+<script src = "src/js/structures/structuresCreate.js"></script>
+
+<script src = "src/js/structures/structuresCreateFromFile.js"></script>
+
+<script src = "src/js/structures/structuresMenu.js"></script>
+
+<script src = "src/js/structures/structuresRemoveAll.js"></script>
+
+<script src = "src/js/structures/structuresRow.js"></script>
+
+<script src = "src/js/structures/structuresGoTo.js"></script>
+
+<script src = "src/js/whenLoaded/whenLoaded.js"></script>
+
+</head>
+
+<body onload = "whenLoaded();">
+
+</body>
+
+</html>
+
